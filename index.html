@@ -1,0 +1,1863 @@
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TORECATSU | KNOW THE SYSTEM. BREAK THE SYSTEM.</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="TORECATSU is a premier global technology & innovation syndicate engineering decentralized autonomy, quantum-resilient infrastructure, and next-generation intelligence.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,800;1,400&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6 CDN for all required icons -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- GSAP for Smooth Revelations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Canvas Confetti for Interactive Celebrations -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#030307',
+                            charcoal: '#090913',
+                            card: '#0D0E1C',
+                            border: '#1E2038',
+                            cyan: '#00F0FF',
+                            blue: '#0066FF',
+                            purple: '#8A2BE2',
+                            violet: '#B026FF',
+                            neonPink: '#FF007A'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 3s ease-in-out infinite alternate',
+                        'float': 'float 6s ease-in-out infinite',
+                        'scanline': 'scanline 8s linear infinite',
+                        'spin-slow': 'spin 20s linear infinite',
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { filter: 'drop-shadow(0 0 15px rgba(0, 240, 255, 0.4))' },
+                            '100%': { filter: 'drop-shadow(0 0 35px rgba(176, 38, 255, 0.8))' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        scanline: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(1000%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom High-Tech Styling */
+        body {
+            background-color: #030307;
+            color: #E2E8F0;
+            overflow-x: hidden;
+            font-family: 'Outfit', sans-serif;
+            selection-background-color: #00F0FF;
+            selection-color: #030307;
+        }
+
+        ::selection {
+            background: #00F0FF;
+            color: #030307;
+        }
+
+        /* Ambient Cyber Grid Background */
+        .cyber-grid {
+            background-image: 
+                linear-gradient(to right, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(138, 43, 226, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-panel {
+            background: rgba(13, 14, 28, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 240, 255, 0.12);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-panel-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-panel-hover:hover {
+            background: rgba(18, 20, 42, 0.85);
+            border-color: rgba(0, 240, 255, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px 0 rgba(0, 240, 255, 0.15);
+        }
+
+        /* Futuristic Text Gradients */
+        .text-gradient-cyan-purple {
+            background: linear-gradient(135deg, #00F0FF 0%, #7000FF 50%, #FF007A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-silver {
+            background: linear-gradient(180deg, #FFFFFF 0%, #A0AEC0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glowing Cyber Borders */
+        .cyber-border-glow {
+            position: relative;
+        }
+        .cyber-border-glow::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(90deg, #00F0FF, #8A2BE2, #FF007A, #00F0FF);
+            background-size: 300% 300%;
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            animation: gradientBorder 4s linear infinite;
+        }
+        .cyber-border-glow:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes gradientBorder {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030307;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E2038;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00F0FF;
+        }
+
+        /* Clip Path Cyber Accents */
+        .clip-corner {
+            clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+        }
+        
+        .clip-slant {
+            clip-path: polygon(12px 0%, 100% 0, calc(100% - 12px) 100%, 0 100%);
+        }
+
+        /* Interactive Custom Cursor */
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #00F0FF;
+            position: fixed;
+            pointer-events: none;
+            border-radius: 50%;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.2s ease;
+        }
+        .cursor-outline {
+            width: 32px;
+            height: 32px;
+            border: 1.5px solid rgba(0, 240, 255, 0.5);
+            position: fixed;
+            pointer-events: none;
+            border-radius: 50%;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, border-color 0.2s;
+        }
+    </style>
+</head>
+<body class="cyber-grid relative antialiased selection:bg-brand-cyan selection:text-black">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot hidden md:block" id="cursorDot"></div>
+    <div class="cursor-outline hidden md:block" id="cursorOutline"></div>
+
+    <!-- AUDIO ENGINE (Cyber Synth Feedback) -->
+    <script>
+        let audioCtx = null;
+        let soundEnabled = false;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playBeep(freq = 600, type = 'sine', duration = 0.08) {
+            if (!soundEnabled) return;
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+    </script>
+
+    <!-- Top Telemetry Status HUD -->
+    <div class="w-full bg-brand-black/90 border-b border-brand-border/60 text-[11px] font-mono py-1 px-4 text-slate-400 flex justify-between items-center z-50 relative">
+        <div class="flex items-center space-x-4">
+            <span class="flex items-center space-x-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span class="text-emerald-400 font-semibold tracking-wider">CORE: ONLINE</span>
+            </span>
+            <span class="hidden sm:inline-block text-slate-600">|</span>
+            <span class="hidden sm:inline-block">PARADIGM: <span class="text-brand-cyan">POST-SYSTEMIC 4.9.0</span></span>
+            <span class="hidden md:inline-block text-slate-600">|</span>
+            <span class="hidden md:inline-block">GLOBAL NODES: <span class="text-brand-violet">12,842 ACTIVE</span></span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <button onclick="toggleAudio()" id="audioBtn" class="flex items-center space-x-1.5 hover:text-brand-cyan transition-colors" title="Toggle UI Sonics">
+                <i class="fa-solid fa-volume-xmark text-slate-500" id="audioIcon"></i>
+                <span class="text-[10px]" id="audioStatus">AUDIO: OFF</span>
+            </button>
+            <span class="text-slate-600">|</span>
+            <span class="text-brand-cyan font-mono" id="liveClock">00:00:00 UTC</span>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         NAVBAR / HEADER
+         ============================================== -->
+    <header class="sticky top-0 z-40 w-full glass-panel border-b border-white/5 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-3 group" onmouseenter="playBeep(880)">
+                <div class="relative w-10 h-10 flex items-center justify-center bg-gradient-to-tr from-brand-cyan via-brand-purple to-brand-neonPink p-[1.5px] rounded-lg">
+                    <div class="w-full h-full bg-brand-black rounded-[7px] flex items-center justify-center group-hover:bg-brand-black/60 transition duration-300">
+                        <span class="font-display font-black text-xl tracking-tighter text-white group-hover:text-brand-cyan transition-colors">T</span>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display font-black text-2xl tracking-[0.2em] text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-brand-cyan group-hover:to-brand-violet transition duration-300">
+                        TORECATSU
+                    </span>
+                    <span class="text-[9px] font-mono text-brand-cyan tracking-widest uppercase -mt-1 opacity-80">Global Syndicate</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium font-display tracking-wider">
+                <a href="#about" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">ABOUT</a>
+                <a href="#mission" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">MISSION</a>
+                <a href="#projects" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">PROJECTS</a>
+                <a href="#network" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">NETWORK</a>
+                <a href="#community" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">COMMUNITY</a>
+                <a href="#contact" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">CONTACT</a>
+            </nav>
+
+            <!-- Action Controls -->
+            <div class="hidden sm:flex items-center space-x-4">
+                <!-- Terminal Chat Trigger -->
+                <button onclick="toggleChat()" class="p-2.5 rounded-lg bg-brand-charcoal border border-brand-border text-slate-300 hover:text-brand-cyan hover:border-brand-cyan/50 transition-all duration-300 relative group" title="Launch TORE-AI Terminal" onmouseenter="playBeep(520)">
+                    <i class="fa-solid fa-terminal"></i>
+                    <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-brand-cyan rounded-full animate-ping"></span>
+                    <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-brand-cyan rounded-full"></span>
+                </button>
+
+                <!-- Auth Trigger -->
+                <button onclick="openAuthModal('login')" class="px-4 py-2 text-xs font-mono font-semibold tracking-wider text-slate-300 border border-brand-border rounded-lg hover:border-brand-violet hover:text-white transition-all duration-200" onmouseenter="playBeep(580)">
+                    [ ACCESS PORTAL ]
+                </button>
+
+                <!-- CTA Button -->
+                <a href="#join" class="relative group px-5 py-2.5 font-display text-xs font-bold uppercase tracking-widest text-black bg-gradient-to-r from-brand-cyan to-brand-blue rounded-md shadow-lg shadow-brand-cyan/25 hover:shadow-brand-cyan/50 hover:scale-105 transition-all duration-200" onmouseenter="playBeep(750)">
+                    JOIN TORECATSU
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Toggle -->
+            <button onclick="toggleMobileMenu()" class="lg:hidden text-slate-300 hover:text-brand-cyan p-2 focus:outline-none">
+                <i class="fa-solid fa-bars-staggered text-xl" id="menuIcon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-brand-border/80 bg-brand-card/95 backdrop-blur-2xl px-6 py-6 space-y-4">
+            <a href="#about" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">ABOUT</a>
+            <a href="#mission" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">MISSION</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">PROJECTS</a>
+            <a href="#network" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">GLOBAL NETWORK</a>
+            <a href="#community" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">COMMUNITY</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">CONTACT</a>
+            <div class="pt-4 border-t border-brand-border/60 flex flex-col space-y-3">
+                <button onclick="toggleMobileMenu(); toggleChat();" class="w-full text-center py-2.5 rounded-lg bg-brand-charcoal border border-brand-border text-brand-cyan font-mono text-sm">
+                    <i class="fa-solid fa-terminal mr-2"></i> LAUNCH TORE-AI
+                </button>
+                <button onclick="toggleMobileMenu(); openAuthModal('login');" class="w-full text-center py-2.5 rounded-lg border border-brand-violet text-white font-mono text-sm">
+                    LOGIN / SIGN UP
+                </button>
+                <a href="#join" onclick="toggleMobileMenu()" class="w-full text-center py-3 bg-gradient-to-r from-brand-cyan to-brand-blue text-black font-display font-bold text-sm tracking-wider rounded-lg">
+                    JOIN TORECATSU
+                </a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ==============================================
+         HERO SECTION WITH 3D WEBGL ENGINE
+         ============================================== -->
+    <section class="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-12 pb-24">
+        <!-- Three.js Canvas Container -->
+        <div id="hero3DCanvas" class="absolute inset-0 z-0 pointer-events-none opacity-80"></div>
+
+        <!-- Subtle Gradient Radial Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-brand-cyan/15 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute bottom-10 left-1/4 w-[450px] h-[450px] bg-brand-violet/15 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+            
+            <!-- Category Badge -->
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full glass-panel border border-brand-cyan/30 text-brand-cyan text-xs font-mono tracking-widest uppercase mb-8 animate-float">
+                <span class="w-2 h-2 rounded-full bg-brand-cyan animate-ping"></span>
+                <span>ARCHITECTURAL DISRUPTION PROTOCOL</span>
+            </div>
+
+            <!-- Main Slogan Headline -->
+            <h1 class="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.05] max-w-5xl mb-6">
+                <span class="text-white block opacity-95">KNOW THE SYSTEM.</span>
+                <span class="text-gradient-cyan-purple block mt-1 drop-shadow-2xl">BREAK THE SYSTEM.</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="max-w-2xl text-slate-400 font-sans text-base sm:text-lg md:text-xl font-light tracking-wide leading-relaxed mb-10">
+                TORECATSU is the elite sovereign technology collective dismantling legacy boundaries through distributed intelligence, zero-trust cryptographic layers, and hyper-scalable autonomy.
+            </p>
+
+            <!-- Call to Actions -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+                <a href="#join" class="w-full sm:w-auto relative group overflow-hidden px-9 py-4 rounded-xl bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-purple text-black font-display font-extrabold text-sm sm:text-base uppercase tracking-widest shadow-2xl shadow-brand-cyan/30 hover:shadow-brand-cyan/60 hover:scale-105 transition-all duration-300" onmouseenter="playBeep(750)">
+                    <span class="relative z-10 flex items-center justify-center space-x-3 text-slate-950 font-bold">
+                        <span>JOIN TORECATSU</span>
+                        <i class="fa-solid fa-arrow-right-long text-slate-950 group-hover:translate-x-1.5 transition-transform"></i>
+                    </span>
+                    <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                </a>
+
+                <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel border border-white/10 hover:border-brand-cyan/60 text-slate-200 font-display font-semibold text-sm sm:text-base tracking-wider transition-all duration-300 hover:bg-white/5 flex items-center justify-center space-x-2" onmouseenter="playBeep(520)">
+                    <i class="fa-solid fa-cube text-brand-cyan text-sm"></i>
+                    <span>SYSTEM PROTOCOLS</span>
+                </a>
+            </div>
+
+            <!-- Key Live Metrics Floating Counter Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-16 w-full max-w-4xl">
+                <div class="glass-panel p-4 rounded-xl border border-brand-border/80 text-left">
+                    <p class="text-[10px] font-mono text-brand-cyan uppercase tracking-widest">Network Throughput</p>
+                    <p class="text-2xl sm:text-3xl font-display font-bold text-white mt-1 counter" data-target="940">0</p>
+                    <span class="text-xs text-slate-400 font-mono">Gbps Quantum Mesh</span>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border border-brand-border/80 text-left">
+                    <p class="text-[10px] font-mono text-brand-violet uppercase tracking-widest">Global Nodes</p>
+                    <p class="text-2xl sm:text-3xl font-display font-bold text-white mt-1 counter" data-target="12840">0</p>
+                    <span class="text-xs text-slate-400 font-mono">Autonomous Clusters</span>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border border-brand-border/80 text-left">
+                    <p class="text-[10px] font-mono text-brand-cyan uppercase tracking-widest">Security Clearance</p>
+                    <p class="text-2xl sm:text-3xl font-display font-bold text-white mt-1">EAL-7+</p>
+                    <span class="text-xs text-slate-400 font-mono">Zero-Knowledge Proofs</span>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border border-brand-border/80 text-left">
+                    <p class="text-[10px] font-mono text-brand-violet uppercase tracking-widest">DAO Governance</p>
+                    <p class="text-2xl sm:text-3xl font-display font-bold text-white mt-1 counter" data-target="100">0</p>
+                    <span class="text-xs text-slate-400 font-mono">% Decentralized</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Gradient Mask -->
+        <div class="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-brand-black to-transparent pointer-events-none"></div>
+    </section>
+
+
+    <!-- ==============================================
+         ABOUT SECTION
+         ============================================== -->
+    <section id="about" class="py-24 relative z-10 border-t border-brand-border/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Details & Philosophy -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center space-x-2 text-brand-cyan font-mono text-xs tracking-widest uppercase">
+                        <i class="fa-solid fa-fingerprint"></i>
+                        <span>// GENESIS ARCHITECTURE</span>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-5xl font-display font-bold tracking-tight text-white">
+                        We Don’t Follow Paradigms.<br/>
+                        <span class="text-gradient-cyan-purple">We Re-Engineer Them.</span>
+                    </h2>
+
+                    <p class="text-slate-400 text-base sm:text-lg leading-relaxed font-light">
+                        Founded on the radical premise that modern centralized infrastructure is brittle and monopolized, <strong class="text-white font-medium">TORECATSU</strong> operates as an elite decentralized guild of researchers, cryptographers, system architects, and visionary builders.
+                    </p>
+
+                    <p class="text-slate-400 text-base leading-relaxed font-light">
+                        To break a system, one must first possess an intimate, atomic comprehension of its code, incentives, and failure points. We study every structural inefficiency to deploy self-healing, cryptographically sovereign alternatives.
+                    </p>
+
+                    <!-- Core Tenets List -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="glass-panel p-4 rounded-lg border-l-2 border-l-brand-cyan">
+                            <h4 class="font-display font-bold text-white text-sm flex items-center space-x-2">
+                                <i class="fa-solid fa-shield-halved text-brand-cyan text-xs"></i>
+                                <span>Cryptographic Autonomy</span>
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-1 font-sans">Full mathematical sovereignty immune to single points of failure.</p>
+                        </div>
+                        <div class="glass-panel p-4 rounded-lg border-l-2 border-l-brand-violet">
+                            <h4 class="font-display font-bold text-white text-sm flex items-center space-x-2">
+                                <i class="fa-solid fa-microchip text-brand-violet text-xs"></i>
+                                <span>Quantum Resilience</span>
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-1 font-sans">Lattice-based cryptography tailored for next-gen computation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual Hologram Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative glass-panel rounded-2xl p-6 border border-brand-cyan/20 overflow-hidden group">
+                        <!-- Holographic ambient background -->
+                        <div class="absolute -inset-1 bg-gradient-to-r from-brand-cyan/20 to-brand-violet/20 rounded-2xl blur-xl opacity-75 group-hover:opacity-100 transition duration-500"></div>
+
+                        <div class="relative z-10 space-y-6">
+                            <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                                <span class="font-mono text-xs text-brand-cyan tracking-widest">[ SYSTEM DIAGNOSTIC ]</span>
+                                <span class="text-xs font-mono text-emerald-400">STATUS: OPTIMAL</span>
+                            </div>
+
+                            <!-- Animated Visual Waveform Simulation -->
+                            <div class="h-44 bg-brand-black/90 rounded-xl p-4 border border-brand-border/60 flex flex-col justify-between relative overflow-hidden">
+                                <div class="flex justify-between items-center text-[10px] font-mono text-slate-500">
+                                    <span>ENTROPY: 0.00293</span>
+                                    <span>HASH: 0x9f4a...e12b</span>
+                                </div>
+
+                                <!-- Central Glowing Emblem -->
+                                <div class="flex justify-center items-center py-4">
+                                    <div class="relative w-20 h-20 rounded-full border border-dashed border-brand-cyan animate-spin-slow flex items-center justify-center">
+                                        <div class="w-12 h-12 rounded-full border border-brand-violet animate-ping opacity-40"></div>
+                                        <i class="fa-solid fa-network-wired text-brand-cyan text-xl absolute"></i>
+                                    </div>
+                                </div>
+
+                                <div class="w-full bg-brand-charcoal h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-brand-cyan to-brand-violet h-full w-[84%] animate-pulse"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2 font-mono text-xs text-slate-400">
+                                <div class="flex justify-between">
+                                    <span>Consensus Protocol:</span>
+                                    <span class="text-white">Proof-of-Architect v2</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Privacy Mechanism:</span>
+                                    <span class="text-white">Zero-Knowledge SNARKs</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Latency Threshold:</span>
+                                    <span class="text-brand-cyan">&lt; 3.8 ms (Global)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==============================================
+         MISSION & CORE DIRECTIVES
+         ============================================== -->
+    <section id="mission" class="py-24 relative z-10 bg-brand-charcoal/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center space-x-2 text-brand-violet font-mono text-xs tracking-widest uppercase mb-3">
+                    <i class="fa-solid fa-crosshairs"></i>
+                    <span>// STRATEGIC MANDATES</span>
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight">
+                    The Four Directives of Liberation
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-4 font-light">
+                    Every protocol, algorithm, and project shipped under the TORECATSU flag adheres to uncompromising foundational imperatives.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Directive 1 -->
+                <div class="glass-panel glass-panel-hover p-6 rounded-2xl relative flex flex-col justify-between" onmouseenter="playBeep(600)">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-cyan/10 border border-brand-cyan/30 flex items-center justify-center text-brand-cyan text-xl">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <span class="text-xs font-mono text-brand-cyan uppercase tracking-widest block">DIRECTIVE 01</span>
+                        <h3 class="text-lg font-display font-bold text-white">Hyper-Autonomous AI</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed font-sans">
+                            Developing decentralized machine intelligence nodes governed by algorithmic consensus, preventing corporate data monopoly.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500">
+                        <span>PILLAR: COGNITION</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-brand-cyan"></i>
+                    </div>
+                </div>
+
+                <!-- Directive 2 -->
+                <div class="glass-panel glass-panel-hover p-6 rounded-2xl relative flex flex-col justify-between" onmouseenter="playBeep(640)">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-violet/10 border border-brand-violet/30 flex items-center justify-center text-brand-violet text-xl">
+                            <i class="fa-solid fa-lock-open"></i>
+                        </div>
+                        <span class="text-xs font-mono text-brand-violet uppercase tracking-widest block">DIRECTIVE 02</span>
+                        <h3 class="text-lg font-display font-bold text-white">Zero-Knowledge Defense</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed font-sans">
+                            Eliminating data harvesting through mathematically unbreakable zk-computation where validity is proven without exposing identities.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500">
+                        <span>PILLAR: PRIVACY</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-brand-violet"></i>
+                    </div>
+                </div>
+
+                <!-- Directive 3 -->
+                <div class="glass-panel glass-panel-hover p-6 rounded-2xl relative flex flex-col justify-between" onmouseenter="playBeep(680)">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center text-brand-blue text-xl">
+                            <i class="fa-solid fa-satellite-dish"></i>
+                        </div>
+                        <span class="text-xs font-mono text-brand-blue uppercase tracking-widest block">DIRECTIVE 03</span>
+                        <h3 class="text-lg font-display font-bold text-white">Mesh Sovereign Networks</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed font-sans">
+                            Physical and satellite-linked mesh networking capable of routing data uninhibited during regional outages and censorship events.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500">
+                        <span>PILLAR: RESILIENCE</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-brand-blue"></i>
+                    </div>
+                </div>
+
+                <!-- Directive 4 -->
+                <div class="glass-panel glass-panel-hover p-6 rounded-2xl relative flex flex-col justify-between" onmouseenter="playBeep(720)">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-neonPink/10 border border-brand-neonPink/30 flex items-center justify-center text-brand-neonPink text-xl">
+                            <i class="fa-solid fa-bolt-lightning"></i>
+                        </div>
+                        <span class="text-xs font-mono text-brand-neonPink uppercase tracking-widest block">DIRECTIVE 04</span>
+                        <h3 class="text-lg font-display font-bold text-white">Disruptive Economics</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed font-sans">
+                            Creating fluid value exchange mechanisms unburdened by central banking intermediaries or rent-seeking gateways.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500">
+                        <span>PILLAR: ECONOMICS</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-brand-neonPink"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==============================================
+         PROJECTS & LAB INNOVATIONS
+         ============================================== -->
+    <section id="projects" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <div class="inline-flex items-center space-x-2 text-brand-cyan font-mono text-xs tracking-widest uppercase mb-3">
+                        <i class="fa-solid fa-vial-circle-check"></i>
+                        <span>// ACTIVE EXPERIMENTS</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight">
+                        Systems Laboratory
+                    </h2>
+                </div>
+                
+                <!-- Category Filter Buttons -->
+                <div class="flex items-center space-x-2 mt-6 md:mt-0 font-mono text-xs overflow-x-auto pb-2 md:pb-0">
+                    <button onclick="filterProjects('all')" class="px-4 py-2 rounded-lg bg-brand-cyan/20 border border-brand-cyan text-brand-cyan active-tab">ALL</button>
+                    <button onclick="filterProjects('ai')" class="px-4 py-2 rounded-lg bg-brand-card border border-brand-border text-slate-400 hover:text-white transition">AI / NEURAL</button>
+                    <button onclick="filterProjects('crypto')" class="px-4 py-2 rounded-lg bg-brand-card border border-brand-border text-slate-400 hover:text-white transition">CRYPTOGRAPHY</button>
+                    <button onclick="filterProjects('infra')" class="px-4 py-2 rounded-lg bg-brand-card border border-brand-border text-slate-400 hover:text-white transition">INFRASTRUCTURE</button>
+                </div>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
+                
+                <!-- Project 1 -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between border border-brand-border/80 project-card" data-category="ai">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-2.5 py-1 rounded bg-brand-cyan/10 text-brand-cyan font-mono text-[10px] tracking-wider uppercase border border-brand-cyan/30">NEURAL ENGINE</span>
+                            <span class="text-xs font-mono text-emerald-400 flex items-center space-x-1">
+                                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping"></span>
+                                <span>v3.4 LIVE</span>
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-white group-hover:text-brand-cyan transition-colors">PROJECT CHRONOS</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mt-2 font-light leading-relaxed">
+                            Decentralized predictive inference grid capable of simulating economic systemic contagion in sub-second latency.
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
+                        <span class="font-mono text-[11px] text-slate-500">STATUS: PRODUCTION</span>
+                        <a href="javascript:void(0)" onclick="openProjectModal('Project Chronos', 'High-throughput algorithmic prediction matrix running on decentralized validator nodes across 40 countries.')" class="text-xs font-mono text-brand-cyan hover:underline flex items-center space-x-1">
+                            <span>INSPECT</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between border border-brand-border/80 project-card" data-category="crypto">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-2.5 py-1 rounded bg-brand-violet/10 text-brand-violet font-mono text-[10px] tracking-wider uppercase border border-brand-violet/30">ZERO-KNOWLEDGE</span>
+                            <span class="text-xs font-mono text-emerald-400 flex items-center space-x-1">
+                                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>
+                                <span>MAINNET</span>
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-white">AEGIS SHIELD PROT</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mt-2 font-light leading-relaxed">
+                            A quantum-resistant zk-rollup layer guaranteeing 100% anonymized, non-traceable systemic wealth migration.
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
+                        <span class="font-mono text-[11px] text-slate-500">AUDIT: FORMALLY VERIFIED</span>
+                        <a href="javascript:void(0)" onclick="openProjectModal('Aegis Shield Protocol', 'Formal cryptographic proofs guaranteeing state secrecy and post-quantum encryption standards.')" class="text-xs font-mono text-brand-violet hover:underline flex items-center space-x-1">
+                            <span>INSPECT</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between border border-brand-border/80 project-card" data-category="infra">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-2.5 py-1 rounded bg-brand-blue/10 text-brand-blue font-mono text-[10px] tracking-wider uppercase border border-brand-blue/30">DARK FIBER</span>
+                            <span class="text-xs font-mono text-cyan-400 flex items-center space-x-1">
+                                <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-ping"></span>
+                                <span>TESTNET 2</span>
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-white">NEXUS HYPER-MESH</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mt-2 font-light leading-relaxed">
+                            Decentralized physical infrastructure network (DePIN) establishing un-censorable point-to-point laser & microwave packet relays.
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
+                        <span class="font-mono text-[11px] text-slate-500">ACTIVE RELAYS: 4,120</span>
+                        <a href="javascript:void(0)" onclick="openProjectModal('Nexus Hyper-Mesh', 'Autonomous hardware gateway providing high-bandwidth dark mesh transmission nodes globally.')" class="text-xs font-mono text-brand-blue hover:underline flex items-center space-x-1">
+                            <span>INSPECT</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between border border-brand-border/80 project-card" data-category="ai">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-2.5 py-1 rounded bg-brand-cyan/10 text-brand-cyan font-mono text-[10px] tracking-wider uppercase border border-brand-cyan/30">AUTONOMY</span>
+                            <span class="text-xs font-mono text-yellow-400">RESEARCH</span>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-white">VORTEX AGENT DAO</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mt-2 font-light leading-relaxed">
+                            Autonomous multi-agent economic entities possessing distinct wallet keys, negotiating and fulfilling smart contracts without humans.
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
+                        <span class="font-mono text-[11px] text-slate-500">AGENTS SPAWNED: 89,000+</span>
+                        <a href="javascript:void(0)" onclick="openProjectModal('Vortex Agent DAO', 'Self-incentivized autonomous agents operating decentralized arbitrage and compute optimization.')" class="text-xs font-mono text-brand-cyan hover:underline flex items-center space-x-1">
+                            <span>INSPECT</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between border border-brand-border/80 project-card" data-category="crypto">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-2.5 py-1 rounded bg-brand-violet/10 text-brand-violet font-mono text-[10px] tracking-wider uppercase border border-brand-violet/30">DECENTRALIZED ID</span>
+                            <span class="text-xs font-mono text-emerald-400">DEPLOYED</span>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-white">SOVEREIGN PASSPORT</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mt-2 font-light leading-relaxed">
+                            Encrypted, biometric-anchored cryptographic credentials allowing zero-disclosure identity verification worldwide.
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
+                        <span class="font-mono text-[11px] text-slate-500">ISSUED: 1.2M IDS</span>
+                        <a href="javascript:void(0)" onclick="openProjectModal('Sovereign Passport', 'Self-sovereign identity architecture with post-quantum biometric signature wrapping.')" class="text-xs font-mono text-brand-violet hover:underline flex items-center space-x-1">
+                            <span>INSPECT</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between border border-brand-border/80 project-card" data-category="infra">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-2.5 py-1 rounded bg-brand-neonPink/10 text-brand-neonPink font-mono text-[10px] tracking-wider uppercase border border-brand-neonPink/30">KERNEL COMPILER</span>
+                            <span class="text-xs font-mono text-emerald-400">STABLE</span>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-white">NULL-OS SOVEREIGN</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mt-2 font-light leading-relaxed">
+                            An immutable, minimal microkernel operating system with zero telemetry, sandboxed memory spaces, and built-in TOR/I2P routing.
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
+                        <span class="font-mono text-[11px] text-slate-500">BINARY SIZE: 18MB</span>
+                        <a href="javascript:void(0)" onclick="openProjectModal('Null-OS Sovereign', 'Ultra-lean microkernel designed for privacy-critical operations and hardware enclave isolation.')" class="text-xs font-mono text-brand-neonPink hover:underline flex items-center space-x-1">
+                            <span>INSPECT</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==============================================
+         GLOBAL NETWORK & 3D INTERACTIVE GLOBE
+         ============================================== -->
+    <section id="network" class="py-24 relative z-10 bg-brand-charcoal/50 border-y border-brand-border/60 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Globe Info Column -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center space-x-2 text-brand-cyan font-mono text-xs tracking-widest uppercase">
+                        <i class="fa-solid fa-earth-americas"></i>
+                        <span>// DECENTRALIZED TOPOLOGY</span>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight">
+                        Global Syndicate Network
+                    </h2>
+
+                    <p class="text-slate-400 text-sm sm:text-base leading-relaxed font-light">
+                        Operating across high-density sovereign server nodes, satellite arrays, and autonomous enclaves in key geopolitical centers. TORECATSU routes beyond standard state firewalls.
+                    </p>
+
+                    <!-- Interactive City Hub Badges -->
+                    <div class="space-y-3 pt-2">
+                        <div class="glass-panel p-3 rounded-xl flex items-center justify-between cursor-pointer hover:border-brand-cyan transition" onclick="highlightNode('Tokyo')">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-brand-cyan animate-pulse"></span>
+                                <span class="font-display font-semibold text-white text-sm">Tokyo Cyber Hub</span>
+                            </div>
+                            <span class="font-mono text-xs text-brand-cyan">0.8ms Latency</span>
+                        </div>
+
+                        <div class="glass-panel p-3 rounded-xl flex items-center justify-between cursor-pointer hover:border-brand-violet transition" onclick="highlightNode('Zurich')">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-brand-violet animate-pulse"></span>
+                                <span class="font-display font-semibold text-white text-sm">Zurich Cryptographic Vault</span>
+                            </div>
+                            <span class="font-mono text-xs text-brand-violet">EAL-7 Secured</span>
+                        </div>
+
+                        <div class="glass-panel p-3 rounded-xl flex items-center justify-between cursor-pointer hover:border-brand-blue transition" onclick="highlightNode('SanFrancisco')">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-brand-blue animate-pulse"></span>
+                                <span class="font-display font-semibold text-white text-sm">San Francisco AI Forge</span>
+                            </div>
+                            <span class="font-mono text-xs text-brand-blue">4.2 PFLOPS</span>
+                        </div>
+
+                        <div class="glass-panel p-3 rounded-xl flex items-center justify-between cursor-pointer hover:border-brand-neonPink transition" onclick="highlightNode('Singapore')">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-brand-neonPink animate-pulse"></span>
+                                <span class="font-display font-semibold text-white text-sm">Singapore Mesh Hub</span>
+                            </div>
+                            <span class="font-mono text-xs text-brand-neonPink">100Gb/s Dark Pipe</span>
+                        </div>
+                    </div>
+
+                    <div class="text-xs font-mono text-slate-500 pt-2">
+                        * Drag on globe to rotate interactive coordinate matrix
+                    </div>
+                </div>
+
+                <!-- 3D Interactive WebGL Globe Canvas Container -->
+                <div class="lg:col-span-7 flex items-center justify-center relative min-h-[420px] sm:min-h-[500px]">
+                    <div id="globeContainer" class="w-full h-[450px] sm:h-[520px] rounded-3xl glass-panel relative overflow-hidden border border-brand-cyan/30">
+                        <!-- HUD Overlay Details -->
+                        <div class="absolute top-4 left-4 z-20 font-mono text-[10px] text-slate-400 space-y-1 pointer-events-none">
+                            <p class="text-brand-cyan font-bold">TOPOLOGY: GLOBAL_ROTATION_ON</p>
+                            <p>FPS: 60.0 // RENDER: WEBGL2</p>
+                        </div>
+
+                        <div class="absolute bottom-4 right-4 z-20 font-mono text-[10px] text-brand-violet pointer-events-none text-right">
+                            <p>NODE ENCRYPTION: 4096-BIT RSA / KYBER-1024</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==============================================
+         COMMUNITY & SYNDICATE CLEARANCE TIERS
+         ============================================== -->
+    <section id="community" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center space-x-2 text-brand-cyan font-mono text-xs tracking-widest uppercase mb-3">
+                    <i class="fa-solid fa-users-rays"></i>
+                    <span>// SYNDICATE STRUCTURE</span>
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight">
+                    Decentralized Community Tiers
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-4 font-light">
+                    Join an international assembly of innovators, cryptographers, and system breakers. Elevate your clearance by contributing compute, research, or governance.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                
+                <!-- Tier 1: Initiate -->
+                <div class="glass-panel rounded-2xl p-8 flex flex-col justify-between border border-brand-border/60 relative">
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-mono text-slate-400 uppercase tracking-wider">LEVEL 01</span>
+                            <span class="px-3 py-1 rounded-full text-[10px] font-mono bg-slate-800 text-slate-300">OPEN ACCESS</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-display font-bold text-white">INITIATE</h3>
+                            <p class="text-slate-400 text-xs mt-2">For curious technologists entering the TORECATSU perimeter.</p>
+                        </div>
+                        <ul class="space-y-3 font-sans text-xs text-slate-300">
+                            <li class="flex items-center space-x-2.5">
+                                <i class="fa-solid fa-check text-brand-cyan text-xs"></i>
+                                <span>Discord & Telegram General Access</span>
+                            </li>
+                            <li class="flex items-center space-x-2.5">
+                                <i class="fa-solid fa-check text-brand-cyan text-xs"></i>
+                                <span>Public Research Whitepapers</span>
+                            </li>
+                            <li class="flex items-center space-x-2.5">
+                                <i class="fa-solid fa-check text-brand-cyan text-xs"></i>
+                                <span>Global Hackathon Participation</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <button onclick="openAuthModal('signup')" class="mt-8 w-full py-3 rounded-xl border border-brand-border text-slate-200 font-display font-bold text-xs tracking-wider uppercase hover:border-brand-cyan hover:text-brand-cyan transition duration-200">
+                        COMMENCE INITIATION
+                    </button>
+                </div>
+
+                <!-- Tier 2: Architect (Featured) -->
+                <div class="glass-panel rounded-2xl p-8 flex flex-col justify-between border-2 border-brand-cyan relative scale-105 shadow-2xl shadow-brand-cyan/20 bg-brand-card/90">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-0.5 rounded-full bg-gradient-to-r from-brand-cyan to-brand-violet text-[10px] font-mono font-bold text-black tracking-widest uppercase">
+                        MOST POPULAR
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-mono text-brand-cyan uppercase tracking-wider">LEVEL 02</span>
+                            <span class="px-3 py-1 rounded-full text-[10px] font-mono bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/30">VETTED BUILDER</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-display font-bold text-white">ARCHITECT</h3>
+                            <p class="text-slate-400 text-xs mt-2">Active protocol contributors, smart-contract auditors, & node operators.</p>
+                        </div>
+                        <ul class="space-y-3 font-sans text-xs text-slate-300">
+                            <li class="flex items-center space-x-2.5">
+                                <i class="fa-solid fa-check text-brand-cyan text-xs"></i>
+                                <span>Testnet Node Deployment Clearance</span>
+                            </li>
+                            <li class="flex items-center space-x-2.5">
+                                <i class="fa-solid fa-check text-brand-cyan text-xs"></i>
+                                <span>DAO Voting Rights on RFC Protocols</span>
+                            </li>
+                            <li class="flex items-center space-x-2.5">
+                                <i class="fa-solid fa-check text-brand-cyan text-xs"></i>
+                                <span>Direct Access to TORE-AI Developer APIs</span>
+                            </li>
+                            <li class="flex items-center space-x-2.5">
+                                <i class="fa-solid fa-check text-brand-cyan text-xs"></i>
+                                <span>Syndicate Bounty Allocations</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#join" class="mt-8 w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-blue text-black font-display font-bold text-xs tracking-wider uppercase shadow-lg shadow-brand-cyan/25 hover:shadow-brand-cyan/50 text-center transition">
+                        APPLY AS ARCHITECT
+                    </a>
+                </div>
+
+                <!-- Tier 3: Sovereign -->
+                <div class="glass-panel rounded-2xl p-8 flex flex-col justify-between border border-brand-border/60 relative">
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-mono text-brand-violet uppercase tracking-wider">LEVEL 03</span>
+                            <span class="px-3 py-1 rounded-full text-[10px] font-mono bg-brand-violet/10 text-brand-violet border border-brand-violet/30">COUNCIL ONLY</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-display font-bold text-white">SOVEREIGN</h3>
+                            <p class="text-slate-400 text-xs mt-2">High-security validators, core cryptographers, and lead architects.</p>
+                        </div>
+                        <ul class="space-y-3 font-sans text-xs text-slate-300">
+                            <li class="flex items-center space-x-2.5">
+                                <i class="fa-solid fa-check text-brand-violet text-xs"></i>
+                                <span>Multi-Sig Treasury Governance</span>
+                            </li>
+                            <li class="flex items-center space-x-2.5">
+                                <i class="fa-solid fa-check text-brand-violet text-xs"></i>
+                                <span>Genesis Core Kernel Write Access</span>
+                            </li>
+                            <li class="flex items-center space-x-2.5">
+                                <i class="fa-solid fa-check text-brand-violet text-xs"></i>
+                                <span>Encrypted Global Assembly Invites</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <button onclick="openAuthModal('login')" class="mt-8 w-full py-3 rounded-xl border border-brand-violet text-slate-200 font-display font-bold text-xs tracking-wider uppercase hover:border-brand-violet hover:text-brand-violet transition duration-200">
+                        AUTHENTICATE CREDENTIALS
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==============================================
+         JOIN US SECTION (CLEARANCE APPLICATION)
+         ============================================== -->
+    <section id="join" class="py-24 relative z-10 bg-brand-charcoal/30 border-t border-brand-border/40">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-brand-cyan/40 relative overflow-hidden">
+                <!-- Background Accent Glow -->
+                <div class="absolute -top-32 -right-32 w-64 h-64 bg-brand-cyan/20 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-32 -left-32 w-64 h-64 bg-brand-violet/20 rounded-full blur-3xl"></div>
+
+                <div class="relative z-10 text-center max-w-2xl mx-auto mb-10">
+                    <div class="inline-flex items-center space-x-2 text-brand-cyan font-mono text-xs tracking-widest uppercase mb-2">
+                        <i class="fa-solid fa-id-card-clip"></i>
+                        <span>// PROTOCOL ENROLLMENT</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-display font-black text-white tracking-tight">
+                        JOIN TORECATSU
+                    </h2>
+                    <p class="text-slate-400 text-sm mt-2 font-light">
+                        Submit your cryptographic identity and field of mastery. Qualified operators will receive encrypted telemetry clearance.
+                    </p>
+                </div>
+
+                <form id="joinForm" onsubmit="handleJoinSubmit(event)" class="relative z-10 space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-mono text-slate-300 mb-2 uppercase">Operator Handle / Name *</label>
+                            <input type="text" required placeholder="e.g. Satoshi-9X or Alex Vance" class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-cyan font-mono placeholder:text-slate-600 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-slate-300 mb-2 uppercase">Encrypted Communication (Email) *</label>
+                            <input type="email" required placeholder="handle@proton.me" class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-cyan font-mono placeholder:text-slate-600 transition">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-mono text-slate-300 mb-2 uppercase">Primary Field of Mastery *</label>
+                            <select required class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-slate-300 focus:outline-none focus:border-brand-cyan font-mono transition">
+                                <option value="cryptography">Zero-Knowledge & Cryptography</option>
+                                <option value="ai">Autonomous AI & Agent Systems</option>
+                                <option value="depin">DePIN / Mesh Hardware Infra</option>
+                                <option value="smart-contracts">Smart Contract Security & EVM/Solana</option>
+                                <option value="research">Quantum Computing & Cybernetics</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-slate-300 mb-2 uppercase">GitHub / Portfolio / PGP Key</label>
+                            <input type="text" placeholder="https://github.com/..." class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-cyan font-mono placeholder:text-slate-600 transition">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-mono text-slate-300 mb-2 uppercase">Statement of Intent (How will you break the system?) *</label>
+                        <textarea rows="3" required placeholder="Detail the structural inefficiency you seek to solve..." class="w-full bg-brand-black/80 border border-brand-border rounded-xl p-4 text-sm text-white focus:outline-none focus:border-brand-cyan font-sans placeholder:text-slate-600 transition"></textarea>
+                    </div>
+
+                    <div class="flex items-center space-x-3 text-xs text-slate-400 font-mono">
+                        <input type="checkbox" id="termsCheck" required class="w-4 h-4 rounded bg-brand-black border-brand-border text-brand-cyan focus:ring-0">
+                        <label for="termsCheck">I agree to uphold sovereign decentralization and zero telemetry standards.</label>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-purple text-black font-display font-extrabold text-sm uppercase tracking-widest shadow-xl shadow-brand-cyan/25 hover:shadow-brand-cyan/50 hover:scale-[1.01] transition-all duration-300 flex items-center justify-center space-x-2" onmouseenter="playBeep(750)">
+                        <i class="fa-solid fa-shield-virus"></i>
+                        <span>TRANSMIT CLEARANCE REQUEST</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==============================================
+         CONTACT & SECURE COMMUNICATIONS
+         ============================================== -->
+    <section id="contact" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Info -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center space-x-2 text-brand-violet font-mono text-xs tracking-widest uppercase">
+                        <i class="fa-solid fa-envelope-open-text"></i>
+                        <span>// SECURE TRANSMISSION</span>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight">
+                        Initiate Direct Uplink
+                    </h2>
+
+                    <p class="text-slate-400 text-sm sm:text-base leading-relaxed font-light">
+                        For institutional partnerships, strategic security audits, or private inquiries, communicate directly through our encrypted telemetry channel.
+                    </p>
+
+                    <!-- PGP Key Box -->
+                    <div class="glass-panel p-4 rounded-xl border border-brand-border/80 font-mono text-xs space-y-2">
+                        <div class="flex justify-between items-center text-slate-400">
+                            <span>PUBLIC PGP FINGERPRINT:</span>
+                            <button onclick="copyPGP()" class="text-brand-cyan hover:underline text-[11px]"><i class="fa-regular fa-copy mr-1"></i> COPY</button>
+                        </div>
+                        <p class="text-brand-cyan break-all text-[11px]" id="pgpKey">
+                            4F92 B71A 88C3 9D01 22E5 FA98 77B0 C814 E3F0 09AC
+                        </p>
+                    </div>
+
+                    <div class="space-y-3 font-mono text-xs text-slate-300">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-lock text-brand-cyan"></i>
+                            <span>Zero-Knowledge Relay: <strong class="text-white">relay.torecatsu.io</strong></span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-tower-broadcast text-brand-violet"></i>
+                            <span>Onion Router: <strong class="text-white">torecatsu7xsovereign.onion</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Message Form -->
+                <div class="lg:col-span-7">
+                    <div class="glass-panel rounded-2xl p-8 border border-brand-border/80">
+                        <form onsubmit="handleContactSubmit(event)" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-mono text-slate-400 mb-2 uppercase">Cipher Alias</label>
+                                    <input type="text" required placeholder="Your Alias" class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-violet font-mono transition">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-mono text-slate-400 mb-2 uppercase">Subject Channel</label>
+                                    <input type="text" required placeholder="e.g. Protocol Partnership" class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-violet font-mono transition">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-slate-400 mb-2 uppercase">Encrypted Payload (Message)</label>
+                                <textarea rows="4" required placeholder="Type your dispatch here..." class="w-full bg-brand-black/80 border border-brand-border rounded-xl p-4 text-sm text-white focus:outline-none focus:border-brand-violet font-sans transition"></textarea>
+                            </div>
+                            <button type="submit" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-brand-violet to-brand-blue text-white font-display font-bold text-xs uppercase tracking-wider hover:opacity-90 transition duration-200 flex items-center space-x-2" onmouseenter="playBeep(650)">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>SEND ENCRYPTED PAYLOAD</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==============================================
+         GLOBAL SOCIALS MATRIX & FOOTER
+         ============================================== -->
+    <footer class="relative z-10 border-t border-brand-border/60 bg-brand-black/90 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Socials Ribbon (WhatsApp, Facebook, Discord, Telegram, X, Instagram, YouTube, LinkedIn, GitHub) -->
+            <div class="mb-16">
+                <div class="text-center mb-8">
+                    <span class="text-xs font-mono text-brand-cyan tracking-widest uppercase">// CONNECT THROUGH SECURE CHANNELS</span>
+                    <h3 class="text-xl sm:text-2xl font-display font-bold text-white mt-1">Official TORECATSU Social Grid</h3>
+                </div>
+
+                <div class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-3 text-center">
+                    
+                    <!-- WhatsApp -->
+                    <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" class="glass-panel p-3.5 rounded-xl flex flex-col items-center justify-center space-y-2 group hover:border-emerald-400 transition-all duration-300" onmouseenter="playBeep(700)">
+                        <i class="fa-brands fa-whatsapp text-2xl text-slate-400 group-hover:text-emerald-400 group-hover:scale-110 transition-all"></i>
+                        <span class="text-[10px] font-mono text-slate-400 group-hover:text-white">WhatsApp</span>
+                    </a>
+
+                    <!-- Facebook -->
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="glass-panel p-3.5 rounded-xl flex flex-col items-center justify-center space-y-2 group hover:border-blue-500 transition-all duration-300" onmouseenter="playBeep(700)">
+                        <i class="fa-brands fa-facebook-f text-2xl text-slate-400 group-hover:text-blue-500 group-hover:scale-110 transition-all"></i>
+                        <span class="text-[10px] font-mono text-slate-400 group-hover:text-white">Facebook</span>
+                    </a>
+
+                    <!-- Discord -->
+                    <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="glass-panel p-3.5 rounded-xl flex flex-col items-center justify-center space-y-2 group hover:border-indigo-400 transition-all duration-300" onmouseenter="playBeep(700)">
+                        <i class="fa-brands fa-discord text-2xl text-slate-400 group-hover:text-indigo-400 group-hover:scale-110 transition-all"></i>
+                        <span class="text-[10px] font-mono text-slate-400 group-hover:text-white">Discord</span>
+                    </a>
+
+                    <!-- Telegram -->
+                    <a href="https://telegram.org" target="_blank" rel="noopener noreferrer" class="glass-panel p-3.5 rounded-xl flex flex-col items-center justify-center space-y-2 group hover:border-sky-400 transition-all duration-300" onmouseenter="playBeep(700)">
+                        <i class="fa-brands fa-telegram text-2xl text-slate-400 group-hover:text-sky-400 group-hover:scale-110 transition-all"></i>
+                        <span class="text-[10px] font-mono text-slate-400 group-hover:text-white">Telegram</span>
+                    </a>
+
+                    <!-- X (Twitter) -->
+                    <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="glass-panel p-3.5 rounded-xl flex flex-col items-center justify-center space-y-2 group hover:border-white transition-all duration-300" onmouseenter="playBeep(700)">
+                        <i class="fa-brands fa-x-twitter text-2xl text-slate-400 group-hover:text-white group-hover:scale-110 transition-all"></i>
+                        <span class="text-[10px] font-mono text-slate-400 group-hover:text-white">X / Twitter</span>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="glass-panel p-3.5 rounded-xl flex flex-col items-center justify-center space-y-2 group hover:border-pink-500 transition-all duration-300" onmouseenter="playBeep(700)">
+                        <i class="fa-brands fa-instagram text-2xl text-slate-400 group-hover:text-pink-500 group-hover:scale-110 transition-all"></i>
+                        <span class="text-[10px] font-mono text-slate-400 group-hover:text-white">Instagram</span>
+                    </a>
+
+                    <!-- YouTube -->
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="glass-panel p-3.5 rounded-xl flex flex-col items-center justify-center space-y-2 group hover:border-red-500 transition-all duration-300" onmouseenter="playBeep(700)">
+                        <i class="fa-brands fa-youtube text-2xl text-slate-400 group-hover:text-red-500 group-hover:scale-110 transition-all"></i>
+                        <span class="text-[10px] font-mono text-slate-400 group-hover:text-white">YouTube</span>
+                    </a>
+
+                    <!-- LinkedIn -->
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="glass-panel p-3.5 rounded-xl flex flex-col items-center justify-center space-y-2 group hover:border-blue-400 transition-all duration-300" onmouseenter="playBeep(700)">
+                        <i class="fa-brands fa-linkedin-in text-2xl text-slate-400 group-hover:text-blue-400 group-hover:scale-110 transition-all"></i>
+                        <span class="text-[10px] font-mono text-slate-400 group-hover:text-white">LinkedIn</span>
+                    </a>
+
+                    <!-- GitHub -->
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="glass-panel p-3.5 rounded-xl flex flex-col items-center justify-center space-y-2 group hover:border-brand-cyan transition-all duration-300" onmouseenter="playBeep(700)">
+                        <i class="fa-brands fa-github text-2xl text-slate-400 group-hover:text-brand-cyan group-hover:scale-110 transition-all"></i>
+                        <span class="text-[10px] font-mono text-slate-400 group-hover:text-white">GitHub</span>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Bottom Legal & Architecture Stamp -->
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+                <div class="flex items-center space-x-3">
+                    <span class="font-display font-bold text-white tracking-widest text-sm">TORECATSU</span>
+                    <span>&copy; <span id="currentYear">2025</span>. ALL RIGHTS DECENTRALIZED.</span>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="javascript:void(0)" onclick="alert('TORECATSU operates under the Sovereign Zero-Telemetry Charter.')" class="hover:text-brand-cyan transition">PRIVACY CHARTER</a>
+                    <a href="javascript:void(0)" onclick="alert('Code is Law. Formal verification repository available via Git.')" class="hover:text-brand-cyan transition">SMART DISCLOSURES</a>
+                    <a href="#join" class="text-brand-cyan hover:underline">ACCESS LEVEL CLEARANCE</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- ==============================================
+         LOGIN / SIGN UP MODAL (AUTH PORTAL)
+         ============================================== -->
+    <div id="authModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div class="relative w-full max-w-md mx-4 glass-panel rounded-3xl p-8 border border-brand-cyan/40 shadow-2xl shadow-brand-cyan/20">
+            <!-- Close Button -->
+            <button onclick="closeAuthModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Modal Header Tabs -->
+            <div class="flex space-x-4 border-b border-white/10 pb-4 mb-6">
+                <button onclick="switchAuthTab('login')" id="tabLogin" class="font-display font-bold text-sm tracking-wider text-brand-cyan border-b-2 border-brand-cyan pb-2 transition">
+                    OPERATOR LOGIN
+                </button>
+                <button onclick="switchAuthTab('signup')" id="tabSignup" class="font-display font-bold text-sm tracking-wider text-slate-400 pb-2 hover:text-white transition">
+                    REGISTER CIPHER
+                </button>
+            </div>
+
+            <!-- Login Form Form -->
+            <form id="loginForm" onsubmit="handleAuthSubmit(event, 'login')" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-mono text-slate-300 mb-1.5 uppercase">Operator Key / Identity</label>
+                    <input type="text" required placeholder="0x_identity or email" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-brand-cyan">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono text-slate-300 mb-1.5 uppercase">Passphrase / Signature</label>
+                    <input type="password" required placeholder="••••••••••••" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-brand-cyan">
+                </div>
+                <div class="flex items-center justify-between text-[11px] font-mono text-slate-400">
+                    <label class="flex items-center space-x-2 cursor-pointer">
+                        <input type="checkbox" class="rounded bg-brand-black border-brand-border text-brand-cyan">
+                        <span>Remember Session</span>
+                    </label>
+                    <a href="javascript:void(0)" onclick="alert('Recovery phrase reset available via cryptographic seed recovery.')" class="text-brand-cyan hover:underline">Reset Phrase?</a>
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl bg-brand-cyan text-black font-display font-bold text-xs uppercase tracking-widest shadow-lg shadow-brand-cyan/20 hover:scale-[1.02] transition mt-4">
+                    AUTHENTICATE
+                </button>
+            </form>
+
+            <!-- Signup Form (Hidden by default) -->
+            <form id="signupForm" onsubmit="handleAuthSubmit(event, 'signup')" class="space-y-4 hidden">
+                <div>
+                    <label class="block text-xs font-mono text-slate-300 mb-1.5 uppercase">Choose Operator Alias</label>
+                    <input type="text" required placeholder="CyberArchitect_01" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-brand-violet">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono text-slate-300 mb-1.5 uppercase">Encrypted Mail</label>
+                    <input type="email" required placeholder="vault@protonmail.com" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-brand-violet">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono text-slate-300 mb-1.5 uppercase">Master Secret Key</label>
+                    <input type="password" required placeholder="••••••••••••" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-brand-violet">
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl bg-brand-violet text-white font-display font-bold text-xs uppercase tracking-widest shadow-lg shadow-brand-violet/20 hover:scale-[1.02] transition mt-4">
+                    GENERATE SYSTEM CREDENTIALS
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- ==============================================
+         LIVE TORE-AI INTELLIGENCE TERMINAL (CHAT)
+         ============================================== -->
+    <div id="chatDrawer" class="fixed bottom-6 right-6 z-50 w-96 max-w-[calc(100vw-2rem)] glass-panel rounded-2xl border border-brand-cyan/40 shadow-2xl shadow-brand-cyan/20 flex flex-col hidden overflow-hidden transition-all duration-300">
+        <!-- Terminal Header -->
+        <div class="bg-brand-charcoal px-4 py-3 border-b border-brand-border flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-cyan animate-pulse"></span>
+                <span class="font-mono text-xs font-bold text-white">TORE-AI CORE v4.2</span>
+            </div>
+            <button onclick="toggleChat()" class="text-slate-400 hover:text-white text-xs">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Terminal Chat Log -->
+        <div id="chatLog" class="p-4 h-64 overflow-y-auto font-mono text-xs space-y-3 bg-brand-black/90">
+            <div class="p-2.5 rounded-lg bg-brand-card/80 border border-brand-border text-slate-300">
+                <span class="text-brand-cyan font-bold block mb-1">[SYSTEM]:</span>
+                Greetings Operator. TORE-AI is initialized. Query me on our directives, architecture, or mission to break the system.
+            </div>
+        </div>
+
+        <!-- Terminal Input Box -->
+        <form onsubmit="handleChatSubmit(event)" class="p-3 bg-brand-charcoal border-t border-brand-border flex items-center space-x-2">
+            <input type="text" id="chatInput" placeholder="Enter query..." class="flex-1 bg-brand-black border border-brand-border rounded-lg px-3 py-2 text-xs text-white font-mono focus:outline-none focus:border-brand-cyan">
+            <button type="submit" class="p-2 bg-brand-cyan text-black rounded-lg hover:opacity-90 transition">
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+        </form>
+    </div>
+
+
+    <!-- ==============================================
+         PROJECT INSPECT MODAL
+         ============================================== -->
+    <div id="projectModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div class="relative w-full max-w-lg mx-4 glass-panel rounded-3xl p-8 border border-brand-cyan/40">
+            <button onclick="closeProjectModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="inline-flex items-center space-x-2 text-brand-cyan font-mono text-xs tracking-widest uppercase mb-2">
+                <i class="fa-solid fa-code-branch"></i>
+                <span>// SPECIFICATION DOSSIER</span>
+            </div>
+            <h3 id="projectModalTitle" class="text-2xl font-display font-bold text-white mb-3">Project Title</h3>
+            <p id="projectModalDesc" class="text-slate-300 text-sm font-light leading-relaxed mb-6">Detailed description goes here.</p>
+            <div class="p-4 bg-brand-black rounded-xl border border-brand-border font-mono text-xs text-slate-400 space-y-2 mb-6">
+                <div class="flex justify-between">
+                    <span>Cryptographic Verification:</span>
+                    <span class="text-emerald-400">PASSED [100%]</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Decentralization Score:</span>
+                    <span class="text-brand-cyan">99.98%</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>License:</span>
+                    <span class="text-white">MIT / Zero-Patent</span>
+                </div>
+            </div>
+            <button onclick="closeProjectModal()" class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-blue text-black font-display font-bold text-xs uppercase tracking-wider">
+                ACKNOWLEDGE & RETURN
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ==============================================
+         JAVASCRIPT LOGIC & 3D WEBGL ENGINES
+         ============================================== -->
+    <script>
+        // Set dynamic current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // ----------------------------------------------------
+        // 1. Live UTC Clock
+        // ----------------------------------------------------
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toUTCString().split(' ')[4] + ' UTC';
+            const clockEl = document.getElementById('liveClock');
+            if (clockEl) clockEl.textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // ----------------------------------------------------
+        // 2. Custom Cursor Movement
+        // ----------------------------------------------------
+        const cursorDot = document.getElementById('cursorDot');
+        const cursorOutline = document.getElementById('cursorOutline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 300, fill: 'forwards' });
+        });
+
+        // ----------------------------------------------------
+        // 3. Audio Toggle
+        // ----------------------------------------------------
+        // Swap an icon (works with Font Awesome's SVG replacement)
+        function setIcon(parentSelector, cls, id) {
+            const parent = document.querySelector(parentSelector);
+            if (!parent) return;
+            const old = parent.querySelector('svg, i');
+            const el = document.createElement('i');
+            el.className = cls;
+            if (id) el.id = id;
+            if (old) old.replaceWith(el); else parent.prepend(el);
+        }
+
+        function toggleAudio() {
+            soundEnabled = !soundEnabled;
+            const status = document.getElementById('audioStatus');
+            if (soundEnabled) {
+                initAudio();
+                playBeep(800, 'triangle', 0.15);
+                setIcon('#audioBtn', 'fa-solid fa-volume-high text-brand-cyan', 'audioIcon');
+                status.textContent = 'AUDIO: ON';
+            } else {
+                setIcon('#audioBtn', 'fa-solid fa-volume-xmark text-slate-500', 'audioIcon');
+                status.textContent = 'AUDIO: OFF';
+            }
+        }
+
+        // ----------------------------------------------------
+        // 4. Mobile Menu Toggle
+        // ----------------------------------------------------
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+            const btn = '#mainHeader button[onclick="toggleMobileMenu()"].lg\\:hidden';
+            if (menu.classList.contains('hidden')) {
+                setIcon(btn, 'fa-solid fa-bars-staggered text-xl', 'menuIcon');
+            } else {
+                setIcon(btn, 'fa-solid fa-xmark text-xl text-brand-cyan', 'menuIcon');
+            }
+        }
+
+        // ----------------------------------------------------
+        // 5. Animated Number Counters on Scroll
+        // ----------------------------------------------------
+        const counters = document.querySelectorAll('.counter');
+        let countersTriggered = false;
+
+        function checkCounters() {
+            if (countersTriggered) return;
+            const heroRect = document.querySelector('.counter').getBoundingClientRect();
+            if (heroRect.top < window.innerHeight) {
+                countersTriggered = true;
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+                    const increment = target / 60;
+                    const updateCount = () => {
+                        count += increment;
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count).toLocaleString();
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            counter.innerText = target.toLocaleString();
+                        }
+                    };
+                    updateCount();
+                });
+            }
+        }
+        window.addEventListener('scroll', checkCounters);
+        window.addEventListener('load', checkCounters);
+
+        // ----------------------------------------------------
+        // 6. Project Filter Logic
+        // ----------------------------------------------------
+        function filterProjects(category) {
+            playBeep(650);
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // ----------------------------------------------------
+        // 7. Modals (Auth & Project Details)
+        // ----------------------------------------------------
+        function openAuthModal(tab = 'login') {
+            playBeep(700);
+            const modal = document.getElementById('authModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+            switchAuthTab(tab);
+        }
+
+        function closeAuthModal() {
+            playBeep(500);
+            const modal = document.getElementById('authModal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        function switchAuthTab(tab) {
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const tabLogin = document.getElementById('tabLogin');
+            const tabSignup = document.getElementById('tabSignup');
+
+            if (tab === 'login') {
+                loginForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+                tabLogin.className = 'font-display font-bold text-sm tracking-wider text-brand-cyan border-b-2 border-brand-cyan pb-2 transition';
+                tabSignup.className = 'font-display font-bold text-sm tracking-wider text-slate-400 pb-2 hover:text-white transition';
+            } else {
+                loginForm.classList.add('hidden');
+                signupForm.classList.remove('hidden');
+                tabSignup.className = 'font-display font-bold text-sm tracking-wider text-brand-violet border-b-2 border-brand-violet pb-2 transition';
+                tabLogin.className = 'font-display font-bold text-sm tracking-wider text-slate-400 pb-2 hover:text-white transition';
+            }
+        }
+
+        function openProjectModal(title, desc) {
+            playBeep(680);
+            document.getElementById('projectModalTitle').textContent = title;
+            document.getElementById('projectModalDesc').textContent = desc;
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        function closeProjectModal() {
+            playBeep(450);
+            const modal = document.getElementById('projectModal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        function handleAuthSubmit(e, type) {
+            e.preventDefault();
+            playBeep(900);
+            confetti({
+                particleCount: 80,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+            alert(type === 'login' ? 'Authentication successful. Access granted to TORECATSU network.' : 'Credentials generated. Welcome to the Syndicate.');
+            closeAuthModal();
+        }
+
+        // ----------------------------------------------------
+        // 8. Join & Contact Submit Handlers
+        // ----------------------------------------------------
+        function handleJoinSubmit(e) {
+            e.preventDefault();
+            playBeep(950);
+            confetti({
+                particleCount: 120,
+                spread: 90,
+                origin: { y: 0.5 },
+                colors: ['#00F0FF', '#8A2BE2', '#0066FF']
+            });
+            alert('Clearance Transmission Successful! Our cryptographic relay has recorded your intent.');
+            e.target.reset();
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            playBeep(780);
+            alert('Encrypted Payload Dispatched into TORECATSU Onion Mesh.');
+            e.target.reset();
+        }
+
+        function copyPGP() {
+            const key = document.getElementById('pgpKey').innerText;
+            navigator.clipboard.writeText(key);
+            playBeep(850);
+            alert('PGP Public Key Copied to Clipboard!');
+        }
+
+        // ----------------------------------------------------
+        // 9. Interactive AI Chat Terminal
+        // ----------------------------------------------------
+        function toggleChat() {
+            playBeep(620);
+            const chat = document.getElementById('chatDrawer');
+            chat.classList.toggle('hidden');
+        }
+
+        function handleChatSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('chatInput');
+            const query = input.value.trim();
+            if (!query) return;
+
+            const log = document.getElementById('chatLog');
+            
+            // Append user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'p-2 rounded bg-brand-charcoal text-white text-right border border-white/5';
+            userMsg.innerHTML = `<span class="text-brand-violet font-bold">[OPERATOR]:</span> ${query}`;
+            log.appendChild(userMsg);
+            
+            input.value = '';
+            log.scrollTop = log.scrollHeight;
+            playBeep(700);
+
+            // Generate intelligent AI response
+            setTimeout(() => {
+                const aiMsg = document.createElement('div');
+                aiMsg.className = 'p-2.5 rounded-lg bg-brand-card/90 border border-brand-cyan/30 text-slate-300';
+                
+                let reply = "Executing heuristic query... TORECATSU architecture operates strictly on decentralized zero-knowledge verification.";
+                const lower = query.toLowerCase();
+                
+                if (lower.includes('system') || lower.includes('break')) {
+                    reply = "Our mandate: 'KNOW THE SYSTEM. BREAK THE SYSTEM.' We analyze centralized choke points and replace them with un-censorable protocols.";
+                } else if (lower.includes('join') || lower.includes('apply')) {
+                    reply = "You can apply via the 'JOIN TORECATSU' dossier form on this page or authenticate with your cryptographic wallet.";
+                } else if (lower.includes('token') || lower.includes('crypto')) {
+                    reply = "TORECATSU governance is fully sovereign through DAO smart contracts and lattice-based cryptography.";
+                } else if (lower.includes('hello') || lower.includes('hi')) {
+                    reply = "Uplink confirmed. What sector of the TORECATSU ecosystem requires inspection?";
+                }
+
+                aiMsg.innerHTML = `<span class="text-brand-cyan font-bold block mb-1">[TORE-AI]:</span> ${reply}`;
+                log.appendChild(aiMsg);
+                log.scrollTop = log.scrollHeight;
+                playBeep(850);
+            }, 600);
+        }
+
+        // ----------------------------------------------------
+        // 10. THREE.JS HERO 3D SCENE (Futuristic Icosahedron Matrix)
+        // ----------------------------------------------------
+        function initHero3D() {
+            const container = document.getElementById('hero3DCanvas');
+            if (!container) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.z = 4.2;
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            // Glowing Wireframe Icosahedron
+            const geometry = new THREE.IcosahedronGeometry(1.8, 2);
+            const wireframe = new THREE.WireframeGeometry(geometry);
+            const lineMat = new THREE.LineBasicMaterial({
+                color: 0x00F0FF,
+                transparent: true,
+                opacity: 0.35
+            });
+            const mesh = new THREE.LineSegments(wireframe, lineMat);
+            scene.add(mesh);
+
+            // Inner Violet Particle Core
+            const innerGeo = new THREE.TorusKnotGeometry(0.8, 0.2, 80, 16);
+            const innerMat = new THREE.MeshBasicMaterial({
+                color: 0x8A2BE2,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.5
+            });
+            const innerCore = new THREE.Mesh(innerGeo, innerMat);
+            scene.add(innerCore);
+
+            // Orbiting Data Nodes Particles
+            const particleCount = 180;
+            const particleGeo = new THREE.BufferGeometry();
+            const posArray = new Float32Array(particleCount * 3);
+
+            for (let i = 0; i < particleCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 8;
+            }
+
+            particleGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            const particleMat = new THREE.PointsMaterial({
+                size: 0.04,
+                color: 0x00F0FF,
+                transparent: true,
+                opacity: 0.8
+            });
+            const particleSystem = new THREE.Points(particleGeo, particleMat);
+            scene.add(particleSystem);
+
+            // Interactive Mouse Tilt
+            let mouseX = 0, mouseY = 0;
+            window.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX / window.innerWidth) - 0.5;
+                mouseY = (e.clientY / window.innerHeight) - 0.5;
+            });
+
+            // Animation Loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                mesh.rotation.x += 0.002;
+                mesh.rotation.y += 0.003;
+
+                innerCore.rotation.x -= 0.004;
+                innerCore.rotation.y -= 0.004;
+
+                particleSystem.rotation.y += 0.0008;
+
+                // Subtle responsiveness to mouse
+                camera.position.x += (mouseX * 1.5 - camera.position.x) * 0.05;
+                camera.position.y += (-mouseY * 1.5 - camera.position.y) * 0.05;
+                camera.lookAt(scene.position);
+
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Resize Handler
+            window.addEventListener('resize', () => {
+                if (!container) return;
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
+        }
+
+        // ----------------------------------------------------
+        // 11. THREE.JS 3D INTERACTIVE GLOBAL NODE GLOBE
+        // ----------------------------------------------------
+        let globeMesh = null;
+
+        function initGlobe3D() {
+            const container = document.getElementById('globeContainer');
+            if (!container) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.z = 3.6;
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            // Globe Wireframe Sphere
+            const sphereGeo = new THREE.SphereGeometry(1.4, 32, 32);
+            const sphereMat = new THREE.MeshBasicMaterial({
+                color: 0x00F0FF,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.15
+            });
+            globeMesh = new THREE.Mesh(sphereGeo, sphereMat);
+            scene.add(globeMesh);
+
+            // Glowing Global Points on Sphere
+            const pointsGeo = new THREE.BufferGeometry();
+            const pointsCount = 650;
+            const pointsPos = new Float32Array(pointsCount * 3);
+
+            for (let i = 0; i < pointsCount; i++) {
+                const phi = Math.acos(-1 + (2 * i) / pointsCount);
+                const theta = Math.sqrt(pointsCount * Math.PI) * phi;
+                const r = 1.41;
+
+                pointsPos[i * 3] = r * Math.cos(theta) * Math.sin(phi);
+                pointsPos[i * 3 + 1] = r * Math.sin(theta) * Math.sin(phi);
+                pointsPos[i * 3 + 2] = r * Math.cos(phi);
+            }
+
+            pointsGeo.setAttribute('position', new THREE.BufferAttribute(pointsPos, 3));
+            const pointsMat = new THREE.PointsMaterial({
+                size: 0.035,
+                color: 0x8A2BE2,
+                transparent: true,
+                opacity: 0.9
+            });
+            const globePoints = new THREE.Points(pointsGeo, pointsMat);
+            globeMesh.add(globePoints);
+
+            // Hub Radar Rings (Tokyo, Zurich, SF, Singapore)
+            const hubs = [
+                { lat: 35.6762, lon: 139.6503, color: 0x00F0FF }, // Tokyo
+                { lat: 47.3769, lon: 8.5417, color: 0x8A2BE2 },   // Zurich
+                { lat: 37.7749, lon: -122.4194, color: 0x0066FF },// SF
+                { lat: 1.3521, lon: 103.8198, color: 0xFF007A }   // Singapore
+            ];
+
+            hubs.forEach(hub => {
+                const phi = (90 - hub.lat) * (Math.PI / 180);
+                const theta = (hub.lon + 180) * (Math.PI / 180);
+                const r = 1.42;
+
+                const x = -(r * Math.sin(phi) * Math.cos(theta));
+                const z = (r * Math.sin(phi) * Math.sin(theta));
+                const y = (r * Math.cos(phi));
+
+                const ringGeo = new THREE.RingGeometry(0.04, 0.07, 16);
+                const ringMat = new THREE.MeshBasicMaterial({ color: hub.color, side: THREE.DoubleSide });
+                const ring = new THREE.Mesh(ringGeo, ringMat);
+                ring.position.set(x, y, z);
+                ring.lookAt(0, 0, 0);
+                globeMesh.add(ring);
+            });
+
+            // Mouse Drag Interaction on Globe
+            let isDragging = false;
+            let previousMousePosition = { x: 0, y: 0 };
+
+            container.addEventListener('mousedown', () => isDragging = true);
+            container.addEventListener('touchstart', () => isDragging = true);
+            window.addEventListener('mouseup', () => isDragging = false);
+            window.addEventListener('touchend', () => isDragging = false);
+
+            container.addEventListener('mousemove', (e) => {
+                if (isDragging && globeMesh) {
+                    const deltaX = e.clientX - previousMousePosition.x;
+                    const deltaY = e.clientY - previousMousePosition.y;
+                    globeMesh.rotation.y += deltaX * 0.008;
+                    globeMesh.rotation.x += deltaY * 0.008;
+                }
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            });
+
+            function animateGlobe() {
+                requestAnimationFrame(animateGlobe);
+                if (!isDragging && globeMesh) {
+                    globeMesh.rotation.y += 0.003;
+                }
+                renderer.render(scene, camera);
+            }
+            animateGlobe();
+
+            // Resize Handler
+            window.addEventListener('resize', () => {
+                if (!container) return;
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
+        }
+
+        function highlightNode(city) {
+            playBeep(750);
+            if (!globeMesh) return;
+            if (city === 'Tokyo') globeMesh.rotation.y = 1.2;
+            if (city === 'Zurich') globeMesh.rotation.y = -0.6;
+            if (city === 'SanFrancisco') globeMesh.rotation.y = 3.5;
+            if (city === 'Singapore') globeMesh.rotation.y = 1.8;
+        }
+
+        // Initialize 3D engines when DOM is ready
+        window.addEventListener('DOMContentLoaded', () => {
+            initHero3D();
+            initGlobe3D();
+        });
+    </script>
+</body>
+</html>
