@@ -25,6 +25,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
+    <!-- Supabase (real login / signup) + site config -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+    <script src="config.js"></script>
+
     <!-- Canvas Confetti for Interactive Celebrations -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -305,7 +309,7 @@
                 </button>
 
                 <!-- Auth Trigger -->
-                <button onclick="openAuthModal('login')" class="px-4 py-2 text-xs font-mono font-semibold tracking-wider text-slate-300 border border-brand-border rounded-lg hover:border-brand-violet hover:text-white transition-all duration-200" onmouseenter="playBeep(580)">
+                <button id="portalBtn" onclick="openAuthModal('login')" class="px-4 py-2 text-xs font-mono font-semibold tracking-wider text-slate-300 border border-brand-border rounded-lg hover:border-brand-violet hover:text-white transition-all duration-200" onmouseenter="playBeep(580)">
                     [ ACCESS PORTAL ]
                 </button>
 
@@ -1015,22 +1019,24 @@
                     </p>
                 </div>
 
-                <form id="joinForm" onsubmit="handleJoinSubmit(event)" class="relative z-10 space-y-6">
+                <form id="joinForm" name="join" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleJoinSubmit(event)" class="relative z-10 space-y-6">
+                    <input type="hidden" name="form-name" value="join">
+                    <p class="hidden"><label>Don’t fill this out: <input name="bot-field"></label></p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-xs font-mono text-slate-300 mb-2 uppercase">Operator Handle / Name *</label>
-                            <input type="text" required placeholder="e.g. Satoshi-9X or Alex Vance" class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-cyan font-mono placeholder:text-slate-600 transition">
+                            <input type="text" name="handle" required placeholder="e.g. Satoshi-9X or Alex Vance" class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-cyan font-mono placeholder:text-slate-600 transition">
                         </div>
                         <div>
                             <label class="block text-xs font-mono text-slate-300 mb-2 uppercase">Encrypted Communication (Email) *</label>
-                            <input type="email" required placeholder="handle@proton.me" class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-cyan font-mono placeholder:text-slate-600 transition">
+                            <input type="email" name="email" required placeholder="handle@proton.me" class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-cyan font-mono placeholder:text-slate-600 transition">
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-xs font-mono text-slate-300 mb-2 uppercase">Primary Field of Mastery *</label>
-                            <select required class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-slate-300 focus:outline-none focus:border-brand-cyan font-mono transition">
+                            <select name="field" required class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-slate-300 focus:outline-none focus:border-brand-cyan font-mono transition">
                                 <option value="cryptography">Zero-Knowledge & Cryptography</option>
                                 <option value="ai">Autonomous AI & Agent Systems</option>
                                 <option value="depin">DePIN / Mesh Hardware Infra</option>
@@ -1040,17 +1046,17 @@
                         </div>
                         <div>
                             <label class="block text-xs font-mono text-slate-300 mb-2 uppercase">GitHub / Portfolio / PGP Key</label>
-                            <input type="text" placeholder="https://github.com/..." class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-cyan font-mono placeholder:text-slate-600 transition">
+                            <input type="text" name="portfolio" placeholder="https://github.com/..." class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-cyan font-mono placeholder:text-slate-600 transition">
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-xs font-mono text-slate-300 mb-2 uppercase">Statement of Intent (How will you break the system?) *</label>
-                        <textarea rows="3" required placeholder="Detail the structural inefficiency you seek to solve..." class="w-full bg-brand-black/80 border border-brand-border rounded-xl p-4 text-sm text-white focus:outline-none focus:border-brand-cyan font-sans placeholder:text-slate-600 transition"></textarea>
+                        <textarea rows="3" name="intent" required placeholder="Detail the structural inefficiency you seek to solve..." class="w-full bg-brand-black/80 border border-brand-border rounded-xl p-4 text-sm text-white focus:outline-none focus:border-brand-cyan font-sans placeholder:text-slate-600 transition"></textarea>
                     </div>
 
                     <div class="flex items-center space-x-3 text-xs text-slate-400 font-mono">
-                        <input type="checkbox" id="termsCheck" required class="w-4 h-4 rounded bg-brand-black border-brand-border text-brand-cyan focus:ring-0">
+                        <input type="checkbox" id="termsCheck" name="terms" required class="w-4 h-4 rounded bg-brand-black border-brand-border text-brand-cyan focus:ring-0">
                         <label for="termsCheck">I agree to uphold sovereign decentralization and zero telemetry standards.</label>
                     </div>
 
@@ -1112,20 +1118,24 @@
                 <!-- Contact Message Form -->
                 <div class="lg:col-span-7">
                     <div class="glass-panel rounded-2xl p-8 border border-brand-border/80">
-                        <form onsubmit="handleContactSubmit(event)" class="space-y-6">
+                        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleContactSubmit(event)" class="space-y-6">
+                            <input type="hidden" name="form-name" value="contact">
+                            <p class="hidden"><label>Don’t fill this out: <input name="bot-field"></label></p>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div>
                                     <label class="block text-xs font-mono text-slate-400 mb-2 uppercase">Cipher Alias</label>
-                                    <input type="text" required placeholder="Your Alias" class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-violet font-mono transition">
+                                    <input type="text" name="alias" required placeholder="Your Alias" class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-violet font-mono transition">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-mono text-slate-400 mb-2 uppercase">Subject Channel</label>
-                                    <input type="text" required placeholder="e.g. Protocol Partnership" class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-violet font-mono transition">
+                                    <input type="text" name="subject" required placeholder="e.g. Protocol Partnership" class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-violet font-mono transition">
                                 </div>
                             </div>
                             <div>
+                                <label class="block text-xs font-mono text-slate-400 mb-2 uppercase">Your Email (for reply)</label>
+                                <input type="email" name="email" required placeholder="you@email.com" class="w-full bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-violet font-mono transition mb-6">
                                 <label class="block text-xs font-mono text-slate-400 mb-2 uppercase">Encrypted Payload (Message)</label>
-                                <textarea rows="4" required placeholder="Type your dispatch here..." class="w-full bg-brand-black/80 border border-brand-border rounded-xl p-4 text-sm text-white focus:outline-none focus:border-brand-violet font-sans transition"></textarea>
+                                <textarea rows="4" name="message" required placeholder="Type your dispatch here..." class="w-full bg-brand-black/80 border border-brand-border rounded-xl p-4 text-sm text-white focus:outline-none focus:border-brand-violet font-sans transition"></textarea>
                             </div>
                             <button type="submit" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-brand-violet to-brand-blue text-white font-display font-bold text-xs uppercase tracking-wider hover:opacity-90 transition duration-200 flex items-center space-x-2" onmouseenter="playBeep(650)">
                                 <i class="fa-solid fa-paper-plane"></i>
@@ -1253,7 +1263,7 @@
             <form id="loginForm" onsubmit="handleAuthSubmit(event, 'login')" class="space-y-4">
                 <div>
                     <label class="block text-xs font-mono text-slate-300 mb-1.5 uppercase">Operator Key / Identity</label>
-                    <input type="text" required placeholder="0x_identity or email" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-brand-cyan">
+                    <input type="email" required placeholder="you@email.com" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-brand-cyan">
                 </div>
                 <div>
                     <label class="block text-xs font-mono text-slate-300 mb-1.5 uppercase">Passphrase / Signature</label>
@@ -1283,7 +1293,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-mono text-slate-300 mb-1.5 uppercase">Master Secret Key</label>
-                    <input type="password" required placeholder="••••••••••••" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-brand-violet">
+                    <input type="password" required minlength="8" placeholder="Minimum 8 characters" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-brand-violet">
                 </div>
                 <button type="submit" class="w-full py-3 rounded-xl bg-brand-violet text-white font-display font-bold text-xs uppercase tracking-widest shadow-lg shadow-brand-violet/20 hover:scale-[1.02] transition mt-4">
                     GENERATE SYSTEM CREDENTIALS
@@ -1540,39 +1550,118 @@
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
 
-        function handleAuthSubmit(e, type) {
+        // ---- Real authentication (Supabase) ----
+        const sb = (window.supabase && window.TORE_CONFIG &&
+            TORE_CONFIG.SUPABASE_URL && !TORE_CONFIG.SUPABASE_URL.startsWith('YOUR_'))
+            ? window.supabase.createClient(TORE_CONFIG.SUPABASE_URL, TORE_CONFIG.SUPABASE_ANON_KEY)
+            : null;
+
+        async function handleAuthSubmit(e, type) {
             e.preventDefault();
-            playBeep(900);
-            confetti({
-                particleCount: 80,
-                spread: 70,
-                origin: { y: 0.6 }
+            if (!sb) {
+                alert('Login system is not configured yet. (Site owner: fill in config.js)');
+                return;
+            }
+            const form = e.target;
+            const inputs = form.querySelectorAll('input');
+            const btn = form.querySelector('button[type="submit"]');
+            const label = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = 'PLEASE WAIT...';
+            try {
+                if (type === 'login') {
+                    const { error } = await sb.auth.signInWithPassword({
+                        email: inputs[0].value.trim(),
+                        password: inputs[1].value
+                    });
+                    if (error) throw error;
+                    playBeep(900);
+                    window.location.href = 'members.html';
+                } else {
+                    const { data, error } = await sb.auth.signUp({
+                        email: inputs[1].value.trim(),
+                        password: inputs[2].value,
+                        options: {
+                            data: { alias: inputs[0].value.trim() },
+                            emailRedirectTo: window.location.origin + '/members.html'
+                        }
+                    });
+                    if (error) throw error;
+                    playBeep(900);
+                    confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+                    if (data.session) {
+                        window.location.href = 'members.html';
+                    } else {
+                        alert('Account created! Check your email and click the confirmation link, then log in.');
+                        form.reset();
+                        switchAuthTab('login');
+                    }
+                }
+            } catch (err) {
+                alert(err.message || 'Something went wrong. Please try again.');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = label;
+            }
+        }
+
+        // If already logged in, turn the portal button into a Member Area link
+        if (sb) {
+            sb.auth.getSession().then(({ data }) => {
+                if (data && data.session) {
+                    const b = document.getElementById('portalBtn');
+                    if (b) {
+                        b.textContent = '[ MEMBER AREA ]';
+                        b.setAttribute('onclick', "window.location.href='members.html'");
+                    }
+                }
             });
-            alert(type === 'login' ? 'Authentication successful. Access granted to TORECATSU network.' : 'Credentials generated. Welcome to the Syndicate.');
-            closeAuthModal();
+        }
+
+        // ---- Netlify Forms helper ----
+        async function submitNetlifyForm(form) {
+            const body = new URLSearchParams(new FormData(form)).toString();
+            const res = await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body
+            });
+            if (!res.ok) throw new Error('Submit failed (' + res.status + ')');
         }
 
         // ----------------------------------------------------
         // 8. Join & Contact Submit Handlers
         // ----------------------------------------------------
-        function handleJoinSubmit(e) {
+        async function handleJoinSubmit(e) {
             e.preventDefault();
-            playBeep(950);
-            confetti({
-                particleCount: 120,
-                spread: 90,
-                origin: { y: 0.5 },
-                colors: ['#00F0FF', '#8A2BE2', '#0066FF']
-            });
-            alert('Clearance Transmission Successful! Our cryptographic relay has recorded your intent.');
-            e.target.reset();
+            const form = e.target;
+            try {
+                await submitNetlifyForm(form);
+                playBeep(950);
+                confetti({
+                    particleCount: 120,
+                    spread: 90,
+                    origin: { y: 0.5 },
+                    colors: ['#00F0FF', '#8A2BE2', '#0066FF']
+                });
+                alert('Clearance Transmission Successful! Your request has been received.');
+                form.reset();
+            } catch (err) {
+                alert('Could not send your request. Please try again.');
+            }
         }
 
-        function handleContactSubmit(e) {
+        async function handleContactSubmit(e) {
             e.preventDefault();
-            playBeep(780);
-            alert('Encrypted Payload Dispatched into TORECATSU Onion Mesh.');
-            e.target.reset();
+            const form = e.target;
+            try {
+                await submitNetlifyForm(form);
+                playBeep(780);
+                alert('Message sent! We will get back to you.');
+                form.reset();
+            } catch (err) {
+                alert('Could not send your message. Please try again.');
+            }
         }
 
         function copyPGP() {

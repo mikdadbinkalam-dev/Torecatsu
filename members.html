@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Member Area | TORECATSU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+    <script src="config.js"></script>
+    <style>
+        body { background:#030307; color:#E2E8F0; font-family:'Space Grotesk',sans-serif; }
+        .mono { font-family:'JetBrains Mono',monospace; }
+        .panel { background:rgba(13,14,28,.7); border:1px solid rgba(0,240,255,.15); border-radius:1rem; }
+        .grad { background:linear-gradient(135deg,#00F0FF,#7000FF 50%,#FF007A); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center px-4">
+    <div id="loading" class="mono text-slate-400 text-sm">VERIFYING SESSION...</div>
+
+    <main id="content" class="hidden w-full max-w-lg">
+        <div class="panel p-8 space-y-6">
+            <div class="mono text-xs text-cyan-400 tracking-widest">// MEMBER AREA</div>
+            <h1 class="text-3xl font-bold">Welcome, <span id="alias" class="grad"></span></h1>
+            <div class="mono text-xs space-y-2 text-slate-400">
+                <div class="flex justify-between"><span>Email</span><span id="email" class="text-white"></span></div>
+                <div class="flex justify-between"><span>Member since</span><span id="since" class="text-white"></span></div>
+                <div class="flex justify-between"><span>Clearance</span><span class="text-cyan-400">LEVEL 01 - INITIATE</span></div>
+            </div>
+            <p class="text-sm text-slate-400">This page is only visible to logged-in members. Add private content here.</p>
+            <div class="flex gap-3">
+                <a href="index.html" class="flex-1 text-center py-3 rounded-xl border border-slate-700 hover:border-cyan-400 text-sm">Back to site</a>
+                <button id="logout" class="flex-1 py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-bold text-sm">Log out</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (async () => {
+            const cfg = window.TORE_CONFIG || {};
+            if (!cfg.SUPABASE_URL || cfg.SUPABASE_URL.startsWith('YOUR_')) {
+                document.getElementById('loading').textContent = 'Login system not configured yet.';
+                return;
+            }
+            const sb = window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
+            const { data } = await sb.auth.getSession();
+            if (!data.session) { window.location.replace('index.html'); return; }
+            const u = data.session.user;
+            document.getElementById('alias').textContent = (u.user_metadata && u.user_metadata.alias) || u.email.split('@')[0];
+            document.getElementById('email').textContent = u.email;
+            document.getElementById('since').textContent = new Date(u.created_at).toLocaleDateString();
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('content').classList.remove('hidden');
+            document.getElementById('logout').onclick = async () => { await sb.auth.signOut(); window.location.replace('index.html'); };
+        })();
+    </script>
+</body>
+</html>
