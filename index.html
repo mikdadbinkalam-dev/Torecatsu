@@ -296,7 +296,6 @@
                 <a href="#projects" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">PROJECTS</a>
                 <a href="#subjects" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">SUBJECTS</a>
                 <a href="#network" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">NETWORK</a>
-                <a href="#music" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">MUSIC</a>
                 <a href="#community" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">COMMUNITY</a>
                 <a href="#members" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">MEMBERS</a>
                 <a href="#contact" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">CONTACT</a>
@@ -335,7 +334,6 @@
             <a href="#projects" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">PROJECTS</a>
             <a href="#subjects" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">SUBJECTS</a>
             <a href="#network" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">GLOBAL NETWORK</a>
-            <a href="#music" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">MUSIC</a>
             <a href="#community" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">COMMUNITY</a>
             <a href="#members" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">MEMBERS</a>
             <a href="#contact" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">CONTACT</a>
@@ -921,22 +919,6 @@
                     <h3 class="text-lg font-display font-bold text-white">Earth Science</h3>
                     <p class="text-xs text-slate-400 leading-relaxed font-sans mt-1">Geology, climate, oceans, and the planet we live on.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="music" class="py-24 relative z-10">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="inline-flex items-center space-x-2 text-brand-violet font-mono text-xs tracking-widest uppercase mb-3">
-                <i class="fa-solid fa-music"></i>
-                <span>// SONIC LAYER</span>
-            </div>
-            <h2 class="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight">Funk Music</h2>
-            <p class="text-slate-400 text-sm sm:text-base mt-4 mb-8 font-light">Turn the music on or off and enjoy while you study.</p>
-            <div class="glass-panel rounded-2xl p-4 sm:p-6 space-y-4">
-                <div id="yt-player-box" class="w-full aspect-video rounded-xl overflow-hidden bg-black"><div id="yt-player"></div></div>
-                <button id="music-toggle" disabled class="px-8 py-3 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-blue text-black font-display font-bold text-xs uppercase tracking-widest disabled:opacity-50 disabled:cursor-not-allowed">Loading music...</button>
-                <p id="music-status" class="text-xs font-mono text-slate-500"></p>
             </div>
         </div>
     </section>
@@ -2060,39 +2042,6 @@
             search.addEventListener('input', () => {
                 const q = search.value.trim().toLowerCase();
                 render(all.filter(m => [m.id, m.name, m.role].some(v => String(v).toLowerCase().includes(q))));
-            });
-        })();
-
-        /* ===== Music (YouTube playlist, id set in config.js) ===== */
-        (function () {
-            const id = (window.TORE_CONFIG && TORE_CONFIG.YT_PLAYLIST_ID) || '';
-            const btn = document.getElementById('music-toggle');
-            const status = document.getElementById('music-status');
-            const box = document.getElementById('yt-player-box');
-            if (!id || id.startsWith('PASTE')) {
-                box.classList.add('hidden');
-                btn.textContent = 'Music coming soon';
-                status.textContent = 'Playlist not added yet.';
-                return;
-            }
-            let player = null, ready = false;
-            const setBtn = playing => { btn.textContent = playing ? 'Music Off' : 'Music On'; btn.disabled = false; };
-            window.onYouTubeIframeAPIReady = function () {
-                player = new YT.Player('yt-player', {
-                    width: '100%', height: '100%',
-                    playerVars: { listType: 'playlist', list: id, playsinline: 1 },
-                    events: {
-                        onReady: () => { ready = true; setBtn(false); },
-                        onStateChange: e => setBtn(e.data === YT.PlayerState.PLAYING)
-                    }
-                });
-            };
-            const tag = document.createElement('script');
-            tag.src = 'https://www.youtube.com/iframe_api';
-            document.head.appendChild(tag);
-            btn.addEventListener('click', () => {
-                if (!ready) return;
-                player.getPlayerState() === YT.PlayerState.PLAYING ? player.pauseVideo() : player.playVideo();
             });
         })();
 
