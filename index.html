@@ -290,12 +290,15 @@
             </a>
 
             <!-- Desktop Navigation Links -->
-            <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium font-display tracking-wider">
+            <nav class="hidden xl:flex items-center space-x-6 text-sm font-medium font-display tracking-wider">
                 <a href="#about" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">ABOUT</a>
                 <a href="#mission" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">MISSION</a>
                 <a href="#projects" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">PROJECTS</a>
+                <a href="#subjects" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">SUBJECTS</a>
                 <a href="#network" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">NETWORK</a>
+                <a href="#music" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">MUSIC</a>
                 <a href="#community" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">COMMUNITY</a>
+                <a href="#members" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">MEMBERS</a>
                 <a href="#contact" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">CONTACT</a>
             </nav>
 
@@ -320,18 +323,21 @@
             </div>
 
             <!-- Mobile Hamburger Toggle -->
-            <button onclick="toggleMobileMenu()" class="lg:hidden text-slate-300 hover:text-brand-cyan p-2 focus:outline-none">
+            <button onclick="toggleMobileMenu()" class="xl:hidden text-slate-300 hover:text-brand-cyan p-2 focus:outline-none">
                 <i class="fa-solid fa-bars-staggered text-xl" id="menuIcon"></i>
             </button>
         </div>
 
         <!-- Mobile Navigation Menu -->
-        <div id="mobileMenu" class="hidden lg:hidden border-t border-brand-border/80 bg-brand-card/95 backdrop-blur-2xl px-6 py-6 space-y-4">
+        <div id="mobileMenu" class="hidden xl:hidden border-t border-brand-border/80 bg-brand-card/95 backdrop-blur-2xl px-6 py-6 space-y-4">
             <a href="#about" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">ABOUT</a>
             <a href="#mission" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">MISSION</a>
             <a href="#projects" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">PROJECTS</a>
+            <a href="#subjects" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">SUBJECTS</a>
             <a href="#network" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">GLOBAL NETWORK</a>
+            <a href="#music" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">MUSIC</a>
             <a href="#community" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">COMMUNITY</a>
+            <a href="#members" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">MEMBERS</a>
             <a href="#contact" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">CONTACT</a>
             <div class="pt-4 border-t border-brand-border/60 flex flex-col space-y-3">
                 <button onclick="toggleMobileMenu(); toggleChat();" class="w-full text-center py-2.5 rounded-lg bg-brand-charcoal border border-brand-border text-brand-cyan font-mono text-sm">
@@ -874,6 +880,67 @@
     <!-- ==============================================
          COMMUNITY & SYNDICATE CLEARANCE TIERS
          ============================================== -->
+    <section id="subjects" class="py-24 relative z-10 bg-brand-charcoal/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <div class="inline-flex items-center space-x-2 text-brand-cyan font-mono text-xs tracking-widest uppercase mb-3">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>// KNOWLEDGE DOMAINS</span>
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight">Subjects</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-4 font-light">Explore the sciences and more. Learn together, ask anything.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-panel glass-panel-hover p-6 rounded-2xl" onmouseenter="playBeep(620)">
+                    <div class="w-12 h-12 rounded-xl bg-brand-cyan/10 border border-brand-cyan/30 flex items-center justify-center text-brand-cyan text-xl mb-4"><i class="fa-solid fa-atom"></i></div>
+                    <h3 class="text-lg font-display font-bold text-white">Physics</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed font-sans mt-1">Motion, energy, forces, and the laws that govern the universe.</p>
+                </div>
+                <div class="glass-panel glass-panel-hover p-6 rounded-2xl" onmouseenter="playBeep(620)">
+                    <div class="w-12 h-12 rounded-xl bg-brand-violet/10 border border-brand-violet/30 flex items-center justify-center text-brand-violet text-xl mb-4"><i class="fa-solid fa-dna"></i></div>
+                    <h3 class="text-lg font-display font-bold text-white">Biology</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed font-sans mt-1">Cells, genetics, ecosystems, and the science of living things.</p>
+                </div>
+                <div class="glass-panel glass-panel-hover p-6 rounded-2xl" onmouseenter="playBeep(620)">
+                    <div class="w-12 h-12 rounded-xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center text-brand-blue text-xl mb-4"><i class="fa-solid fa-flask"></i></div>
+                    <h3 class="text-lg font-display font-bold text-white">Chemistry</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed font-sans mt-1">Atoms, molecules, reactions, and how matter changes.</p>
+                </div>
+                <div class="glass-panel glass-panel-hover p-6 rounded-2xl" onmouseenter="playBeep(620)">
+                    <div class="w-12 h-12 rounded-xl bg-brand-neonPink/10 border border-brand-neonPink/30 flex items-center justify-center text-brand-neonPink text-xl mb-4"><i class="fa-solid fa-star"></i></div>
+                    <h3 class="text-lg font-display font-bold text-white">Astrophysics</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed font-sans mt-1">Stars, galaxies, black holes, and the origins of the cosmos.</p>
+                </div>
+                <div class="glass-panel glass-panel-hover p-6 rounded-2xl" onmouseenter="playBeep(620)">
+                    <div class="w-12 h-12 rounded-xl bg-brand-cyan/10 border border-brand-cyan/30 flex items-center justify-center text-brand-cyan text-xl mb-4"><i class="fa-solid fa-square-root-variable"></i></div>
+                    <h3 class="text-lg font-display font-bold text-white">Mathematics</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed font-sans mt-1">Algebra, calculus, geometry, and the language of science.</p>
+                </div>
+                <div class="glass-panel glass-panel-hover p-6 rounded-2xl" onmouseenter="playBeep(620)">
+                    <div class="w-12 h-12 rounded-xl bg-brand-violet/10 border border-brand-violet/30 flex items-center justify-center text-brand-violet text-xl mb-4"><i class="fa-solid fa-earth-asia"></i></div>
+                    <h3 class="text-lg font-display font-bold text-white">Earth Science</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed font-sans mt-1">Geology, climate, oceans, and the planet we live on.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="music" class="py-24 relative z-10">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center space-x-2 text-brand-violet font-mono text-xs tracking-widest uppercase mb-3">
+                <i class="fa-solid fa-music"></i>
+                <span>// SONIC LAYER</span>
+            </div>
+            <h2 class="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight">Funk Music</h2>
+            <p class="text-slate-400 text-sm sm:text-base mt-4 mb-8 font-light">Turn the music on or off and enjoy while you study.</p>
+            <div class="glass-panel rounded-2xl p-4 sm:p-6 space-y-4">
+                <div id="yt-player-box" class="w-full aspect-video rounded-xl overflow-hidden bg-black"><div id="yt-player"></div></div>
+                <button id="music-toggle" disabled class="px-8 py-3 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-blue text-black font-display font-bold text-xs uppercase tracking-widest disabled:opacity-50 disabled:cursor-not-allowed">Loading music...</button>
+                <p id="music-status" class="text-xs font-mono text-slate-500"></p>
+            </div>
+        </div>
+    </section>
+
     <section id="community" class="py-24 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
@@ -999,6 +1066,25 @@
     <!-- ==============================================
          JOIN US SECTION (CLEARANCE APPLICATION)
          ============================================== -->
+    <section id="members" class="py-24 relative z-10 bg-brand-charcoal/40 border-t border-brand-border/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <div class="inline-flex items-center space-x-2 text-brand-cyan font-mono text-xs tracking-widest uppercase mb-3">
+                    <i class="fa-solid fa-users"></i>
+                    <span>// OPERATOR REGISTRY</span>
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight">Members</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-4 font-light">Everyone in the community, with their member ID.</p>
+            </div>
+            <div class="flex justify-center mb-8">
+                <input type="search" id="member-search" placeholder="Search by name, ID, or role" aria-label="Search members" class="w-full max-w-md bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-cyan font-mono placeholder:text-slate-600 transition">
+            </div>
+            <div id="member-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <p class="text-center text-slate-500 text-sm col-span-full">Loading members...</p>
+            </div>
+        </div>
+    </section>
+
     <section id="join" class="py-24 relative z-10 bg-brand-charcoal/30 border-t border-brand-border/40">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-brand-cyan/40 relative overflow-hidden">
@@ -1443,7 +1529,7 @@
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('hidden');
-            const btn = '#mainHeader button[onclick="toggleMobileMenu()"].lg\\:hidden';
+            const btn = '#mainHeader button[onclick="toggleMobileMenu()"].xl\\:hidden';
             if (menu.classList.contains('hidden')) {
                 setIcon(btn, 'fa-solid fa-bars-staggered text-xl', 'menuIcon');
             } else {
@@ -1947,6 +2033,119 @@
             initHero3D();
             initGlobe3D();
         });
+    </script>
+<script>
+        /* ===== Members (reads members.json) ===== */
+        (function () {
+            const list = document.getElementById('member-list');
+            const search = document.getElementById('member-search');
+            let all = [];
+            const esc = s => { const d = document.createElement('div'); d.textContent = String(s ?? ''); return d.innerHTML; };
+            function render(items) {
+                if (!items.length) {
+                    list.innerHTML = '<p class="text-center text-slate-500 text-sm col-span-full">No members listed yet.</p>';
+                    return;
+                }
+                list.innerHTML = items.map(m => `
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-5">
+                        <div class="font-mono text-xs text-brand-cyan">${esc(m.id)}</div>
+                        <h3 class="font-display font-bold text-white text-lg mt-1">${esc(m.name)}</h3>
+                        <div class="text-xs text-slate-400 font-mono mt-1">${esc(m.role)} &middot; Joined ${esc(m.joined)}</div>
+                    </div>`).join('');
+            }
+            fetch('members.json')
+                .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+                .then(d => { all = Array.isArray(d) ? d : []; render(all); })
+                .catch(() => { list.innerHTML = '<p class="text-center text-slate-500 text-sm col-span-full">Could not load members right now.</p>'; });
+            search.addEventListener('input', () => {
+                const q = search.value.trim().toLowerCase();
+                render(all.filter(m => [m.id, m.name, m.role].some(v => String(v).toLowerCase().includes(q))));
+            });
+        })();
+
+        /* ===== Music (YouTube playlist, id set in config.js) ===== */
+        (function () {
+            const id = (window.TORE_CONFIG && TORE_CONFIG.YT_PLAYLIST_ID) || '';
+            const btn = document.getElementById('music-toggle');
+            const status = document.getElementById('music-status');
+            const box = document.getElementById('yt-player-box');
+            if (!id || id.startsWith('PASTE')) {
+                box.classList.add('hidden');
+                btn.textContent = 'Music coming soon';
+                status.textContent = 'Playlist not added yet.';
+                return;
+            }
+            let player = null, ready = false;
+            const setBtn = playing => { btn.textContent = playing ? 'Music Off' : 'Music On'; btn.disabled = false; };
+            window.onYouTubeIframeAPIReady = function () {
+                player = new YT.Player('yt-player', {
+                    width: '100%', height: '100%',
+                    playerVars: { listType: 'playlist', list: id, playsinline: 1 },
+                    events: {
+                        onReady: () => { ready = true; setBtn(false); },
+                        onStateChange: e => setBtn(e.data === YT.PlayerState.PLAYING)
+                    }
+                });
+            };
+            const tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            document.head.appendChild(tag);
+            btn.addEventListener('click', () => {
+                if (!ready) return;
+                player.getPlayerState() === YT.PlayerState.PLAYING ? player.pauseVideo() : player.playVideo();
+            });
+        })();
+
+        /* ===== TORE-AI chat: real AI via Netlify function, local fallback ===== */
+        const chatHistory = [];
+        function localReply(q) {
+            const l = q.toLowerCase();
+            if (l.includes('system') || l.includes('break')) return "Our mandate: 'KNOW THE SYSTEM. BREAK THE SYSTEM.' We study centralized choke points and build open alternatives.";
+            if (l.includes('join') || l.includes('apply')) return "You can apply with the JOIN TORECATSU form on this page, or create an account from ACCESS PORTAL.";
+            if (l.includes('hello') || l.includes('hi')) return "Hello! What would you like to explore?";
+            return "The live AI assistant is offline right now. Please try again later, or use the contact form.";
+        }
+        async function handleChatSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('chatInput');
+            const query = input.value.trim();
+            if (!query) return;
+            const log = document.getElementById('chatLog');
+            const send = (cls, who, text) => {
+                const d = document.createElement('div');
+                d.className = cls;
+                const s = document.createElement('span');
+                s.className = 'font-bold ' + (who === '[OPERATOR]:' ? 'text-brand-violet' : 'text-brand-cyan');
+                s.textContent = who + ' ';
+                d.appendChild(s);
+                d.appendChild(document.createTextNode(text));
+                log.appendChild(d);
+                log.scrollTop = log.scrollHeight;
+                return d;
+            };
+            send('p-2 rounded bg-brand-charcoal text-white text-right border border-white/5', '[OPERATOR]:', query);
+            chatHistory.push({ role: 'user', content: query });
+            input.value = '';
+            playBeep(700);
+            const thinking = send('p-2.5 rounded-lg bg-brand-card/90 border border-brand-cyan/30 text-slate-400', '[TORE-AI]:', 'Thinking...');
+            let reply;
+            try {
+                const res = await fetch('/.netlify/functions/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ messages: chatHistory.slice(-12) })
+                });
+                const data = await res.json().catch(() => ({}));
+                if (!res.ok || !data.reply) throw new Error(data.error || 'unavailable');
+                reply = data.reply;
+            } catch (err) {
+                reply = localReply(query);
+            }
+            thinking.remove();
+            chatHistory.push({ role: 'assistant', content: reply });
+            send('p-2.5 rounded-lg bg-brand-card/90 border border-brand-cyan/30 text-slate-300', '[TORE-AI]:', reply);
+            playBeep(850);
+        }
     </script>
 </body>
 </html>
