@@ -44,6 +44,7 @@
     <!-- Supabase (real login / signup) + site config -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
     <script src="config.js"></script>
+    <script src="knowledge.js"></script>
 
     <!-- Canvas Confetti for Interactive Celebrations -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -2151,12 +2152,65 @@
 
         /* ===== TORE-AI chat: real AI via Netlify function, local fallback ===== */
         const chatHistory = [];
+        const KB = window.TORE_KB || { entries: [], capitals: {}, elements: [] };
+        const hasBn = t => /[ঀ-৿]/.test(t);
+        const norm = t => ' ' + t.toLowerCase().replace(/[^a-z0-9ঀ-৿%+\-*\/^.=()]+/g, ' ').replace(/\s+/g, ' ').trim() + ' ';
+        function kwHit(n, kw) {
+            kw = kw.toLowerCase();
+            if (hasBn(kw)) return n.includes(kw);
+            return n.includes(' ' + kw.replace(/[^a-z0-9%+\-*\/^.=()]+/g, ' ').trim() + ' ');
+        }
+        function calc(q) {
+            let m = q.toLowerCase().match(/(\d+(?:\.\d+)?)\s*%\s*of\s*(\d+(?:\.\d+)?)/);
+            if (m) return m[1] + '% of ' + m[2] + ' = ' + +(m[1] * m[2] / 100).toFixed(6);
+            m = q.toLowerCase().match(/square root of\s*(\d+(?:\.\d+)?)/);
+            if (m) return 'Square root of ' + m[1] + ' = ' + +Math.sqrt(+m[1]).toFixed(6);
+            const e = q.replace(/[x×]/gi, '*').replace(/÷/g, '/').replace(/\^/g, '**').replace(/[^0-9+\-*\/().% ]/g, '').trim();
+            if (/\d\s*[+\-*\/%]\s*\(?\d/.test(e) && e.length < 60 && /^[0-9+\-*\/().% ]+$/.test(e)) {
+                try { const v = Function('"use strict";return (' + e + ')')(); if (typeof v === 'number' && isFinite(v)) return e.trim() + ' = ' + +v.toFixed(8); } catch (_) {}
+            }
+            return null;
+        }
         function localReply(q) {
-            const l = q.toLowerCase();
-            if (l.includes('system') || l.includes('break')) return "Our mandate: 'KNOW THE SYSTEM. BREAK THE SYSTEM.' We study centralized choke points and build open alternatives.";
-            if (l.includes('join') || l.includes('apply')) return "You can apply with the JOIN TORECATSU form on this page, or create an account from ACCESS PORTAL.";
-            if (l.includes('hello') || l.includes('hi')) return "Hello! What would you like to explore?";
-            return "The live AI assistant is offline right now. Please try again later, or use the contact form.";
+            const bn = hasBn(q), n = norm(q);
+            const pick = en => en;
+            // 1) maths
+            const c = calc(q); if (c) return c;
+            // 2) greetings
+            if (/^ (hi|hello|hey|hii|salam|assalamualaikum|assalamu alaikum|namaste|nomoskar|হ্যালো|হাই|সালাম|আসসালামু আলাইকুম|নমস্কার)( |$)/.test(n) && n.split(' ').length <= 5)
+                return bn ? 'হ্যালো! আমি TORE-AI। TORECATSU, বিজ্ঞান, গণিত, সাধারণ জ্ঞান বা প্রযুক্তি নিয়ে যা খুশি জিজ্ঞেস করো।' : "Hello! I'm TORE-AI. Ask me about TORECATSU, science, maths, general knowledge or technology.";
+            // 3) capitals
+            const cm = n.match(/capital (?:city )?of ([a-z .]+?)(?: |$)(?:\?|$)/) || n.match(/ ([a-z .]+?) (?:er|ar) rajdhani/) || n.match(/capital (?:city )?of ([a-z .]+)/);
+            if (cm || /rajdhani|রাজধানী|capital/.test(n)) {
+                const caps = KB.capitals || {};
+                const keys = Object.keys(caps).sort((a, b) => b.length - a.length);
+                for (const k of keys) if (kwHit(n, k)) {
+                    const cap = caps[k];
+                    return bn || hasBn(cap) ? k.toUpperCase() + ' এর রাজধানী: ' + cap : 'The capital of ' + k.replace(/\b\w/g, x => x.toUpperCase()) + ' is ' + cap + '.';
+                }
+            }
+            // 4) chemical elements
+            if (/symbol|atomic number|element|প্রতীক/.test(n) || /^ [a-z]{1,2} $/.test(n)) {
+                for (const [sym, name, z] of (KB.elements || [])) {
+                    if (kwHit(n, name.toLowerCase()) || (n.trim().length <= 3 && n.trim() === sym.toLowerCase()))
+                        return name + ': symbol ' + sym + ', atomic number ' + z + '.';
+                }
+            }
+            // 5) scored knowledge base
+            let best = null, bs = 0;
+            for (const e of KB.entries) {
+                for (const kw of e[1]) {
+                    if (kwHit(n, kw)) {
+                        const sc = kw.length + (n.trim() === kw.toLowerCase() ? 4 : 0);
+                        if (sc > bs) { bs = sc; best = e; }
+                    }
+                }
+            }
+            if (best) return (bn && best[3]) ? best[3] : best[2];
+            // 6) fallback
+            return bn
+                ? 'দুঃখিত, এই প্রশ্নের উত্তর আমার জানা নেই। TORECATSU, বিজ্ঞান (পদার্থ, রসায়ন, জীববিজ্ঞান, মহাকাশ), গণিত, বাংলাদেশ ও বিশ্বের সাধারণ জ্ঞান বা প্রযুক্তি নিয়ে জিজ্ঞেস করো। "help" লিখলে উদাহরণ দেখতে পারবে।'
+                : 'Sorry, I do not know that one yet. I can help with TORECATSU, science, maths, general knowledge (Bangladesh and world) and technology. Type "help" to see examples, or use the contact form to ask the team.';
         }
         async function handleChatSubmit(e) {
             e.preventDefault();
@@ -2171,6 +2225,7 @@
                 s.className = 'font-bold ' + (who === '[OPERATOR]:' ? 'text-brand-violet' : 'text-brand-cyan');
                 s.textContent = who + ' ';
                 d.appendChild(s);
+                d.style.whiteSpace = 'pre-line';
                 d.appendChild(document.createTextNode(text));
                 log.appendChild(d);
                 log.scrollTop = log.scrollHeight;
