@@ -1811,18 +1811,14 @@
             const form = e.target;
             try {
                 await submitNetlifyForm(form);
-                playBeep(950);
-                confetti({
-                    particleCount: 120,
-                    spread: 90,
-                    origin: { y: 0.5 },
-                    colors: ['#00F0FF', '#8A2BE2', '#0066FF']
-                });
-                alert('Clearance Transmission Successful! Your request has been received.');
-                form.reset();
             } catch (err) {
-                alert('Could not send your request. Please try again.');
+                alert('Could not send your request. Please check your internet connection (turn off VPN if it is on) and try again.');
+                return;
             }
+            try { playBeep(950); } catch (_) {}
+            try { confetti({ particleCount: 120, spread: 90, origin: { y: 0.5 }, colors: ['#00F0FF', '#8A2BE2', '#0066FF'] }); } catch (_) {}
+            alert('Clearance Transmission Successful! Your request has been received.');
+            form.reset();
         }
 
         async function handleContactSubmit(e) {
@@ -1830,7 +1826,7 @@
             const form = e.target;
             try {
                 await submitNetlifyForm(form);
-                playBeep(780);
+                try { playBeep(780); } catch (_) {}
                 alert('Message sent! We will get back to you.');
                 form.reset();
             } catch (err) {
