@@ -1733,7 +1733,7 @@
         async function handleAuthSubmit(e, type) {
             e.preventDefault();
             if (!sb) {
-                alert('Login system is not configured yet. (Site owner: fill in config.js)');
+                alert(window.supabase ? 'Login system is not configured yet.' : 'Login service could not load. Check your internet connection (turn off VPN/ad-blocker) and refresh the page.');
                 return;
             }
             const form = e.target;
@@ -1749,7 +1749,7 @@
                         password: inputs[1].value
                     });
                     if (error) throw error;
-                    playBeep(900);
+                    try { playBeep(900); } catch (_) {}
                     window.location.href = 'members.html';
                 } else {
                     const { data, error } = await sb.auth.signUp({
@@ -1761,9 +1761,12 @@
                         }
                     });
                     if (error) throw error;
-                    playBeep(900);
-                    confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
-                    if (data.session) {
+                    try { playBeep(900); } catch (_) {}
+                    try { confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } }); } catch (_) {}
+                    if (data.user && data.user.identities && data.user.identities.length === 0) {
+                        alert('This email is already registered. Please use OPERATOR LOGIN instead.');
+                        switchAuthTab('login');
+                    } else if (data.session) {
                         window.location.href = 'members.html';
                     } else {
                         alert('Account created! Check your email and click the confirmation link, then log in.');
@@ -1772,7 +1775,14 @@
                     }
                 }
             } catch (err) {
-                alert(err.message || 'Something went wrong. Please try again.');
+                const m = String(err && err.message || '');
+                let msg = m || 'Something went wrong. Please try again.';
+                if (/failed to fetch|networkerror|load failed/i.test(m)) msg = 'Cannot reach the login server. Check your internet (try mobile data/hotspot, turn VPN off) and try again.';
+                else if (/rate limit|too many/i.test(m)) msg = 'Too many attempts. Please wait a few minutes and try again.';
+                else if (/already registered/i.test(m)) msg = 'This email is already registered. Please use OPERATOR LOGIN.';
+                else if (/invalid login/i.test(m)) msg = 'Wrong email or password. If you just signed up, confirm your email first.';
+                else if (/not confirmed/i.test(m)) msg = 'Please confirm your email first (check inbox/spam), then log in.';
+                alert(msg);
             } finally {
                 btn.disabled = false;
                 btn.textContent = label;
