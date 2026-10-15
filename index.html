@@ -38,14 +38,12 @@
     <!-- Three.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
-    <!-- GSAP for Smooth Revelations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <!-- Supabase (real login / signup) + site config -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
     <script src="config.js"></script>
     <script src="knowledge.js"></script>
+    <script src="knowledge2.js"></script>
 
     <!-- Canvas Confetti for Interactive Celebrations -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -286,6 +284,24 @@
             #splash .sp-logo{opacity:1;transform:none;filter:none}
             #splash .sp-title{opacity:1;letter-spacing:.38em}
             #splash .sp-sub{opacity:.9}
+        }
+    </style>
+
+    <style>
+        /* ---- Performance & smoothness ---- */
+        html { scroll-behavior: smooth; }
+        .cursor-dot, .cursor-outline { left: 0; top: 0; will-change: transform; }
+        .cursor-dot { transition: opacity .2s ease; }
+        .cursor-outline { transition: width .2s, height .2s, border-color .2s; }
+        .glass-panel { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transform: translateZ(0); }
+        #hero3DCanvas, #globeContainer { contain: layout paint; }
+        canvas { display:block; }
+        @media (max-width: 768px), (pointer: coarse) {
+            .glass-panel { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(13,14,28,.88); }
+            .blur-\[140px\], .blur-\[120px\] { filter: blur(70px) !important; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
         }
     </style>
 </head>
@@ -1570,18 +1586,19 @@
         const cursorDot = document.getElementById('cursorDot');
         const cursorOutline = document.getElementById('cursorOutline');
 
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 300, fill: 'forwards' });
-        });
+        if (cursorDot && cursorOutline && window.matchMedia('(pointer: fine)').matches) {
+            let tx = -100, ty = -100, ox = -100, oy = -100, curRun = false;
+            const tickCursor = () => {
+                ox += (tx - ox) * 0.22; oy += (ty - oy) * 0.22;
+                cursorDot.style.transform = `translate3d(${tx}px,${ty}px,0) translate(-50%,-50%)`;
+                cursorOutline.style.transform = `translate3d(${ox}px,${oy}px,0) translate(-50%,-50%)`;
+                if (Math.abs(tx - ox) + Math.abs(ty - oy) > 0.1) requestAnimationFrame(tickCursor); else curRun = false;
+            };
+            window.addEventListener('mousemove', (e) => {
+                tx = e.clientX; ty = e.clientY;
+                if (!curRun) { curRun = true; requestAnimationFrame(tickCursor); }
+            }, { passive: true });
+        }
 
         // ----------------------------------------------------
         // 3. Audio Toggle
@@ -1653,7 +1670,7 @@
                 });
             }
         }
-        window.addEventListener('scroll', checkCounters);
+        window.addEventListener('scroll', checkCounters, { passive: true });
         window.addEventListener('load', checkCounters);
 
         // ----------------------------------------------------
@@ -1914,9 +1931,9 @@
             const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
             camera.position.z = 4.2;
 
-            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: window.devicePixelRatio < 2 && window.innerWidth > 768, powerPreference: 'low-power' });
             renderer.setSize(container.clientWidth, container.clientHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
             container.appendChild(renderer.domElement);
 
             // Glowing Wireframe Icosahedron
@@ -1965,11 +1982,14 @@
             window.addEventListener('mousemove', (e) => {
                 mouseX = (e.clientX / window.innerWidth) - 0.5;
                 mouseY = (e.clientY / window.innerHeight) - 0.5;
-            });
+            }, { passive: true });
 
             // Animation Loop
+            let heroVisible = true;
+            if ('IntersectionObserver' in window) new IntersectionObserver(en => { heroVisible = en[0].isIntersecting; }).observe(container);
             function animate() {
                 requestAnimationFrame(animate);
+                if (!heroVisible || document.hidden) return;
                 
                 mesh.rotation.x += 0.002;
                 mesh.rotation.y += 0.003;
@@ -1989,11 +2009,15 @@
             animate();
 
             // Resize Handler
+            let rzT;
             window.addEventListener('resize', () => {
-                if (!container) return;
-                camera.aspect = container.clientWidth / container.clientHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(container.clientWidth, container.clientHeight);
+                clearTimeout(rzT);
+                rzT = setTimeout(() => {
+                    if (!container) return;
+                    camera.aspect = container.clientWidth / container.clientHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(container.clientWidth, container.clientHeight);
+                }, 120);
             });
         }
 
@@ -2010,9 +2034,9 @@
             const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
             camera.position.z = 3.6;
 
-            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: window.devicePixelRatio < 2 && window.innerWidth > 768, powerPreference: 'low-power' });
             renderer.setSize(container.clientWidth, container.clientHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
             container.appendChild(renderer.domElement);
 
             // Globe Wireframe Sphere
@@ -2095,8 +2119,11 @@
                 previousMousePosition = { x: e.clientX, y: e.clientY };
             });
 
+            let globeVisible = true;
+            if ('IntersectionObserver' in window) new IntersectionObserver(en => { globeVisible = en[0].isIntersecting; }).observe(container);
             function animateGlobe() {
                 requestAnimationFrame(animateGlobe);
+                if (!globeVisible || document.hidden) return;
                 if (!isDragging && globeMesh) {
                     globeMesh.rotation.y += 0.003;
                 }
@@ -2105,11 +2132,15 @@
             animateGlobe();
 
             // Resize Handler
+            let rzT;
             window.addEventListener('resize', () => {
-                if (!container) return;
-                camera.aspect = container.clientWidth / container.clientHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(container.clientWidth, container.clientHeight);
+                clearTimeout(rzT);
+                rzT = setTimeout(() => {
+                    if (!container) return;
+                    camera.aspect = container.clientWidth / container.clientHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(container.clientWidth, container.clientHeight);
+                }, 120);
             });
         }
 
@@ -2124,8 +2155,7 @@
 
         // Initialize 3D engines when DOM is ready
         window.addEventListener('DOMContentLoaded', () => {
-            initHero3D();
-            initGlobe3D();
+            if (window.THREE) { try { initHero3D(); } catch (e) {} try { initGlobe3D(); } catch (e) {} }
         });
     </script>
 <script>
@@ -2178,11 +2208,83 @@
             }
             return null;
         }
+        // ---- extra TORE-AI skills: conversions, time/date, fuzzy typo matching ----
+        function convert(q) {
+            const m = q.toLowerCase().match(/(-?\d+(?:\.\d+)?)\s*(km|kilometers?|kilometres?|miles?|mi|kg|kilograms?|lbs?|pounds?|cm|centimeters?|inch(?:es)?|in|m|meters?|metres?|ft|feet|foot|c|celsius|f|fahrenheit|l|liters?|litres?|gallons?|km\/h|kmh|mph)\s*(?:to|in|into|=)\s*(km|kilometers?|kilometres?|miles?|mi|kg|kilograms?|lbs?|pounds?|cm|centimeters?|inch(?:es)?|in|m|meters?|metres?|ft|feet|foot|c|celsius|f|fahrenheit|l|liters?|litres?|gallons?|km\/h|kmh|mph)\b/);
+            if (!m) return null;
+            const v = +m[1];
+            const u = x => ({kilometers:'km',kilometres:'km',kilometer:'km',kilometre:'km',miles:'mi',mile:'mi',kilograms:'kg',kilogram:'kg',lb:'lb',lbs:'lb',pounds:'lb',pound:'lb',centimeters:'cm',centimeter:'cm',inches:'in',inch:'in',meters:'m',metres:'m',meter:'m',metre:'m',feet:'ft',foot:'ft',celsius:'c',fahrenheit:'f',liters:'l',litres:'l',liter:'l',litre:'l',gallons:'gal',gallon:'gal',kmh:'km/h'}[x] || x);
+            const a = u(m[2]), b = u(m[3]);
+            const T = {
+                'km>mi': x => x * 0.621371, 'mi>km': x => x * 1.609344, 'kg>lb': x => x * 2.204623, 'lb>kg': x => x * 0.453592,
+                'cm>in': x => x / 2.54, 'in>cm': x => x * 2.54, 'm>ft': x => x * 3.28084, 'ft>m': x => x / 3.28084,
+                'c>f': x => x * 9 / 5 + 32, 'f>c': x => (x - 32) * 5 / 9, 'l>gal': x => x * 0.264172, 'gal>l': x => x * 3.78541,
+                'km/h>mph': x => x * 0.621371, 'mph>km/h': x => x * 1.609344, 'km>m': x => x * 1000, 'm>km': x => x / 1000, 'm>cm': x => x * 100, 'cm>m': x => x / 100
+            };
+            const f = T[a + '>' + b];
+            return f ? v + ' ' + a + ' = ' + +f(v).toFixed(4) + ' ' + b : null;
+        }
+        function timeDate(n, bn) {
+            const now = new Date();
+            if (/ (what )?(is )?(the )?time( now| is it)? | koita baje | কয়টা বাজে | সময় /.test(n) && !/ time zone| timezone| time machine| time complexity/.test(n)) {
+                const t = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                const dh = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Dhaka' })).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                return 'Your device time is ' + t + '. In Bangladesh (UTC+6) it is ' + dh + '.';
+            }
+            if (/ (today s |todays |today )?date | what day (is it|is today) | ajker tarikh | আজকের তারিখ | আজ কি বার /.test(n))
+                return 'Today is ' + now.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) + '.';
+            return null;
+        }
+        function lev(a, b) {
+            if (Math.abs(a.length - b.length) > 2) return 9;
+            const d = Array.from({ length: a.length + 1 }, (_, i) => [i]);
+            for (let j = 1; j <= b.length; j++) d[0][j] = j;
+            for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++)
+                { d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1); }
+            return d[a.length][b.length];
+        }
+        const STOP = new Set('the a an is are was of in on to and or for what who how why when where which tell me about explain define do does did can you i it this that please give my your with from by as at be have has not no yes ki ke kothay keno kivabe er ar eta ota bolo koro hoy amar tomar kono kisu'.split(' '));
+        function fuzzyBest(n) {
+            const toks = n.trim().split(' ').filter(t => t.length >= 4 && !STOP.has(t) && !hasBn(t));
+            if (!toks.length) return null;
+            let best = null, bs = 0;
+            for (const e of KB.entries) for (const kw of e[1]) {
+                if (hasBn(kw)) continue;
+                const words = kw.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length >= 4);
+                let sc = 0, typo = false;
+                for (const w of words) for (const t of toks) {
+                    const dist = lev(t, w);
+                    if (dist === 0) sc += w.length;
+                    else if (dist === 1 && w.length >= 5) { sc += w.length - 1.5; typo = true; }
+                    else if (dist === 2 && w.length >= 8) { sc += w.length - 3.5; typo = true; }
+                }
+                if (typo && sc > bs) { bs = sc; best = e; }
+            }
+            return bs >= 4 ? best : null;
+        }
+        function relatedTopics(n) {
+            const toks = n.trim().split(' ').filter(t => t.length >= 4 && !STOP.has(t) && !hasBn(t));
+            const scored = [];
+            for (const e of KB.entries) {
+                let sc = 0;
+                for (const kw of e[1]) for (const t of toks) if (kw.toLowerCase().includes(t.slice(0, 4))) sc++;
+                if (sc >= 2) scored.push([sc, e[0]]);
+            }
+            return scored.sort((a, b) => b[0] - a[0]).slice(0, 3).map(x => x[1]);
+        }
+        let lastTopic = null;
         function localReply(q) {
             const bn = hasBn(q), n = norm(q);
             const pick = en => en;
             // 1) maths
             const c = calc(q); if (c) return c;
+            const cv = convert(q); if (cv) return cv;
+            const td = timeDate(n, bn); if (td) return td;
+            // follow-ups
+            if (lastTopic && /^ (more|tell me more|details|explain more|aro bolo|আরও বলো|আরো বলো|example|give example|ar ki|why|how) $/.test(n)) {
+                const t = KB.entries.find(e => e[0] === lastTopic);
+                if (t) return 'Here is the main answer again:\n' + t[2] + '\n\nFor more depth, ask a more specific question (for example starting with "why" or "how").';
+            }
             // 2) greetings
             if (/^ (hi|hello|hey|hii|salam|assalamualaikum|assalamu alaikum|namaste|nomoskar|হ্যালো|হাই|সালাম|আসসালামু আলাইকুম|নমস্কার)( |$)/.test(n) && n.split(' ').length <= 5)
                 return bn ? 'হ্যালো! আমি TORE-AI। TORECATSU, বিজ্ঞান, গণিত, সাধারণ জ্ঞান বা প্রযুক্তি নিয়ে যা খুশি জিজ্ঞেস করো।' : "Hello! I'm TORE-AI. Ask me about TORECATSU, science, maths, general knowledge or technology.";
@@ -2213,8 +2315,11 @@
                     }
                 }
             }
-            if (best) return (bn && best[3]) ? best[3] : best[2];
+            if (!best) best = fuzzyBest(n);
+            if (best) { lastTopic = best[0]; return (bn && best[3]) ? best[3] : best[2]; }
             // 6) fallback
+            const rel = relatedTopics(n);
+            if (rel.length && !bn) return 'I am not sure about that exact question. Maybe you meant one of these topics: ' + rel.join(', ') + '. Try asking about one of them, or type "help".';
             return bn
                 ? 'দুঃখিত, এই প্রশ্নের উত্তর আমার জানা নেই। TORECATSU, বিজ্ঞান (পদার্থ, রসায়ন, জীববিজ্ঞান, মহাকাশ), গণিত, বাংলাদেশ ও বিশ্বের সাধারণ জ্ঞান বা প্রযুক্তি নিয়ে জিজ্ঞেস করো। "help" লিখলে উদাহরণ দেখতে পারবে।'
                 : 'Sorry, I do not know that one yet. I can help with TORECATSU, science, maths, general knowledge (Bangladesh and world) and technology. Type "help" to see examples, or use the contact form to ask the team.';
@@ -2258,7 +2363,16 @@
             }
             thinking.remove();
             chatHistory.push({ role: 'assistant', content: reply });
-            send('p-2.5 rounded-lg bg-brand-card/90 border border-brand-cyan/30 text-slate-300', '[TORE-AI]:', reply);
+            const out = send('p-2.5 rounded-lg bg-brand-card/90 border border-brand-cyan/30 text-slate-300', '[TORE-AI]:', '');
+            const tn = out.lastChild;
+            let i = 0;
+            const step = Math.max(2, Math.ceil(reply.length / 90));
+            const tm = setInterval(() => {
+                i = Math.min(reply.length, i + step);
+                tn.nodeValue = reply.slice(0, i);
+                log.scrollTop = log.scrollHeight;
+                if (i >= reply.length) clearInterval(tm);
+            }, 16);
             playBeep(850);
         }
     </script>
