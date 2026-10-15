@@ -7,6 +7,8 @@
     <!-- Meta Tags -->
     <meta name="description" content="TORECATSU is a premier global technology & innovation syndicate engineering decentralized autonomy, quantum-resilient infrastructure, and next-generation intelligence.">
     
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="logo-128.png">
     <link rel="canonical" href="https://torecatsu.netlify.app/">
     <meta name="robots" content="index, follow">
     <meta property="og:type" content="website">
@@ -14,10 +16,12 @@
     <meta property="og:title" content="TORECATSU | KNOW THE SYSTEM. BREAK THE SYSTEM.">
     <meta property="og:description" content="TORECATSU is a community for curious minds: science, technology and open systems.">
     <meta property="og:url" content="https://torecatsu.netlify.app/">
+    <meta property="og:image" content="https://torecatsu.netlify.app/logo-512.png">
     <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="https://torecatsu.netlify.app/logo-512.png">
     <meta name="twitter:title" content="TORECATSU | KNOW THE SYSTEM. BREAK THE SYSTEM.">
     <meta name="twitter:description" content="TORECATSU is a community for curious minds: science, technology and open systems.">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"TORECATSU","url":"https://torecatsu.netlify.app/"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"TORECATSU","url":"https://torecatsu.netlify.app/","logo":"https://torecatsu.netlify.app/logo-512.png"}</script>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -223,8 +227,96 @@
             transition: width 0.2s, height 0.2s, border-color 0.2s;
         }
     </style>
+    <style>
+        /* ===== Intro splash (plain CSS, independent of Tailwind) ===== */
+        #splash{position:fixed;inset:0;z-index:100000;background:#030307;display:flex;flex-direction:column;
+            align-items:center;justify-content:center;overflow:hidden;
+            animation:splashOut .7s ease 3.3s forwards}
+        #splash.done{animation:splashOut .35s ease forwards}
+        @keyframes splashOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+        #splash .sp-glow{position:absolute;width:70vmin;height:70vmin;border-radius:50%;
+            background:radial-gradient(circle,rgba(0,240,255,.28),rgba(138,43,226,.18) 45%,transparent 70%);
+            filter:blur(30px);opacity:0;animation:spGlow 3.2s ease .2s forwards}
+        @keyframes spGlow{0%{opacity:0;transform:scale(.5)}40%{opacity:1;transform:scale(1)}100%{opacity:.7;transform:scale(1.15)}}
+        #splash .sp-grid{position:absolute;inset:0;opacity:.5;
+            background-image:linear-gradient(to right,rgba(0,240,255,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(138,43,226,.05) 1px,transparent 1px);
+            background-size:50px 50px}
+        #splash .sp-stage{position:relative;width:min(54vw,270px);aspect-ratio:1}
+        #splash .sp-ring{position:absolute;inset:-14%;width:128%;height:128%;transform:rotate(-90deg)}
+        #splash .sp-ring circle{fill:none;stroke-width:1.2;stroke-linecap:round}
+        #splash .sp-ring .r1{stroke:#00F0FF;stroke-dasharray:302;stroke-dashoffset:302;animation:spDraw 1.6s cubic-bezier(.6,0,.2,1) .3s forwards}
+        #splash .sp-ring .r2{stroke:#B026FF;stroke-dasharray:4 6;opacity:.6;transform-origin:50% 50%;animation:spSpin 8s linear infinite}
+        @keyframes spDraw{to{stroke-dashoffset:0}}
+        @keyframes spSpin{to{transform:rotate(360deg)}}
+        #splash .sp-logo{position:relative;width:100%;height:100%;display:block;border-radius:18%;mix-blend-mode:screen;
+            opacity:0;transform:scale(.55) rotate(-8deg);filter:blur(14px) brightness(2);
+            animation:spLogoIn 1.1s cubic-bezier(.2,.9,.2,1) .55s forwards, spGlitch 1.1s steps(1,end) 1.75s 1, spPulse 1.6s ease-in-out 2.9s infinite}
+        @keyframes spLogoIn{60%{opacity:1;transform:scale(1.07) rotate(1deg);filter:blur(0) brightness(1.3)}
+            100%{opacity:1;transform:scale(1) rotate(0);filter:blur(0) brightness(1)}}
+        @keyframes spGlitch{0%{transform:translate(0,0)}
+            10%{transform:translate(-6px,2px) skewX(4deg);filter:drop-shadow(5px 0 0 #00F0FF) drop-shadow(-5px 0 0 #FF007A)}
+            20%{transform:translate(5px,-2px) skewX(-5deg);filter:drop-shadow(-6px 0 0 #00F0FF) drop-shadow(6px 0 0 #FF007A)}
+            30%{transform:translate(0,0);filter:none}
+            55%{transform:translate(3px,0) skewX(2deg);filter:drop-shadow(3px 0 0 #00F0FF) drop-shadow(-3px 0 0 #FF007A)}
+            65%,100%{transform:translate(0,0);filter:none}}
+        @keyframes spPulse{0%,100%{filter:drop-shadow(0 0 10px rgba(0,240,255,.35))}50%{filter:drop-shadow(0 0 34px rgba(176,38,255,.85))}}
+        #splash .sp-scan{position:absolute;left:-6%;right:-6%;top:0;height:14%;opacity:0;pointer-events:none;
+            background:linear-gradient(to bottom,transparent,rgba(0,240,255,.55),transparent);mix-blend-mode:screen;
+            animation:spScan 1.2s ease-in-out 1.3s forwards}
+        @keyframes spScan{0%{top:-14%;opacity:0}15%{opacity:1}85%{opacity:1}100%{top:100%;opacity:0}}
+        #splash .sp-title{margin-top:2.2rem;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:900;
+            font-size:clamp(1.6rem,6vw,2.6rem);color:#fff;letter-spacing:.1em;opacity:0;
+            animation:spTitle 1.4s cubic-bezier(.2,.8,.2,1) 1.5s forwards}
+        @keyframes spTitle{0%{opacity:0;letter-spacing:.9em;filter:blur(6px)}100%{opacity:1;letter-spacing:.38em;filter:blur(0)}}
+        #splash .sp-sub{margin-top:.8rem;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:clamp(.6rem,2.2vw,.78rem);
+            color:#00F0FF;letter-spacing:.25em;opacity:0;animation:spFade .8s ease 2.3s forwards;text-align:center;padding:0 1rem}
+        @keyframes spFade{to{opacity:.9}}
+        #splash .sp-bar{margin-top:1.6rem;width:min(60vw,240px);height:2px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
+        #splash .sp-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#00F0FF,#8A2BE2,#FF007A);
+            animation:spBar 2.6s cubic-bezier(.4,0,.2,1) .3s forwards}
+        @keyframes spBar{to{width:100%}}
+        #splash .sp-skip{position:absolute;bottom:1.4rem;right:1.4rem;background:none;border:1px solid rgba(255,255,255,.18);
+            color:#94a3b8;font:600 .7rem 'JetBrains Mono',monospace;letter-spacing:.15em;padding:.5rem .9rem;border-radius:8px;cursor:pointer}
+        #splash .sp-skip:hover{color:#00F0FF;border-color:#00F0FF}
+        @media (prefers-reduced-motion:reduce){
+            #splash{animation:splashOut .4s ease 1.4s forwards}
+            #splash *{animation-duration:.01s !important;animation-delay:0s !important;animation-iteration-count:1 !important}
+            #splash .sp-logo{opacity:1;transform:none;filter:none}
+            #splash .sp-title{opacity:1;letter-spacing:.38em}
+            #splash .sp-sub{opacity:.9}
+        }
+    </style>
 </head>
 <body class="cyber-grid relative antialiased selection:bg-brand-cyan selection:text-black">
+    <!-- ===== Intro splash ===== -->
+    <div id="splash" role="presentation" aria-hidden="true">
+        <div class="sp-grid"></div>
+        <div class="sp-glow"></div>
+        <div class="sp-stage">
+            <svg class="sp-ring" viewBox="0 0 100 100"><circle class="r1" cx="50" cy="50" r="48"/><circle class="r2" cx="50" cy="50" r="44"/></svg>
+            <img class="sp-logo" src="logo-512.png" alt="" width="270" height="270">
+            <div class="sp-scan"></div>
+        </div>
+        <div class="sp-title">TORECATSU</div>
+        <div class="sp-sub">KNOW THE SYSTEM. BREAK THE SYSTEM.</div>
+        <div class="sp-bar"><i></i></div>
+        <button class="sp-skip" type="button" id="spSkip">SKIP &rsaquo;</button>
+    </div>
+    <script>
+        (function () {
+            var s = document.getElementById('splash');
+            if (!s) return;
+            var root = document.documentElement;
+            root.style.overflow = 'hidden';
+            function finish() { root.style.overflow = ''; if (s.parentNode) s.parentNode.removeChild(s); }
+            var t = setTimeout(finish, 4100);
+            function skip() { clearTimeout(t); s.classList.add('done'); setTimeout(finish, 380); }
+            document.getElementById('spSkip').addEventListener('click', skip);
+            s.addEventListener('click', skip);
+            document.addEventListener('keydown', function k(e) { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') { skip(); document.removeEventListener('keydown', k); } });
+        })();
+    </script>
+
 
     <!-- Custom Cursor -->
     <div class="cursor-dot hidden md:block" id="cursorDot"></div>
@@ -290,7 +382,7 @@
             <a href="#" class="flex items-center space-x-3 group" onmouseenter="playBeep(880)">
                 <div class="relative w-10 h-10 flex items-center justify-center bg-gradient-to-tr from-brand-cyan via-brand-purple to-brand-neonPink p-[1.5px] rounded-lg">
                     <div class="w-full h-full bg-brand-black rounded-[7px] flex items-center justify-center group-hover:bg-brand-black/60 transition duration-300">
-                        <span class="font-display font-black text-xl tracking-tighter text-white group-hover:text-brand-cyan transition-colors">T</span>
+                        <img src="logo-128.png" alt="TORECATSU logo" width="32" height="32" class="w-8 h-8 object-contain rounded-[5px]">
                     </div>
                 </div>
                 <div class="flex flex-col">
