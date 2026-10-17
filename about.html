@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manifesto | TORECATSU - We Build The New System</title>
+<meta name="description" content="TORECATSU is an organisation that does not follow the old system. We build a new system that is open, fair and suitable for all. Read our manifesto, principles and roadmap.">
+<link rel="canonical" href="https://torecatsu.netlify.app/about.html">
+<link rel="icon" type="image/png" href="favicon.png">
+<meta property="og:title" content="TORECATSU Manifesto - We build a system suitable for all">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://torecatsu.netlify.app/about.html">
+<meta property="og:image" content="https://torecatsu.netlify.app/logo-512.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{colors:{brand:{black:'#030307',charcoal:'#090913',card:'#0D0E1C',border:'#1E2038',cyan:'#00F0FF',blue:'#0066FF',purple:'#8A2BE2',violet:'#B026FF',neonPink:'#FF007A'}},fontFamily:{sans:['Outfit','sans-serif'],display:['Space Grotesk','sans-serif'],mono:['JetBrains Mono','monospace']}}}}
+</script>
+<style>
+html{scroll-behavior:smooth}
+body{background:#030307;color:#E2E8F0;font-family:'Outfit',sans-serif;overflow-x:hidden}
+.grid-bg{background-image:linear-gradient(to right,rgba(0,240,255,.03) 1px,transparent 1px),linear-gradient(to bottom,rgba(138,43,226,.03) 1px,transparent 1px);background-size:50px 50px}
+.panel{background:rgba(13,14,28,.75);border:1px solid rgba(0,240,255,.14);border-radius:1rem}
+.grad{background:linear-gradient(135deg,#00F0FF,#7000FF 50%,#FF007A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.rv{opacity:0;transform:translate3d(0,22px,0);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+h2{scroll-margin-top:90px}
+</style>
+</head>
+<body class="grid-bg antialiased">
+
+<div class="w-full bg-brand-charcoal border-b border-white/5 px-4 py-1.5 flex items-center justify-between text-slate-300">
+  <span class="text-[10px] font-mono text-brand-cyan tracking-widest hidden sm:inline">// MANIFESTO</span>
+  <div id="musicMount" class="ml-auto"></div>
+</div>
+
+<header class="sticky top-0 z-40 bg-brand-black/90 border-b border-white/5">
+  <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo-128.png" alt="TORECATSU logo" width="32" height="32" class="w-8 h-8 rounded">
+      <span class="font-display font-bold tracking-[0.2em] text-white">TORECATSU</span>
+    </a>
+    <nav class="flex items-center gap-4 text-xs font-mono tracking-wider">
+      <a href="index.html" class="text-slate-300 hover:text-brand-cyan">HOME</a>
+      <a href="index.html#join" class="px-3 py-1.5 rounded-md bg-gradient-to-r from-brand-cyan to-brand-blue text-black font-bold">JOIN</a>
+    </nav>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-4 py-14 space-y-16">
+
+  <section class="text-center rv">
+    <div class="font-mono text-xs text-brand-cyan tracking-widest mb-4">// WHO WE ARE</div>
+    <h1 class="font-display font-bold text-4xl sm:text-6xl leading-tight">We do not follow the system.<br><span class="grad">We create a new one.</span></h1>
+    <p class="mt-6 text-slate-300 text-lg max-w-3xl mx-auto font-light">
+      TORECATSU is an organisation of curious people. We study how the world's systems really work - money, information, identity, networks, education - and when a system is closed, unfair or broken, we do not simply obey it and we do not simply complain about it. We design and build a better one that is <strong class="text-white">open, transparent and suitable for all</strong>.
+    </p>
+    <p class="mt-4 font-mono text-sm text-brand-violet">KNOW THE SYSTEM. BREAK THE SYSTEM. BUILD THE NEW SYSTEM.</p>
+  </section>
+
+  <section class="rv">
+    <h2 class="font-display text-3xl font-bold mb-4">What does "we do not follow the system" mean?</h2>
+    <div class="panel p-6 space-y-4 text-slate-300 leading-relaxed">
+      <p>It does <strong class="text-white">not</strong> mean breaking laws, harming people or creating chaos. Breaking a system, for us, means <em>understanding it so deeply that we can see where it fails the people it is supposed to serve</em> - and then replacing that part with something better.</p>
+      <p>Most of today's systems were designed for a few, by a few. They depend on gatekeepers, hidden rules and permissions. A student without money cannot enter the best classroom. A person without the right paper cannot prove who they are. A village without a tower has no internet. We believe these are design problems, and design problems can be solved.</p>
+      <p>So the TORECATSU method is simple: <strong class="text-white">learn it, question it, rebuild it in the open.</strong></p>
+    </div>
+  </section>
+
+  <section class="rv">
+    <h2 class="font-display text-3xl font-bold mb-6">Our principles</h2>
+    <div class="grid sm:grid-cols-2 gap-5">
+      <div class="panel p-5"><div class="font-mono text-brand-cyan text-xs mb-2">01 / OPEN BY DEFAULT</div><p class="text-slate-300 text-sm">Knowledge, code and research are shared publicly. If only a few people can understand or check a system, it is not a fair system.</p></div>
+      <div class="panel p-5"><div class="font-mono text-brand-cyan text-xs mb-2">02 / SUITABLE FOR ALL</div><p class="text-slate-300 text-sm">A system is only good if it works for the poor and the rich, the city and the village, the expert and the beginner. We design for the person with the least, first.</p></div>
+      <div class="panel p-5"><div class="font-mono text-brand-cyan text-xs mb-2">03 / PRIVACY IS A RIGHT</div><p class="text-slate-300 text-sm">People should prove what is needed and nothing more. We build with zero-knowledge ideas, minimal data and no hidden tracking.</p></div>
+      <div class="panel p-5"><div class="font-mono text-brand-cyan text-xs mb-2">04 / NO SINGLE POINT OF CONTROL</div><p class="text-slate-300 text-sm">Systems that depend on one company, one server or one person can be shut down or abused. We prefer decentralised, resilient designs.</p></div>
+      <div class="panel p-5"><div class="font-mono text-brand-cyan text-xs mb-2">05 / LEARN, THEN BUILD</div><p class="text-slate-300 text-sm">We respect science. Ideas must be tested, measured and improved. Curiosity first, ego last.</p></div>
+      <div class="panel p-5"><div class="font-mono text-brand-cyan text-xs mb-2">06 / RESPONSIBLE FREEDOM</div><p class="text-slate-300 text-sm">Our work must never hurt people. We follow the law, report weaknesses responsibly and use our skills to protect, not to attack.</p></div>
+    </div>
+  </section>
+
+  <section class="rv">
+    <h2 class="font-display text-3xl font-bold mb-4">The new system we are creating</h2>
+    <div class="panel p-6 space-y-5 text-slate-300">
+      <div><h3 class="text-white font-display font-bold">Knowledge for everyone</h3><p class="text-sm mt-1">Free, clear science and technology learning - physics, chemistry, biology, mathematics, computing and more - explained in simple language, including in Bangla.</p></div>
+      <div><h3 class="text-white font-display font-bold">Identity you control</h3><p class="text-sm mt-1">Sovereign Passport: a way to prove who you are, or that a fact about you is true, without handing your whole life to a stranger.</p></div>
+      <div><h3 class="text-white font-display font-bold">Networks that cannot be switched off</h3><p class="text-sm mt-1">Nexus Hyper-Mesh: community-owned wireless networks that keep working in disasters, outages and censorship.</p></div>
+      <div><h3 class="text-white font-display font-bold">Intelligence that serves people</h3><p class="text-sm mt-1">Project Chronos, Vortex Agent DAO and TORE-AI: open, understandable AI tools that help people instead of watching them.</p></div>
+      <div><h3 class="text-white font-display font-bold">Fair value exchange</h3><p class="text-sm mt-1">Disruptive economics: a way for people to cooperate and trade value without needless middlemen taking a cut or deciding who may take part.</p></div>
+      <div><h3 class="text-white font-display font-bold">A computer you can trust</h3><p class="text-sm mt-1">Null-OS Sovereign: a small, transparent operating system with zero telemetry, so your device works for you.</p></div>
+    </div>
+  </section>
+
+  <section class="rv">
+    <h2 class="font-display text-3xl font-bold mb-4">How we work</h2>
+    <ol class="space-y-3 text-slate-300">
+      <li class="panel p-4"><span class="font-mono text-brand-cyan mr-2">1.</span><strong class="text-white">Observe</strong> - find where a system fails real people.</li>
+      <li class="panel p-4"><span class="font-mono text-brand-cyan mr-2">2.</span><strong class="text-white">Understand</strong> - study the science, the code, the rules and the incentives behind it.</li>
+      <li class="panel p-4"><span class="font-mono text-brand-cyan mr-2">3.</span><strong class="text-white">Design</strong> - propose an open alternative and publish the design for criticism.</li>
+      <li class="panel p-4"><span class="font-mono text-brand-cyan mr-2">4.</span><strong class="text-white">Build</strong> - prototype in the lab, test on a small network, fix what breaks.</li>
+      <li class="panel p-4"><span class="font-mono text-brand-cyan mr-2">5.</span><strong class="text-white">Share</strong> - release it to everyone, document it, teach it, and let the community improve it.</li>
+    </ol>
+  </section>
+
+  <section class="rv">
+    <h2 class="font-display text-3xl font-bold mb-4">Membership levels</h2>
+    <div class="grid sm:grid-cols-3 gap-5">
+      <div class="panel p-5"><div class="font-display font-bold text-white">INITIATE</div><p class="text-sm text-slate-400 mt-2">Open to all. Join the community chat, read public research and take part in hackathons.</p></div>
+      <div class="panel p-5"><div class="font-display font-bold text-white">ARCHITECT</div><p class="text-sm text-slate-400 mt-2">Vetted builders. Run test nodes, vote on proposals, use developer tools and earn bounties.</p></div>
+      <div class="panel p-5"><div class="font-display font-bold text-white">SOVEREIGN</div><p class="text-sm text-slate-400 mt-2">The council. Guides governance, protects the mission and keeps the core open.</p></div>
+    </div>
+  </section>
+
+  <section class="rv">
+    <h2 class="font-display text-3xl font-bold mb-4">Roadmap</h2>
+    <div class="panel p-6 space-y-3 text-sm text-slate-300">
+      <div><span class="font-mono text-brand-cyan">NOW</span> - Community, science learning hub, member registry, TORE-AI assistant.</div>
+      <div><span class="font-mono text-brand-cyan">NEXT</span> - Public research library, study groups, open-source tools and hackathons.</div>
+      <div><span class="font-mono text-brand-cyan">LATER</span> - Test mesh networks, identity prototypes and community-governed projects.</div>
+      <p class="text-xs text-slate-500 pt-2">Roadmap items are goals, not promises. We update this page as the community grows.</p>
+    </div>
+  </section>
+
+  <section class="rv">
+    <h2 class="font-display text-3xl font-bold mb-4">Questions people ask</h2>
+    <div class="space-y-3">
+      <details class="panel p-4"><summary class="cursor-pointer font-display font-bold text-white">Is TORECATSU against the government or the law?</summary><p class="text-sm text-slate-300 mt-3">No. We follow the law. "Break the system" means challenging bad design with better design - not breaking rules or harming anyone.</p></details>
+      <details class="panel p-4"><summary class="cursor-pointer font-display font-bold text-white">Do I need to be an expert to join?</summary><p class="text-sm text-slate-300 mt-3">No. Beginners are welcome. Curiosity and a willingness to learn matter more than degrees.</p></details>
+      <details class="panel p-4"><summary class="cursor-pointer font-display font-bold text-white">Does it cost money?</summary><p class="text-sm text-slate-300 mt-3">The Initiate level is open access. For anything else, please ask through the contact form.</p></details>
+      <details class="panel p-4"><summary class="cursor-pointer font-display font-bold text-white">Is my data safe?</summary><p class="text-sm text-slate-300 mt-3">Passwords are handled by the login service in scrambled form. We collect only what is needed, and your email is not shown publicly.</p></details>
+      <details class="panel p-4"><summary class="cursor-pointer font-display font-bold text-white">How can I help?</summary><p class="text-sm text-slate-300 mt-3">Join, learn, share what you know, translate, test, write code or simply tell a friend.</p></details>
+    </div>
+  </section>
+
+  <section class="text-center rv panel p-10">
+    <h2 class="font-display text-3xl font-bold">The old system will not change by itself.</h2>
+    <p class="text-slate-300 mt-3">Help us build the one that works for everyone.</p>
+    <div class="mt-6 flex flex-wrap justify-center gap-3">
+      <a href="index.html#join" class="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-blue text-black font-display font-bold text-sm tracking-widest">JOIN TORECATSU</a>
+      <a href="index.html#contact" class="px-6 py-3 rounded-xl border border-brand-border hover:border-brand-cyan text-sm font-display tracking-widest">CONTACT</a>
+    </div>
+  </section>
+</main>
+
+<footer class="border-t border-white/5 py-8 text-center text-xs font-mono text-slate-500">&copy; TORECATSU &middot; KNOW THE SYSTEM. BREAK THE SYSTEM.</footer>
+
+<script src="player.js"></script>
+<script>
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>

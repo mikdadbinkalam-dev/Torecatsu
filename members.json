@@ -1,1 +1,72 @@
-[]
+[
+  {
+    "id": "TRC-001",
+    "name": "CipherFox",
+    "role": "Initiate",
+    "joined": "2026-03-05",
+    "sample": true
+  },
+  {
+    "id": "TRC-002",
+    "name": "NovaRay",
+    "role": "Architect",
+    "joined": "2026-03-07",
+    "sample": true
+  },
+  {
+    "id": "TRC-003",
+    "name": "QuantaByte",
+    "role": "Architect",
+    "joined": "2026-03-09",
+    "sample": true
+  },
+  {
+    "id": "TRC-004",
+    "name": "Sparrow_9",
+    "role": "Initiate",
+    "joined": "2026-04-11",
+    "sample": true
+  },
+  {
+    "id": "TRC-005",
+    "name": "DeltaWolf",
+    "role": "Initiate",
+    "joined": "2026-04-13",
+    "sample": true
+  },
+  {
+    "id": "TRC-006",
+    "name": "MeshRunner",
+    "role": "Architect",
+    "joined": "2026-04-15",
+    "sample": true
+  },
+  {
+    "id": "TRC-007",
+    "name": "LumenX",
+    "role": "Initiate",
+    "joined": "2026-05-17",
+    "sample": true
+  },
+  {
+    "id": "TRC-008",
+    "name": "VoidScribe",
+    "role": "Initiate",
+    "joined": "2026-05-19",
+    "sample": true
+  },
+  {
+    "id": "TRC-009",
+    "name": "PixelMonk",
+    "role": "Initiate",
+    "joined": "2026-05-21",
+    "sample": true
+  },
+  {
+    "id": "TRC-010",
+    "name": "AtlasZero",
+    "role": "Sovereign",
+    "joined": "2026-06-23",
+    "sample": true
+  }
+]

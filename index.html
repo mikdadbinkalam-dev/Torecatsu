@@ -44,6 +44,7 @@
     <script src="config.js"></script>
     <script src="knowledge.js"></script>
     <script src="knowledge2.js"></script>
+    <script src="knowledge3.js"></script>
 
     <!-- Canvas Confetti for Interactive Celebrations -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -289,7 +290,8 @@
 
     <style>
         /* ---- Performance & smoothness ---- */
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+        #mainHeader { top: 32px; }
         .cursor-dot, .cursor-outline { left: 0; top: 0; will-change: transform; }
         .cursor-dot { transition: opacity .2s ease; }
         .cursor-outline { transition: width .2s, height .2s, border-color .2s; }
@@ -300,7 +302,17 @@
             .glass-panel { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(13,14,28,.88); }
             .blur-\[140px\], .blur-\[120px\] { filter: blur(70px) !important; }
         }
+        .rv { opacity: 0; transform: translate3d(0, 26px, 0); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); will-change: opacity, transform; }
+        .rv.rv-in { opacity: 1; transform: translate3d(0, 0, 0); }
+        .glass-panel-hover, a, button { -webkit-tap-highlight-color: transparent; }
+        .glass-panel-hover { transition: transform .35s cubic-bezier(.22,1,.36,1), border-color .3s ease, box-shadow .35s ease; }
+        .glass-panel-hover:hover { transform: translate3d(0,-4px,0); }
+        #aiIntro { position: fixed; left: 16px; bottom: 16px; z-index: 60; width: 320px; max-width: calc(100vw - 32px); opacity: 0; transform: translate3d(-30px,0,0); transition: opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1); pointer-events: none; }
+        #aiIntro.show { opacity: 1; transform: none; pointer-events: auto; }
+        #aiIntro .caret { display:inline-block; width:7px; height:13px; background:#00F0FF; vertical-align:-2px; animation: aiBlink 1s steps(1) infinite; }
+        @keyframes aiBlink { 50% { opacity: 0; } }
         @media (prefers-reduced-motion: reduce) {
+            .rv { opacity: 1 !important; transform: none !important; }
             *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
         }
     </style>
@@ -394,6 +406,12 @@
     <!-- ==============================================
          NAVBAR / HEADER
          ============================================== -->
+    <!-- Music bar (very top) -->
+    <div id="musicBar" class="sticky top-0 z-[41] w-full bg-brand-charcoal border-b border-white/5 px-3 sm:px-6 py-1 flex items-center justify-between text-slate-300" style="height:32px">
+        <span class="text-[10px] font-mono text-brand-cyan tracking-widest hidden sm:inline">// TORECATSU AUDIO</span>
+        <div id="musicMount" class="ml-auto"></div>
+    </div>
+
     <header class="sticky top-0 z-40 w-full glass-panel border-b border-white/5 transition-all duration-300" id="mainHeader">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Brand Logo -->
@@ -414,6 +432,7 @@
             <!-- Desktop Navigation Links -->
             <nav class="hidden xl:flex items-center space-x-6 text-sm font-medium font-display tracking-wider">
                 <a href="#about" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">ABOUT</a>
+                <a href="about.html" class="text-brand-cyan hover:text-white transition duration-200" onmouseenter="playBeep(650)">MANIFESTO</a>
                 <a href="#mission" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">MISSION</a>
                 <a href="#projects" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">PROJECTS</a>
                 <a href="#subjects" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">SUBJECTS</a>
@@ -452,6 +471,7 @@
         <!-- Mobile Navigation Menu -->
         <div id="mobileMenu" class="hidden xl:hidden border-t border-brand-border/80 bg-brand-card/95 backdrop-blur-2xl px-6 py-6 space-y-4">
             <a href="#about" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">ABOUT</a>
+            <a href="about.html" class="block text-brand-cyan py-2 font-display text-base tracking-wider">MANIFESTO</a>
             <a href="#mission" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">MISSION</a>
             <a href="#projects" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">PROJECTS</a>
             <a href="#subjects" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">SUBJECTS</a>
@@ -1747,6 +1767,15 @@
             ? window.supabase.createClient(TORE_CONFIG.SUPABASE_URL, TORE_CONFIG.SUPABASE_ANON_KEY)
             : null;
 
+        async function ensureMemberRow(user) {
+            if (!sb || !user) return;
+            try {
+                const alias = (user.user_metadata && user.user_metadata.alias) || (user.email || 'member').split('@')[0];
+                await sb.from('members').insert({ user_id: user.id, name: String(alias).slice(0, 40) });
+            } catch (_) {}
+            if (window.reloadMembers) window.reloadMembers();
+        }
+
         async function handleAuthSubmit(e, type) {
             e.preventDefault();
             if (!sb) {
@@ -1761,11 +1790,12 @@
             btn.textContent = 'PLEASE WAIT...';
             try {
                 if (type === 'login') {
-                    const { error } = await sb.auth.signInWithPassword({
+                    const { data: ld, error } = await sb.auth.signInWithPassword({
                         email: inputs[0].value.trim(),
                         password: inputs[1].value
                     });
                     if (error) throw error;
+                    await ensureMemberRow(ld && ld.user);
                     try { playBeep(900); } catch (_) {}
                     window.location.href = 'members.html';
                 } else {
@@ -1784,6 +1814,7 @@
                         alert('This email is already registered. Please use OPERATOR LOGIN instead.');
                         switchAuthTab('login');
                     } else if (data.session) {
+                        await ensureMemberRow(data.user);
                         window.location.href = 'members.html';
                     } else {
                         alert('Account created! Check your email and click the confirmation link, then log in.');
@@ -1810,6 +1841,7 @@
         if (sb) {
             sb.auth.getSession().then(({ data }) => {
                 if (data && data.session) {
+                    ensureMemberRow(data.session.user);
                     const b = document.getElementById('portalBtn');
                     if (b) {
                         b.textContent = '[ MEMBER AREA ]';
@@ -2167,20 +2199,34 @@
             const esc = s => { const d = document.createElement('div'); d.textContent = String(s ?? ''); return d.innerHTML; };
             function render(items) {
                 if (!items.length) {
-                    list.innerHTML = '<p class="text-center text-slate-500 text-sm col-span-full">No members listed yet.</p>';
+                    list.innerHTML = '<p class="text-center text-slate-500 text-sm col-span-full">No member matches your search.</p>';
                     return;
                 }
                 list.innerHTML = items.map(m => `
                     <div class="glass-panel glass-panel-hover rounded-2xl p-5">
-                        <div class="font-mono text-xs text-brand-cyan">${esc(m.id)}</div>
+                        <div class="flex items-center justify-between">
+                            <span class="font-mono text-xs text-brand-cyan">${esc(m.id)}</span>
+                            ${m.sample ? '<span class="text-[9px] font-mono tracking-widest px-1.5 py-0.5 rounded border border-amber-400/40 text-amber-300">SAMPLE</span>' : '<span class="text-[9px] font-mono tracking-widest px-1.5 py-0.5 rounded border border-emerald-400/40 text-emerald-300">VERIFIED</span>'}
+                        </div>
                         <h3 class="font-display font-bold text-white text-lg mt-1">${esc(m.name)}</h3>
                         <div class="text-xs text-slate-400 font-mono mt-1">${esc(m.role)} &middot; Joined ${esc(m.joined)}</div>
-                    </div>`).join('');
+                    </div>`).join('') +
+                    (items.some(m => m.sample) ? '<p class="col-span-full text-center text-[11px] text-slate-500 font-mono">SAMPLE = demo entries to show how the registry looks. Real members appear here after they create an account.</p>' : '');
             }
-            fetch('members.json')
-                .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-                .then(d => { all = Array.isArray(d) ? d : []; render(all); })
-                .catch(() => { list.innerHTML = '<p class="text-center text-slate-500 text-sm col-span-full">Could not load members right now.</p>'; });
+            async function loadMembers() {
+                let sample = [], real = [];
+                try { const r = await fetch('members.json'); if (r.ok) { const d = await r.json(); sample = Array.isArray(d) ? d : []; } } catch (_) {}
+                if (typeof sb !== 'undefined' && sb) {
+                    try {
+                        const { data, error } = await sb.from('members').select('member_id,name,role,joined').order('joined', { ascending: false });
+                        if (!error && Array.isArray(data)) real = data.map(x => ({ id: x.member_id, name: x.name, role: x.role, joined: x.joined }));
+                    } catch (_) {}
+                }
+                all = real.concat(sample);
+                render(all);
+            }
+            loadMembers();
+            window.reloadMembers = loadMembers;
             search.addEventListener('input', () => {
                 const q = search.value.trim().toLowerCase();
                 render(all.filter(m => [m.id, m.name, m.role].some(v => String(v).toLowerCase().includes(q))));
@@ -2273,11 +2319,26 @@
             return scored.sort((a, b) => b[0] - a[0]).slice(0, 3).map(x => x[1]);
         }
         let lastTopic = null;
+        function mathSkills(n) {
+            let m;
+            if ((m = n.match(/(?:table of|poharta|pahar[ao]? of|নামতা)\s*(\d{1,3})/))) { const k = +m[1]; let o = []; for (let i = 1; i <= 10; i++) o.push(k + ' x ' + i + ' = ' + k * i); return o.join('\n'); }
+            if ((m = n.match(/(?:square of|squared)\s*(-?\d+(?:\.\d+)?)/))) return m[1] + '^2 = ' + +(m[1] * m[1]).toFixed(6);
+            if ((m = n.match(/cube root of\s*(-?\d+(?:\.\d+)?)/))) return 'Cube root of ' + m[1] + ' = ' + +Math.cbrt(+m[1]).toFixed(6);
+            if ((m = n.match(/cube of\s*(-?\d+(?:\.\d+)?)/))) return m[1] + '^3 = ' + +(m[1] * m[1] * m[1]).toFixed(6);
+            if ((m = n.match(/factorial of\s*(\d{1,3})|(\d{1,3})\s*factorial/))) { const k = +(m[1] || m[2]); if (k > 20) return 'That is a huge number. Try 20 or less.'; let f = 1n; for (let i = 2n; i <= BigInt(k); i++) f *= i; return k + '! = ' + f.toString(); }
+            if ((m = n.match(/is\s*(\d{1,9})\s*(?:a\s*)?prime/)) || (m = n.match(/(\d{1,9})\s*(?:prime kina|prime ki)/))) { const k = +m[1]; let p = k > 1; for (let i = 2; i * i <= k; i++) if (k % i === 0) { p = false; break; } return k + (p ? ' is a prime number.' : ' is not a prime number.'); }
+            if ((m = n.match(/is\s*(\d+)\s*(even|odd)/))) return m[1] + (((+m[1] % 2 === 0) === (m[2] === 'even')) ? ' is ' + m[2] + '.' : ' is not ' + m[2] + '.');
+            if ((m = n.match(/(?:gcd|hcf|lcm)\s*(?:of)?\s*(\d+)\s*(?:and|,)?\s*(\d+)/))) { let a = +m[1], b = +m[2]; const g = (x, y) => y ? g(y, x % y) : x; const G = g(a, b); return 'HCF(' + a + ', ' + b + ') = ' + G + ', LCM = ' + (a / G * b); }
+            if ((m = n.match(/(?:reverse|ulto)\s+(?:of\s+)?(?:the\s+)?(?:word\s+)?([a-z0-9]+)$/))) return m[1].split('').reverse().join('');
+            if ((m = n.match(/(\d+)\s*(?:to the power|power|\^)\s*(\d+)/))) return m[1] + '^' + m[2] + ' = ' + (BigInt(m[1]) ** BigInt(Math.min(+m[2], 200))).toString();
+            return null;
+        }
         function localReply(q) {
             const bn = hasBn(q), n = norm(q);
             const pick = en => en;
             // 1) maths
             const c = calc(q); if (c) return c;
+            const ms = mathSkills(n); if (ms) return ms;
             const cv = convert(q); if (cv) return cv;
             const td = timeDate(n, bn); if (td) return td;
             // follow-ups
@@ -2376,5 +2437,74 @@
             playBeep(850);
         }
     </script>
+    <!-- TORE-AI intro greeting (side panel) -->
+    <div id="aiIntro" role="status" class="glass-panel rounded-xl border border-brand-cyan/40 shadow-xl shadow-brand-cyan/10 overflow-hidden">
+        <div class="flex items-center justify-between px-3 py-2 bg-brand-charcoal border-b border-brand-border">
+            <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-brand-cyan animate-pulse"></span><span class="font-mono text-[10px] font-bold text-white tracking-widest">TORE-AI // ONLINE</span></div>
+            <button type="button" id="aiIntroX" aria-label="Close" class="text-slate-400 hover:text-white text-xs">&#10005;</button>
+        </div>
+        <div class="p-3 font-mono text-xs text-slate-200 leading-relaxed">
+            <div class="text-brand-cyan">&gt; <span id="aiIntroText"></span><span class="caret"></span></div>
+            <div class="mt-3 flex gap-2">
+                <button type="button" id="aiIntroChat" class="px-3 py-1.5 rounded-md bg-gradient-to-r from-brand-cyan to-brand-blue text-black font-bold text-[10px] tracking-widest">ASK ME ANYTHING</button>
+                <button type="button" id="aiIntroLater" class="px-3 py-1.5 rounded-md border border-brand-border text-slate-300 text-[10px] tracking-widest hover:border-brand-cyan">LATER</button>
+            </div>
+        </div>
+    </div>
+    <script>
+    (function () {
+        /* --- smooth scroll reveal --- */
+        try {
+            if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                var els = document.querySelectorAll('section h2, section .glass-panel, section .grid > div, footer .glass-panel');
+                var io = new IntersectionObserver(function (en) {
+                    en.forEach(function (x) {
+                        if (!x.isIntersecting) return;
+                        var el = x.target; io.unobserve(el);
+                        el.classList.add('rv-in');
+                        setTimeout(function () { el.classList.remove('rv', 'rv-in'); el.style.transitionDelay = ''; }, 1100);
+                    });
+                }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+                var seen = new Set();
+                els.forEach(function (el) {
+                    if (seen.has(el) || el.closest('#authModal, #projectModal, #chatDrawer, #aiIntro')) return;
+                    seen.add(el);
+                    var r = el.getBoundingClientRect();
+                    if (r.top < window.innerHeight * 0.9 && r.bottom > 0) return;
+                    var idx = Array.prototype.indexOf.call(el.parentNode.children, el);
+                    el.style.transitionDelay = Math.min(idx, 5) * 70 + 'ms';
+                    el.classList.add('rv'); io.observe(el);
+                });
+            }
+        } catch (e) {}
+        /* --- TORE-AI greeting --- */
+        var box = document.getElementById('aiIntro'); if (!box) return;
+        try { if (sessionStorage.getItem('tore_ai_intro') === '1') return; } catch (e) {}
+        var text = document.getElementById('aiIntroText');
+        var msg = 'Hello, I am your personal AI.';
+        var msg2 = ' Ask me about TORECATSU, science, maths or GK.';
+        var hideT;
+        function hide() { box.classList.remove('show'); clearTimeout(hideT); try { sessionStorage.setItem('tore_ai_intro', '1'); } catch (e) {} }
+        function start() {
+            box.classList.add('show');
+            var i = 0, full = msg + msg2;
+            (function type() {
+                if (i <= full.length) { text.textContent = full.slice(0, i++); setTimeout(type, i < msg.length ? 45 : 22); }
+                else hideT = setTimeout(hide, 9000);
+            })();
+        }
+        var w = setInterval(function () { if (!document.getElementById('splash')) { clearInterval(w); setTimeout(start, 500); } }, 200);
+        setTimeout(function () { clearInterval(w); }, 9000);
+        document.getElementById('aiIntroX').onclick = hide;
+        document.getElementById('aiIntroLater').onclick = hide;
+        document.getElementById('aiIntroChat').onclick = function () {
+            hide();
+            var c = document.getElementById('chatDrawer');
+            if (c && c.classList.contains('hidden') && window.toggleChat) toggleChat();
+            var inp = document.getElementById('chatInput'); if (inp) setTimeout(function () { inp.focus(); }, 100);
+        };
+    })();
+    </script>
+    <script src="player.js"></script>
 </body>
 </html>
