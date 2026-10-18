@@ -60,7 +60,7 @@
   function firstGesture() {
     if (started) return; started = true;
     ['pointerdown', 'keydown', 'touchstart'].forEach(function (e) { window.removeEventListener(e, firstGesture, true); });
-    if (wantOn) play();
+    if (wantOn) { if (window.TORE_INTRO_GATE && document.getElementById('splash')) setTimeout(play, 3600); else play(); }
   }
   ['pointerdown', 'keydown', 'touchstart'].forEach(function (e) { window.addEventListener(e, firstGesture, true); });
 

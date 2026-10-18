@@ -279,6 +279,11 @@
         #splash .sp-skip{position:absolute;bottom:1.4rem;right:1.4rem;background:none;border:1px solid rgba(255,255,255,.18);
             color:#94a3b8;font:600 .7rem 'JetBrains Mono',monospace;letter-spacing:.15em;padding:.5rem .9rem;border-radius:8px;cursor:pointer}
         #splash .sp-skip:hover{color:#00F0FF;border-color:#00F0FF}
+        #splash.gate, #splash.gate *{animation-play-state:paused !important}
+        #splash .sp-tap{position:absolute;left:0;right:0;bottom:16%;text-align:center;font:700 .85rem 'JetBrains Mono',monospace;letter-spacing:.35em;color:#00F0FF;display:none;padding:0 1rem}
+        #splash.gate .sp-tap{display:block;animation:spBlink 1.4s ease-in-out infinite !important;animation-play-state:running !important}
+        #splash .sp-tap small{display:block;margin-top:.7rem;font-size:.6rem;letter-spacing:.2em;color:#94a3b8}
+        @keyframes spBlink{0%,100%{opacity:.35}50%{opacity:1}}
         @media (prefers-reduced-motion:reduce){
             #splash{animation:splashOut .4s ease 1.4s forwards}
             #splash *{animation-duration:.01s !important;animation-delay:0s !important;animation-iteration-count:1 !important}
@@ -331,6 +336,7 @@
         <div class="sp-title">TORECATSU</div>
         <div class="sp-sub">KNOW THE SYSTEM. BREAK THE SYSTEM.</div>
         <div class="sp-bar"><i></i></div>
+        <div class="sp-tap">TAP TO ENTER<small>&#128266; SOUND ON</small></div>
         <button class="sp-skip" type="button" id="spSkip">SKIP &rsaquo;</button>
     </div>
     <script>
@@ -338,13 +344,30 @@
             var s = document.getElementById('splash');
             if (!s) return;
             var root = document.documentElement;
+            var entered = false, t = null, voice = null;
+            try { entered = sessionStorage.getItem('tore_entered') === '1'; } catch (e) {}
             root.style.overflow = 'hidden';
             function finish() { root.style.overflow = ''; if (s.parentNode) s.parentNode.removeChild(s); }
-            var t = setTimeout(finish, 4100);
-            function skip() { clearTimeout(t); s.classList.add('done'); setTimeout(finish, 380); }
-            document.getElementById('spSkip').addEventListener('click', skip);
-            s.addEventListener('click', skip);
-            document.addEventListener('keydown', function k(e) { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') { skip(); document.removeEventListener('keydown', k); } });
+            function mark() { try { sessionStorage.setItem('tore_entered', '1'); } catch (e) {} }
+            function go(withVoice) {
+                if (!s.classList.contains('gate')) return;
+                s.classList.remove('gate'); mark();
+                window.TORE_INTRO_AT = Date.now();
+                if (withVoice) {
+                    try { voice = new Audio('music/voice-torecatsu.mp3'); voice.volume = 1; var p = voice.play(); if (p && p.catch) p.catch(function () {}); } catch (e) {}
+                }
+                t = setTimeout(finish, 4200);
+            }
+            function skip() { s.classList.remove('gate'); mark(); clearTimeout(t); s.classList.add('done'); setTimeout(finish, 380); }
+            if (entered) { skip(); return; }   /* already entered this session: no gate, no voice */
+            s.classList.add('gate');
+            window.TORE_INTRO_GATE = true;
+            document.getElementById('spSkip').addEventListener('click', function (e) { e.stopPropagation(); skip(); });
+            s.addEventListener('click', function () { go(true); });
+            document.addEventListener('keydown', function k(e) {
+                if (e.key === 'Escape') { skip(); document.removeEventListener('keydown', k); }
+                else if (e.key === 'Enter' || e.key === ' ') { go(true); document.removeEventListener('keydown', k); }
+            });
         })();
     </script>
 
