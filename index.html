@@ -298,6 +298,7 @@
         .glass-panel { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transform: translateZ(0); }
         #hero3DCanvas, #globeContainer { contain: layout paint; }
         canvas { display:block; }
+        @media (max-width: 640px) { #aiIntro { bottom: 84px; } #chatDrawer { bottom: 84px !important; right: 12px !important; } }
         @media (max-width: 768px), (pointer: coarse) {
             .glass-panel { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(13,14,28,.88); }
             .blur-\[140px\], .blur-\[120px\] { filter: blur(70px) !important; }
@@ -462,6 +463,10 @@
                 </a>
             </div>
 
+            <!-- Mobile quick actions -->
+            <div class="flex sm:hidden items-center gap-2 ml-auto mr-1">
+                <button type="button" id="portalBtnM" onclick="openAuthModal('login')" class="px-3 py-1.5 text-[11px] font-mono font-bold tracking-wider text-black bg-gradient-to-r from-brand-cyan to-brand-blue rounded-md whitespace-nowrap">PORTAL</button>
+            </div>
             <!-- Mobile Hamburger Toggle -->
             <button onclick="toggleMobileMenu()" class="xl:hidden text-slate-300 hover:text-brand-cyan p-2 focus:outline-none">
                 <i class="fa-solid fa-bars-staggered text-xl" id="menuIcon"></i>
@@ -533,6 +538,9 @@
                     </span>
                     <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
                 </a>
+                <button type="button" onclick="openAuthModal('signup')" class="w-full sm:w-auto px-9 py-4 rounded-xl border border-brand-violet/70 text-white font-display font-bold text-sm sm:text-base uppercase tracking-widest hover:bg-brand-violet/20 transition-all duration-300">
+                    ACCESS PORTAL
+                </button>
 
                 <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel border border-white/10 hover:border-brand-cyan/60 text-slate-200 font-display font-semibold text-sm sm:text-base tracking-wider transition-all duration-300 hover:bg-white/5 flex items-center justify-center space-x-2" onmouseenter="playBeep(520)">
                     <i class="fa-solid fa-cube text-brand-cyan text-sm"></i>
@@ -1274,6 +1282,9 @@
                         <i class="fa-solid fa-shield-virus"></i>
                         <span>TRANSMIT CLEARANCE REQUEST</span>
                     </button>
+                    <button type="button" onclick="openAuthModal('signup')" class="w-full py-3 rounded-xl border border-brand-violet/70 text-white font-display font-bold text-xs uppercase tracking-widest hover:bg-brand-violet/20 transition">
+                        OR CREATE ACCOUNT - ACCESS PORTAL
+                    </button>
                 </form>
             </div>
         </div>
@@ -1842,11 +1853,13 @@
             sb.auth.getSession().then(({ data }) => {
                 if (data && data.session) {
                     ensureMemberRow(data.session.user);
-                    const b = document.getElementById('portalBtn');
-                    if (b) {
-                        b.textContent = '[ MEMBER AREA ]';
-                        b.setAttribute('onclick', "window.location.href='members.html'");
-                    }
+                    ['portalBtn', 'portalBtnM'].forEach(id => {
+                        const b = document.getElementById(id);
+                        if (b) {
+                            b.textContent = id === 'portalBtn' ? '[ MEMBER AREA ]' : 'MEMBER AREA';
+                            b.setAttribute('onclick', "window.location.href='members.html'");
+                        }
+                    });
                 }
             });
         }
@@ -2220,7 +2233,8 @@
                     try {
                         const { data, error } = await sb.from('members').select('member_id,name,role,joined').order('joined', { ascending: false });
                         if (!error && Array.isArray(data)) real = data.map(x => ({ id: x.member_id, name: x.name, role: x.role, joined: x.joined }));
-                    } catch (_) {}
+                        else if (error) console.warn('members table not ready:', error.message);
+                    } catch (e) { console.warn('members load failed', e); }
                 }
                 all = real.concat(sample);
                 render(all);
@@ -2437,6 +2451,12 @@
             playBeep(850);
         }
     </script>
+    <!-- Floating TORE-AI button (phones) -->
+    <button type="button" id="aiFab" onclick="toggleChat()" aria-label="Open TORE-AI chat" class="sm:hidden fixed right-4 bottom-4 z-40 w-14 h-14 rounded-full bg-gradient-to-br from-brand-cyan to-brand-violet text-black shadow-xl shadow-brand-cyan/30 flex items-center justify-center font-mono font-extrabold text-xs">
+        AI
+        <span class="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-brand-black"></span>
+    </button>
+
     <!-- TORE-AI intro greeting (side panel) -->
     <div id="aiIntro" role="status" class="glass-panel rounded-xl border border-brand-cyan/40 shadow-xl shadow-brand-cyan/10 overflow-hidden">
         <div class="flex items-center justify-between px-3 py-2 bg-brand-charcoal border-b border-brand-border">
