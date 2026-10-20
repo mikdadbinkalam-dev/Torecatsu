@@ -2,4 +2,30 @@ User-agent: *
 Allow: /
 Disallow: /members.html
 
+# AI / answer-engine crawlers are welcome to read the public pages
+User-agent: GPTBot
+Allow: /
+Disallow: /members.html
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /members.html
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /members.html
+User-agent: ClaudeBot
+Allow: /
+Disallow: /members.html
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /members.html
+User-agent: PerplexityBot
+Allow: /
+Disallow: /members.html
+User-agent: Google-Extended
+Allow: /
+Disallow: /members.html
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /members.html
+
 Sitemap: https://torecatsu.netlify.app/sitemap.xml
