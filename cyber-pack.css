@@ -1,0 +1,77 @@
+/* ================= TORECATSU CYBER PACK (css) =================
+   Module 1: typography + glassmorphism + status lights + trust tags
+   Modules 2/3: terminal window, subject modal, transmission modal, globe tooltip
+   Neon accent: change --neon to restyle everything at once.                    */
+:root { --neon: #00ffaa; --neon-soft: rgba(0,255,170,.18); --neon-glow: rgba(0,255,170,.35); }
+
+/* ---- 1. Typography: Inter for reading, JetBrains Mono for headings/code ---- */
+body, .font-sans { font-family: 'Inter', 'Noto Sans Bengali', system-ui, sans-serif; }
+h1, h2, h3, h4, .font-display { font-family: 'JetBrains Mono', ui-monospace, 'Noto Sans Bengali', monospace; letter-spacing: -.02em; }
+h1 { overflow-wrap: anywhere; }
+
+/* ---- 2. Glassmorphism cards with neon border + reactive hover ---- */
+.glass-panel {
+  border: 1px solid var(--neon-soft);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 8px 30px rgba(0,0,0,.35), 0 0 18px rgba(0,255,170,.06);
+  transition: border-color .3s ease, box-shadow .35s ease, transform .35s cubic-bezier(.22,1,.36,1);
+}
+.glass-panel:hover { border-color: var(--neon-glow); box-shadow: 0 0 0 1px rgba(0,255,170,.12) inset, 0 12px 40px rgba(0,0,0,.45), 0 0 28px rgba(0,255,170,.16); }
+
+/* ---- 3. Status lights ---- */
+.live-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--neon); box-shadow: 0 0 0 0 var(--neon-glow); animation: livePulse 1.8s ease-out infinite; vertical-align: middle; margin-right: 6px; }
+.live-dot.warn { background: #ffb020; box-shadow: 0 0 0 0 rgba(255,176,32,.4); }
+@keyframes livePulse { 0% { box-shadow: 0 0 0 0 rgba(0,255,170,.55); } 70% { box-shadow: 0 0 0 9px rgba(0,255,170,0); } 100% { box-shadow: 0 0 0 0 rgba(0,255,170,0); } }
+
+/* ---- Trust tags: be honest about which numbers are live and which are simulated ---- */
+.tag-sim, .tag-live { display: inline-block; font: 600 9px 'JetBrains Mono', monospace; letter-spacing: .04em; padding: 1px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; white-space: nowrap; }
+.tag-sim  { color: #ffb020; border: 1px solid rgba(255,176,32,.4); background: rgba(255,176,32,.08); }
+.tag-live { color: var(--neon); border: 1px solid var(--neon-glow); background: rgba(0,255,170,.08); }
+
+/* ---- Terminal window ---- */
+#toreTerm { position: fixed; left: 16px; bottom: 16px; z-index: 64; width: min(560px, calc(100vw - 32px)); height: 320px; max-height: 60vh; display: none; flex-direction: column;
+  background: rgba(3,6,10,.92); border: 1px solid var(--neon-glow); border-radius: 12px; box-shadow: 0 0 40px rgba(0,255,170,.15), 0 20px 60px rgba(0,0,0,.6); font: 12px/1.55 'JetBrains Mono', monospace; color: #c8ffe9; backdrop-filter: blur(8px); }
+#toreTerm.open { display: flex; animation: termIn .25s cubic-bezier(.22,1,.36,1); }
+@keyframes termIn { from { opacity: 0; transform: translate3d(0,14px,0) scale(.98); } to { opacity: 1; transform: none; } }
+#toreTerm .tt-bar { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid rgba(0,255,170,.15); color: var(--neon); font-size: 11px; letter-spacing: .08em; }
+#toreTerm .tt-bar button { background: none; border: 0; color: #94a3b8; cursor: pointer; font-size: 14px; padding: 0 4px; }
+#toreTerm .tt-bar button:hover { color: #fff; }
+#toreTerm .tt-out { flex: 1; overflow-y: auto; padding: 10px 12px; white-space: pre-wrap; word-break: break-word; overscroll-behavior: contain; }
+#toreTerm .tt-out a { color: #7dd3fc; text-decoration: underline; }
+#toreTerm .tt-out .cmd { color: #fff; }
+#toreTerm .tt-out .err { color: #ff6b8b; }
+#toreTerm .tt-in { display: flex; gap: 8px; align-items: center; padding: 8px 12px; border-top: 1px solid rgba(0,255,170,.15); }
+#toreTerm .tt-in span { color: var(--neon); }
+#toreTerm .tt-in input { flex: 1; background: transparent; border: 0; outline: 0; color: #fff; font: inherit; min-width: 0; }
+#termBtn { background: none; border: 0; color: inherit; cursor: pointer; font: inherit; }
+#termBtn:hover { color: var(--neon); }
+@media (max-width: 640px) { #toreTerm { bottom: calc(env(safe-area-inset-bottom,0px) + 84px); left: 8px; width: calc(100vw - 16px); height: 280px; } }
+
+/* ---- Subject modal + transmission modal ---- */
+.tore-ov { position: fixed; inset: 0; z-index: 70; display: none; align-items: center; justify-content: center; padding: 16px; background: rgba(0,0,0,.78); backdrop-filter: blur(6px); }
+.tore-ov.open { display: flex; animation: termIn .25s ease; }
+.tore-card { position: relative; width: 100%; max-width: 640px; max-height: 88vh; overflow-y: auto; background: rgba(9,12,20,.95); border: 1px solid var(--neon-glow); border-radius: 18px; padding: 26px; box-shadow: 0 0 50px rgba(0,255,170,.15); }
+.tore-card h3 { font-size: 1.4rem; color: #fff; margin: 0 0 4px; }
+.tore-card .x { position: absolute; top: 12px; right: 14px; background: none; border: 0; color: #94a3b8; font-size: 20px; cursor: pointer; }
+.tore-card .x:hover { color: #fff; }
+.art { border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 14px; margin-top: 12px; background: rgba(255,255,255,.02); }
+.art:hover { border-color: var(--neon-glow); }
+.art h4 { color: var(--neon); font-size: .95rem; margin: 0 0 4px; }
+.art p { color: #cbd5e1; font-size: .85rem; line-height: 1.6; margin: 0; }
+.art a { display: inline-block; margin-top: 8px; font: 600 11px 'JetBrains Mono', monospace; color: #7dd3fc; letter-spacing: .06em; }
+.tore-btn { font: 700 11px 'JetBrains Mono', monospace; letter-spacing: .08em; padding: 9px 14px; border-radius: 8px; border: 1px solid var(--neon-glow); color: #001a10; background: var(--neon); cursor: pointer; }
+.tore-btn.ghost { background: transparent; color: var(--neon); }
+.tx-box { text-align: center; max-width: 460px; }
+.tx-box .ok { font: 700 15px/1.5 'JetBrains Mono', monospace; color: var(--neon); text-shadow: 0 0 14px var(--neon-glow); letter-spacing: .04em; }
+.tx-box .bad { color: #ff6b8b; text-shadow: 0 0 14px rgba(255,107,139,.4); }
+.tx-box .ref { margin: 12px 0 18px; color: #94a3b8; font: 11px 'JetBrains Mono', monospace; }
+.tx-ring { width: 54px; height: 54px; margin: 0 auto 14px; border-radius: 50%; border: 2px solid var(--neon); box-shadow: 0 0 22px var(--neon-glow); display: flex; align-items: center; justify-content: center; color: var(--neon); font-size: 24px; }
+.subj-card { cursor: pointer; }
+.subj-card:focus-visible { outline: 2px solid var(--neon); outline-offset: 2px; }
+
+/* ---- Globe hover tooltip ---- */
+.globe-tip { position: absolute; z-index: 5; pointer-events: none; transform: translate(-50%, -130%); padding: 6px 10px; border-radius: 8px; background: rgba(3,6,10,.92); border: 1px solid var(--neon-glow); color: #fff; font: 600 11px 'JetBrains Mono', monospace; white-space: nowrap; box-shadow: 0 0 16px rgba(0,255,170,.25); opacity: 0; transition: opacity .15s; }
+.globe-tip.on { opacity: 1; }
+.globe-tip small { display: block; color: #ffb020; font-weight: 400; font-size: 9px; }
+
+/* top status bar: keep one line on phones */
+@media (max-width: 480px) { #termBtn span, #audioStatus { font-size: 9px; } #termBtn i { display: none; } }

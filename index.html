@@ -19,6 +19,7 @@
     <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="TORECATSU - Know the system. Break the system.">
     <script src="site.js"></script>
+    <link rel="stylesheet" href="cyber-pack.css">
     <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable summary">
     <link rel="manifest" href="site.webmanifest">
     <link rel="preload" href="logo-512.png" as="image">
@@ -41,7 +42,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,800;1,400&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,800;1,400&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome 6 CDN for all required icons -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
@@ -56,6 +57,7 @@
     <script src="knowledge.js"></script>
     <script src="knowledge2.js"></script>
     <script src="knowledge3.js"></script>
+    <script src="knowledge4.js"></script>
 
     <!-- Canvas Confetti for Interactive Celebrations -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -433,7 +435,7 @@
     </script>
 
     <!-- Top Telemetry Status HUD -->
-    <div class="w-full bg-brand-black/90 border-b border-brand-border/60 text-[11px] font-mono py-1 px-4 text-slate-400 flex justify-between items-center z-50 relative">
+    <div class="w-full bg-brand-black/90 border-b border-brand-border/60 text-[11px] font-mono py-1 px-4 text-slate-400 whitespace-nowrap flex justify-between items-center z-50 relative">
         <div class="flex items-center space-x-4">
             <span class="flex items-center space-x-1.5">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
@@ -442,9 +444,11 @@
             <span class="hidden sm:inline-block text-slate-600">|</span>
             <span class="hidden sm:inline-block">PARADIGM: <span class="text-brand-cyan">POST-SYSTEMIC 4.9.0</span></span>
             <span class="hidden md:inline-block text-slate-600">|</span>
-            <span class="hidden md:inline-block">GLOBAL NODES: <span class="text-brand-violet">12,842 ACTIVE</span></span>
+            <span class="hidden md:inline-block">GLOBAL NODES: <span class="text-brand-violet">12,842 ACTIVE</span><span class="tag-sim">[Simulated Metric]</span></span>
         </div>
         <div class="flex items-center space-x-4">
+            <button type="button" id="termBtn" class="flex items-center space-x-1.5 text-[10px]" title="Open terminal (press `)"><i class="fa-solid fa-terminal"></i><span>TERMINAL</span></button>
+            <span class="text-slate-600">|</span>
             <button onclick="toggleAudio()" id="audioBtn" class="flex items-center space-x-1.5 hover:text-brand-cyan transition-colors" title="Toggle UI Sonics">
                 <i class="fa-solid fa-volume-xmark text-slate-500" id="audioIcon"></i>
                 <span class="text-[10px]" id="audioStatus">AUDIO: OFF</span>
@@ -685,14 +689,14 @@
 
                         <div class="relative z-10 space-y-6">
                             <div class="flex items-center justify-between border-b border-white/10 pb-4">
-                                <span class="font-mono text-xs text-brand-cyan tracking-widest">[ SYSTEM DIAGNOSTIC ]</span>
-                                <span class="text-xs font-mono text-emerald-400">STATUS: OPTIMAL</span>
+                                <span class="font-mono text-xs text-brand-cyan tracking-widest"><span class="live-dot"></span>[ SYSTEM DIAGNOSTIC ]</span>
+                                <span class="text-xs font-mono text-emerald-400">STATUS: OPTIMAL<span class="tag-sim">[Simulated Metric]</span></span>
                             </div>
 
                             <!-- Animated Visual Waveform Simulation -->
                             <div class="h-44 bg-brand-black/90 rounded-xl p-4 border border-brand-border/60 flex flex-col justify-between relative overflow-hidden">
                                 <div class="flex justify-between items-center text-[10px] font-mono text-slate-500">
-                                    <span>ENTROPY: 0.00293</span>
+                                    <span>ENTROPY: 0.00293 <span class="tag-sim">[Simulated]</span></span>
                                     <span>HASH: 0x9f4a...e12b</span>
                                 </div>
 
@@ -919,7 +923,7 @@
                         </p>
                     </div>
                     <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
-                        <span class="font-mono text-[11px] text-slate-500">ACTIVE RELAYS: 4,120</span>
+                        <span class="font-mono text-[11px] text-slate-500">ACTIVE RELAYS: 4,120<span class="tag-sim">[Simulated]</span></span>
                         <a href="javascript:void(0)" onclick="openProjectModal('Nexus Hyper-Mesh', 'A project about community mesh networks where neighbourhood devices relay data for each other.')" class="text-xs font-mono text-brand-blue hover:underline flex items-center space-x-1">
                             <span>INSPECT</span>
                             <i class="fa-solid fa-arrow-right text-[10px]"></i>
@@ -940,7 +944,7 @@
                         </p>
                     </div>
                     <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
-                        <span class="font-mono text-[11px] text-slate-500">AGENTS SPAWNED: 89,000+</span>
+                        <span class="font-mono text-[11px] text-slate-500">AGENTS SPAWNED: 89,000+<span class="tag-sim">[Simulated]</span></span>
                         <a href="javascript:void(0)" onclick="openProjectModal('Vortex Agent DAO', 'A research idea about autonomous software agents that follow community-agreed rules, governed in public.')" class="text-xs font-mono text-brand-cyan hover:underline flex items-center space-x-1">
                             <span>INSPECT</span>
                             <i class="fa-solid fa-arrow-right text-[10px]"></i>
@@ -1024,7 +1028,7 @@
                                 <span class="w-2.5 h-2.5 rounded-full bg-brand-cyan animate-pulse"></span>
                                 <span class="font-display font-semibold text-white text-sm">Tokyo Cyber Hub</span>
                             </div>
-                            <span class="font-mono text-xs text-brand-cyan">0.8ms Latency</span>
+                            <span class="font-mono text-xs text-brand-cyan">0.8ms Latency<span class="tag-sim">[Simulated]</span></span>
                         </div>
 
                         <div class="glass-panel p-3 rounded-xl flex items-center justify-between cursor-pointer hover:border-brand-violet transition" onclick="highlightNode('Zurich')">
@@ -1260,6 +1264,7 @@
                 <h2 class="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight">Members</h2>
                 <p class="text-slate-400 text-sm sm:text-base mt-4 font-light">Everyone in the community, with their member ID.</p>
                 <p id="member-count" class="mt-3 font-mono text-xs text-brand-cyan tracking-widest" aria-live="polite"></p>
+                <p class="mt-2"><span class="tag-live" style="margin-left:0">[Live: Supabase registry]</span><span class="tag-sim">[Simulated: SAMPLE entries]</span></p>
             </div>
             <div class="flex justify-center mb-8">
                 <input type="search" id="member-search" placeholder="Search by name, ID, or role" aria-label="Search members" class="w-full max-w-md bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-cyan font-mono placeholder:text-slate-600 transition">
@@ -1927,6 +1932,13 @@
 
         // ---- Netlify Forms helper ----
         async function submitNetlifyForm(form) {
+            // Optional: set FORMSPREE_URL in config.js to send to Formspree instead of Netlify Forms
+            const fs = window.TORE_CONFIG && window.TORE_CONFIG.FORMSPREE_URL;
+            if (fs) {
+                const r = await fetch(fs, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+                if (!r.ok) throw new Error('Submit failed (' + r.status + ')');
+                return;
+            }
             const body = new URLSearchParams(new FormData(form)).toString();
             const res = await fetch('/', {
                 method: 'POST',
@@ -1945,12 +1957,12 @@
             try {
                 await submitNetlifyForm(form);
             } catch (err) {
-                alert('Could not send your request. Please check your internet connection (turn off VPN if it is on) and try again.');
+                toreTx(false);
                 return;
             }
             try { playBeep(950); } catch (_) {}
             try { confetti({ particleCount: 120, spread: 90, origin: { y: 0.5 }, colors: ['#00F0FF', '#8A2BE2', '#0066FF'] }); } catch (_) {}
-            alert('Clearance Transmission Successful! Your request has been received.');
+            toreTx(true, 'Enrollment request');
             form.reset();
         }
 
@@ -1960,10 +1972,10 @@
             try {
                 await submitNetlifyForm(form);
                 try { playBeep(780); } catch (_) {}
-                alert('Message sent! We will get back to you.');
+                toreTx(true, 'Secure transmission');
                 form.reset();
             } catch (err) {
-                alert('Could not send your message. Please try again.');
+                toreTx(false, 'Please try again in a moment.');
             }
         }
 
@@ -2184,12 +2196,13 @@
 
             // Hub Radar Rings (Tokyo, Zurich, SF, Singapore)
             const hubs = [
-                { lat: 35.6762, lon: 139.6503, color: 0x00F0FF }, // Tokyo
-                { lat: 47.3769, lon: 8.5417, color: 0x8A2BE2 },   // Zurich
-                { lat: 37.7749, lon: -122.4194, color: 0x0066FF },// SF
-                { lat: 1.3521, lon: 103.8198, color: 0xFF007A }   // Singapore
+                { name: 'Tokyo', base: 0.8, lat: 35.6762, lon: 139.6503, color: 0x00F0FF }, // Tokyo
+                { name: 'Zurich', base: 1.2, lat: 47.3769, lon: 8.5417, color: 0x8A2BE2 },   // Zurich
+                { name: 'San Francisco', base: 1.6, lat: 37.7749, lon: -122.4194, color: 0x0066FF },// SF
+                { name: 'Singapore', base: 1.0, lat: 1.3521, lon: 103.8198, color: 0xFF007A }   // Singapore
             ];
 
+            const hubRings = [];
             hubs.forEach(hub => {
                 const phi = (90 - hub.lat) * (Math.PI / 180);
                 const theta = (hub.lon + 180) * (Math.PI / 180);
@@ -2204,7 +2217,9 @@
                 const ring = new THREE.Mesh(ringGeo, ringMat);
                 ring.position.set(x, y, z);
                 ring.lookAt(0, 0, 0);
+                ring.userData = hub;
                 globeMesh.add(ring);
+                hubRings.push(ring);
             });
 
             // Mouse Drag Interaction on Globe
@@ -2225,6 +2240,30 @@
                 }
                 previousMousePosition = { x: e.clientX, y: e.clientY };
             });
+
+            // Hover / tap a node -> latency popup (values are simulated and labelled as such)
+            const tip = document.createElement('div'); tip.className = 'globe-tip';
+            if (getComputedStyle(container).position === 'static') container.style.position = 'relative';
+            container.appendChild(tip);
+            const _v = new THREE.Vector3();
+            function probe(cx, cy) {
+                const box = container.getBoundingClientRect(); let best = null, bd = 34;
+                hubRings.forEach(r => {
+                    r.getWorldPosition(_v); if (_v.z < 0.15) return; // back side of the globe
+                    _v.project(camera);
+                    const sx = (_v.x * 0.5 + 0.5) * box.width, sy = (-_v.y * 0.5 + 0.5) * box.height;
+                    const d = Math.hypot(sx - (cx - box.left), sy - (cy - box.top));
+                    if (d < bd) { bd = d; best = { r, sx, sy }; }
+                });
+                if (!best) { tip.classList.remove('on'); return; }
+                const h = best.r.userData, ms = (h.base + Math.random() * 0.4).toFixed(1);
+                tip.innerHTML = h.name + ' &middot; ' + ms + 'ms<small>[Simulated Metric]</small>';
+                tip.style.left = best.sx + 'px'; tip.style.top = best.sy + 'px'; tip.classList.add('on');
+            }
+            container.addEventListener('mousemove', e => { if (!isDragging) probe(e.clientX, e.clientY); });
+            container.addEventListener('mouseleave', () => tip.classList.remove('on'));
+            container.addEventListener('click', e => probe(e.clientX, e.clientY));
+            container.addEventListener('touchend', e => { const t = e.changedTouches && e.changedTouches[0]; if (t) probe(t.clientX, t.clientY); }, { passive: true });
 
             let globeVisible = true;
             if ('IntersectionObserver' in window) new IntersectionObserver(en => { globeVisible = en[0].isIntersecting; }).observe(container);
@@ -2590,5 +2629,6 @@
     })();
     </script>
     <script src="player.js"></script>
+    <script src="cyber-pack.js" defer></script>
 </body>
 </html>
