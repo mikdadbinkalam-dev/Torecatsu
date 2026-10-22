@@ -16,8 +16,9 @@
     <meta name="application-name" content="TORECATSU">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta property="og:locale" content="en_US">
-    <meta property="og:image:width" content="512"><meta property="og:image:height" content="512">
-    <meta property="og:image:alt" content="TORECATSU logo">
+    <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="TORECATSU - Know the system. Break the system.">
+    <script src="site.js"></script>
     <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable summary">
     <link rel="manifest" href="site.webmanifest">
     <link rel="preload" href="logo-512.png" as="image">
@@ -27,9 +28,9 @@
     <meta property="og:title" content="TORECATSU | Science & Technology Community - Know the System, Break the System">
     <meta property="og:description" content="TORECATSU is a community of curious students and builders learning science and technology and creating new, open systems that work for everyone. Join us.">
     <meta property="og:url" content="https://torecatsu.netlify.app/">
-    <meta property="og:image" content="https://torecatsu.netlify.app/logo-512.png">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:image" content="https://torecatsu.netlify.app/logo-512.png">
+    <meta property="og:image" content="https://torecatsu.netlify.app/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://torecatsu.netlify.app/og-image.png">
     <meta name="twitter:title" content="TORECATSU | KNOW THE SYSTEM. BREAK THE SYSTEM.">
     <meta name="twitter:description" content="TORECATSU is a community for curious minds: science, technology and open systems.">
     <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://torecatsu.netlify.app/#org","name":"TORECATSU","url":"https://torecatsu.netlify.app/","logo":{"@type":"ImageObject","url":"https://torecatsu.netlify.app/logo-512.png","width":512,"height":512},"slogan":"Know the system. Break the system.","description":"TORECATSU is a community of curious students and builders that learns science and technology and creates new, open systems that work for everyone.","foundingLocation":"Bangladesh","knowsAbout":["Science","Technology","Artificial intelligence","Cryptography","Mesh networks","Open source","Physics","Chemistry","Biology","Mathematics"]},{"@type":"WebSite","@id":"https://torecatsu.netlify.app/#website","url":"https://torecatsu.netlify.app/","name":"TORECATSU","description":"Science and technology community. Know the system, break the system.","inLanguage":["en","bn"],"publisher":{"@id":"https://torecatsu.netlify.app/#org"}},{"@type":"WebPage","@id":"https://torecatsu.netlify.app/#webpage","url":"https://torecatsu.netlify.app/","name":"TORECATSU | Science & Technology Community","isPartOf":{"@id":"https://torecatsu.netlify.app/#website"},"about":{"@id":"https://torecatsu.netlify.app/#org"},"primaryImageOfPage":"https://torecatsu.netlify.app/logo-512.png","inLanguage":"en"},{"@type":"ItemList","@id":"https://torecatsu.netlify.app/#nav","itemListElement":[{"@type":"SiteNavigationElement","position":1,"name":"Home","url":"https://torecatsu.netlify.app/"},{"@type":"SiteNavigationElement","position":2,"name":"Manifesto","url":"https://torecatsu.netlify.app/about.html"},{"@type":"SiteNavigationElement","position":3,"name":"Projects","url":"https://torecatsu.netlify.app/#projects"},{"@type":"SiteNavigationElement","position":4,"name":"Subjects","url":"https://torecatsu.netlify.app/#subjects"},{"@type":"SiteNavigationElement","position":5,"name":"Members","url":"https://torecatsu.netlify.app/#members"},{"@type":"SiteNavigationElement","position":6,"name":"Join","url":"https://torecatsu.netlify.app/#join"},{"@type":"SiteNavigationElement","position":7,"name":"Contact","url":"https://torecatsu.netlify.app/#contact"}]}]}</script>
@@ -480,9 +481,10 @@
             </a>
 
             <!-- Desktop Navigation Links -->
-            <nav class="hidden xl:flex items-center space-x-6 text-sm font-medium font-display tracking-wider">
+            <nav class="hidden 2xl:flex items-center space-x-6 text-sm font-medium font-display tracking-wider">
                 <a href="#about" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">ABOUT</a>
                 <a href="about.html" class="text-brand-cyan hover:text-white transition duration-200" onmouseenter="playBeep(650)">MANIFESTO</a>
+                <a href="learn.html" class="text-brand-cyan hover:text-white transition duration-200" onmouseenter="playBeep(650)">LEARN</a>
                 <a href="#mission" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">MISSION</a>
                 <a href="#projects" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">PROJECTS</a>
                 <a href="#subjects" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">SUBJECTS</a>
@@ -517,15 +519,16 @@
                 <button type="button" id="portalBtnM" onclick="openAuthModal('login')" class="px-3 py-1.5 text-[11px] font-mono font-bold tracking-wider text-black bg-gradient-to-r from-brand-cyan to-brand-blue rounded-md whitespace-nowrap">PORTAL</button>
             </div>
             <!-- Mobile Hamburger Toggle -->
-            <button onclick="toggleMobileMenu()" class="xl:hidden text-slate-300 hover:text-brand-cyan p-2 focus:outline-none">
+            <button onclick="toggleMobileMenu()" class="2xl:hidden text-slate-300 hover:text-brand-cyan p-2 focus:outline-none">
                 <i class="fa-solid fa-bars-staggered text-xl" id="menuIcon"></i>
             </button>
         </div>
 
         <!-- Mobile Navigation Menu -->
-        <div id="mobileMenu" class="hidden xl:hidden border-t border-brand-border/80 bg-brand-card/95 backdrop-blur-2xl px-6 py-6 space-y-4">
+        <div id="mobileMenu" class="hidden 2xl:hidden border-t border-brand-border/80 bg-brand-card/95 backdrop-blur-2xl px-6 py-6 space-y-4">
             <a href="#about" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">ABOUT</a>
             <a href="about.html" class="block text-brand-cyan py-2 font-display text-base tracking-wider">MANIFESTO</a>
+            <a href="learn.html" class="block text-brand-cyan py-2 font-display text-base tracking-wider">LEARN</a>
             <a href="#mission" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">MISSION</a>
             <a href="#projects" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">PROJECTS</a>
             <a href="#subjects" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-cyan py-2 font-display text-base tracking-wider">SUBJECTS</a>
@@ -869,7 +872,7 @@
                     </div>
                     <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
                         <span class="font-mono text-[11px] text-slate-500">STATUS: PRODUCTION</span>
-                        <a href="javascript:void(0)" onclick="openProjectModal('Project Chronos', 'High-throughput algorithmic prediction matrix running on decentralized validator nodes across 40 countries.')" class="text-xs font-mono text-brand-cyan hover:underline flex items-center space-x-1">
+                        <a href="javascript:void(0)" onclick="openProjectModal('Project Chronos', 'A community AI research project about forecasting from open data, and measuring honestly when the forecast is wrong.')" class="text-xs font-mono text-brand-cyan hover:underline flex items-center space-x-1">
                             <span>INSPECT</span>
                             <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </a>
@@ -893,7 +896,7 @@
                     </div>
                     <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
                         <span class="font-mono text-[11px] text-slate-500">AUDIT: FORMALLY VERIFIED</span>
-                        <a href="javascript:void(0)" onclick="openProjectModal('Aegis Shield Protocol', 'Formal cryptographic proofs guaranteeing state secrecy and post-quantum encryption standards.')" class="text-xs font-mono text-brand-violet hover:underline flex items-center space-x-1">
+                        <a href="javascript:void(0)" onclick="openProjectModal('Aegis Shield Protocol', 'A privacy project built on zero-knowledge proofs: prove one fact without revealing anything else.')" class="text-xs font-mono text-brand-violet hover:underline flex items-center space-x-1">
                             <span>INSPECT</span>
                             <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </a>
@@ -917,7 +920,7 @@
                     </div>
                     <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
                         <span class="font-mono text-[11px] text-slate-500">ACTIVE RELAYS: 4,120</span>
-                        <a href="javascript:void(0)" onclick="openProjectModal('Nexus Hyper-Mesh', 'Autonomous hardware gateway providing high-bandwidth dark mesh transmission nodes globally.')" class="text-xs font-mono text-brand-blue hover:underline flex items-center space-x-1">
+                        <a href="javascript:void(0)" onclick="openProjectModal('Nexus Hyper-Mesh', 'A project about community mesh networks where neighbourhood devices relay data for each other.')" class="text-xs font-mono text-brand-blue hover:underline flex items-center space-x-1">
                             <span>INSPECT</span>
                             <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </a>
@@ -938,7 +941,7 @@
                     </div>
                     <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
                         <span class="font-mono text-[11px] text-slate-500">AGENTS SPAWNED: 89,000+</span>
-                        <a href="javascript:void(0)" onclick="openProjectModal('Vortex Agent DAO', 'Self-incentivized autonomous agents operating decentralized arbitrage and compute optimization.')" class="text-xs font-mono text-brand-cyan hover:underline flex items-center space-x-1">
+                        <a href="javascript:void(0)" onclick="openProjectModal('Vortex Agent DAO', 'A research idea about autonomous software agents that follow community-agreed rules, governed in public.')" class="text-xs font-mono text-brand-cyan hover:underline flex items-center space-x-1">
                             <span>INSPECT</span>
                             <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </a>
@@ -959,7 +962,7 @@
                     </div>
                     <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
                         <span class="font-mono text-[11px] text-slate-500">ISSUED: 1.2M IDS</span>
-                        <a href="javascript:void(0)" onclick="openProjectModal('Sovereign Passport', 'Self-sovereign identity architecture with post-quantum biometric signature wrapping.')" class="text-xs font-mono text-brand-violet hover:underline flex items-center space-x-1">
+                        <a href="javascript:void(0)" onclick="openProjectModal('Sovereign Passport', 'A project about digital identity you control yourself: you decide which facts to share.')" class="text-xs font-mono text-brand-violet hover:underline flex items-center space-x-1">
                             <span>INSPECT</span>
                             <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </a>
@@ -980,7 +983,7 @@
                     </div>
                     <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
                         <span class="font-mono text-[11px] text-slate-500">BINARY SIZE: 18MB</span>
-                        <a href="javascript:void(0)" onclick="openProjectModal('Null-OS Sovereign', 'Ultra-lean microkernel designed for privacy-critical operations and hardware enclave isolation.')" class="text-xs font-mono text-brand-neonPink hover:underline flex items-center space-x-1">
+                        <a href="javascript:void(0)" onclick="openProjectModal('Null-OS Sovereign', 'A learning project about a small operating system that sends no usage data anywhere.')" class="text-xs font-mono text-brand-neonPink hover:underline flex items-center space-x-1">
                             <span>INSPECT</span>
                             <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </a>
@@ -1256,6 +1259,7 @@
                 </div>
                 <h2 class="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight">Members</h2>
                 <p class="text-slate-400 text-sm sm:text-base mt-4 font-light">Everyone in the community, with their member ID.</p>
+                <p id="member-count" class="mt-3 font-mono text-xs text-brand-cyan tracking-widest" aria-live="polite"></p>
             </div>
             <div class="flex justify-center mb-8">
                 <input type="search" id="member-search" placeholder="Search by name, ID, or role" aria-label="Search members" class="w-full max-w-md bg-brand-black/80 border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-cyan font-mono placeholder:text-slate-600 transition">
@@ -1425,6 +1429,11 @@
          ============================================== -->
     <footer class="relative z-10 border-t border-brand-border/60 bg-brand-black/90 pt-16 pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav aria-label="Site pages" class="mb-10 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs font-mono text-slate-400">
+                <a class="hover:text-brand-cyan" href="about.html">Manifesto</a><a class="hover:text-brand-cyan" href="learn.html">Learn</a>
+                <a class="hover:text-brand-cyan" href="project-chronos.html">Chronos</a><a class="hover:text-brand-cyan" href="project-aegis.html">Aegis</a><a class="hover:text-brand-cyan" href="project-nexus.html">Nexus</a>
+                <a class="hover:text-brand-cyan" href="project-vortex.html">Vortex</a><a class="hover:text-brand-cyan" href="project-passport.html">Passport</a><a class="hover:text-brand-cyan" href="project-null-os.html">Null-OS</a>
+            </nav>
             
             <!-- Socials Ribbon (WhatsApp, Facebook, Discord, Telegram, X, Instagram, YouTube, LinkedIn, GitHub) -->
             <div class="mb-16">
@@ -1622,18 +1631,19 @@
             <p id="projectModalDesc" class="text-slate-300 text-sm font-light leading-relaxed mb-6">Detailed description goes here.</p>
             <div class="p-4 bg-brand-black rounded-xl border border-brand-border font-mono text-xs text-slate-400 space-y-2 mb-6">
                 <div class="flex justify-between">
-                    <span>Cryptographic Verification:</span>
-                    <span class="text-emerald-400">PASSED [100%]</span>
+                    <span>Type:</span>
+                    <span class="text-emerald-400">Community research project</span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Decentralization Score:</span>
-                    <span class="text-brand-cyan">99.98%</span>
+                    <span>Status:</span>
+                    <span class="text-brand-cyan">Learning / prototype</span>
                 </div>
                 <div class="flex justify-between">
                     <span>License:</span>
-                    <span class="text-white">MIT / Zero-Patent</span>
+                    <span class="text-white">Open by default</span>
                 </div>
             </div>
+            <a id="projectModalLink" href="#" class="block text-center mb-3 py-3 rounded-xl border border-brand-border hover:border-brand-cyan text-brand-cyan font-display font-bold text-xs uppercase tracking-wider">READ FULL PAGE &rarr;</a>
             <button onclick="closeProjectModal()" class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-blue text-black font-display font-bold text-xs uppercase tracking-wider">
                 ACKNOWLEDGE & RETURN
             </button>
@@ -1809,6 +1819,8 @@
             playBeep(680);
             document.getElementById('projectModalTitle').textContent = title;
             document.getElementById('projectModalDesc').textContent = desc;
+            const PG = { 'project chronos': 'project-chronos.html', 'aegis shield protocol': 'project-aegis.html', 'nexus hyper-mesh': 'project-nexus.html', 'vortex agent dao': 'project-vortex.html', 'sovereign passport': 'project-passport.html', 'null-os sovereign': 'project-null-os.html' };
+            const lk = document.getElementById('projectModalLink'); if (lk) lk.href = PG[String(title).toLowerCase()] || 'learn.html';
             const modal = document.getElementById('projectModal');
             modal.classList.remove('hidden');
             setTimeout(() => modal.classList.remove('opacity-0'), 10);
@@ -1969,6 +1981,7 @@
             playBeep(620);
             const chat = document.getElementById('chatDrawer');
             chat.classList.toggle('hidden');
+            if (!chat.classList.contains('hidden')) { var ai = document.getElementById('aiIntro'); if (ai) ai.classList.remove('show'); try { sessionStorage.setItem('tore_ai_intro', '1'); } catch (e) {} }
         }
 
         function handleChatSubmit(e) {
@@ -2286,6 +2299,8 @@
                     } catch (e) { console.warn('members load failed', e); }
                 }
                 all = real.concat(sample);
+                const mc = document.getElementById('member-count');
+                if (mc) mc.textContent = real.length ? (real.length + ' VERIFIED MEMBER' + (real.length === 1 ? '' : 'S') + ' + ' + sample.length + ' SAMPLE') : (sample.length + ' SAMPLE ENTRIES - BE THE FIRST REAL MEMBER');
                 render(all);
             }
             loadMembers();

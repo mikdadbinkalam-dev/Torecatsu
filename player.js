@@ -14,7 +14,15 @@
     '<span id="mTitle" class="hidden md:inline-block max-w-[180px] truncate text-[10px] text-brand-cyan font-mono">MUSIC</span>' +
     '<input id="mVol" type="range" min="0" max="1" step="0.01" aria-label="Music volume" class="w-14 sm:w-24 accent-cyan-400 cursor-pointer">' +
     '<button type="button" id="mOnOff" class="text-[10px] font-mono px-2 py-0.5 rounded border border-white/10 hover:border-brand-cyan"></button>' +
+    '<span id="mViz" aria-hidden="true" class="no-invert" style="display:inline-flex;align-items:flex-end;gap:2px;height:14px"><i></i><i></i><i></i><i></i><i></i></span>' +
+    '<span id="mTools"></span>' +
     '</div>';
+  var vs = document.createElement('style');
+  vs.textContent = '#mViz i{display:block;width:3px;height:3px;background:#00F0FF;border-radius:1px;transition:height .3s}' +
+    '#mViz.on i{animation:mviz 0.9s ease-in-out infinite}#mViz.on i:nth-child(2){animation-delay:.15s}#mViz.on i:nth-child(3){animation-delay:.3s}#mViz.on i:nth-child(4){animation-delay:.1s}#mViz.on i:nth-child(5){animation-delay:.25s}' +
+    '@keyframes mviz{0%,100%{height:3px}50%{height:14px}}@media (prefers-reduced-motion:reduce){#mViz.on i{animation:none;height:8px}}';
+  document.head.appendChild(vs);
+  if (window.ToreTools) window.ToreTools.mount(mount.querySelector('#mTools'));
   var $ = function (id) { return document.getElementById(id); };
   var PLAY = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
   var PAUSE = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
@@ -22,6 +30,7 @@
 
   function ui() {
     var playing = !audio.paused;
+    $('mViz').className = playing ? 'on' : '';
     $('mPlay').innerHTML = playing ? PAUSE : PLAY;
     $('mOnOff').textContent = wantOn ? 'MUSIC: ON' : 'MUSIC: OFF';
     $('mOnOff').style.color = wantOn ? '#00F0FF' : '#64748b';
