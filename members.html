@@ -18,18 +18,19 @@
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center px-4">
-    <div id="loading" class="mono text-slate-400 text-sm">VERIFYING SESSION...</div>
+    <div id="loading" class="mono text-slate-400 text-sm text-center" role="status">VERIFYING SESSION...<div id="err" class="hidden mt-4"><a href="index.html" class="underline text-cyan-400">Back to the site</a> &middot; <button type="button" onclick="location.reload()" class="underline text-cyan-400">Try again</button></div></div>
 
     <main id="content" class="hidden w-full max-w-lg">
         <div class="panel p-8 space-y-6">
-            <div class="mono text-xs text-cyan-400 tracking-widest">// MEMBER AREA</div>
+            <div class="mono text-xs text-cyan-400 tracking-widest">// MEMBER AREA (EARLY VERSION)</div>
             <h1 class="text-3xl font-bold">Welcome, <span id="alias" class="grad"></span></h1>
             <div class="mono text-xs space-y-2 text-slate-400">
                 <div class="flex justify-between"><span>Email</span><span id="email" class="text-white"></span></div>
                 <div class="flex justify-between"><span>Member since</span><span id="since" class="text-white"></span></div>
-                <div class="flex justify-between"><span>Clearance</span><span class="text-cyan-400">LEVEL 01 - INITIATE</span></div>
+                <div class="flex justify-between"><span>Member ID</span><span id="mid" class="text-white">-</span></div>
+                <div class="flex justify-between"><span>Level</span><span class="text-cyan-400">INITIATE</span></div>
             </div>
-            <p class="text-sm text-slate-400">This page is only visible to logged-in members. Add private content here.</p>
+            <p class="text-sm text-slate-400">This is an early version of the member area. It shows your own account details. Only your display name, member ID, level and join date appear in the public member list; your email stays private.</p>
             <div class="flex gap-3">
                 <a href="index.html" class="flex-1 text-center py-3 rounded-xl border border-slate-700 hover:border-cyan-400 text-sm">Back to site</a>
                 <button id="logout" class="flex-1 py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-bold text-sm">Log out</button>
@@ -39,21 +40,23 @@
 
     <script>
         (async () => {
-            const cfg = window.TORE_CONFIG || {};
-            if (!cfg.SUPABASE_URL || cfg.SUPABASE_URL.startsWith('YOUR_')) {
-                document.getElementById('loading').textContent = 'Login system not configured yet.';
-                return;
-            }
-            const sb = window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
-            const { data } = await sb.auth.getSession();
-            if (!data.session) { window.location.replace('index.html'); return; }
-            const u = data.session.user;
-            document.getElementById('alias').textContent = (u.user_metadata && u.user_metadata.alias) || u.email.split('@')[0];
-            document.getElementById('email').textContent = u.email;
-            document.getElementById('since').textContent = new Date(u.created_at).toLocaleDateString();
-            document.getElementById('loading').classList.add('hidden');
-            document.getElementById('content').classList.remove('hidden');
-            document.getElementById('logout').onclick = async () => { await sb.auth.signOut(); window.location.replace('index.html'); };
+            const L = document.getElementById('loading'), fail = (msg) => { L.firstChild.textContent = msg; document.getElementById('err').classList.remove('hidden'); };
+            try {
+                const cfg = window.TORE_CONFIG || {};
+                if (!cfg.SUPABASE_URL || cfg.SUPABASE_URL.startsWith('YOUR_')) return fail('Login system is not configured yet.');
+                if (!window.supabase) return fail('Login service could not load. Check your internet connection (turn off VPN or ad-blocker) and try again.');
+                const sb = window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
+                const { data } = await sb.auth.getSession();
+                if (!data.session) { window.location.replace('index.html'); return; }
+                const u = data.session.user;
+                document.getElementById('alias').textContent = (u.user_metadata && u.user_metadata.alias) || u.email.split('@')[0];
+                document.getElementById('email').textContent = u.email;
+                document.getElementById('since').textContent = new Date(u.created_at).toLocaleDateString();
+                try { const r = await sb.from('members').select('member_id,role').eq('user_id', u.id).maybeSingle(); if (r.data) { document.getElementById('mid').textContent = r.data.member_id; } else { document.getElementById('mid').textContent = 'not assigned yet'; } } catch (e) { document.getElementById('mid').textContent = 'unavailable'; }
+                L.classList.add('hidden');
+                document.getElementById('content').classList.remove('hidden');
+                document.getElementById('logout').onclick = async () => { await sb.auth.signOut(); window.location.replace('index.html'); };
+            } catch (e) { fail('Something went wrong while loading your account. Please try again.'); }
         })();
     </script>
 </body>

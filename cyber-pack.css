@@ -80,3 +80,6 @@ h1 { overflow-wrap: anywhere; }
 :focus-visible { outline: 2px solid var(--neon); outline-offset: 2px; }
 .skip-link { position: fixed; left: 8px; top: -60px; z-index: 200; background: #fff; color: #000; padding: 8px 12px; border-radius: 6px; font: 600 12px 'JetBrains Mono', monospace; transition: top .15s; }
 .skip-link:focus { top: 8px; }
+
+/* nav: current section indicator */
+#mainHeader nav a.active-sec { color: var(--neon) !important; text-shadow: 0 0 10px var(--neon-glow); }

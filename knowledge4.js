@@ -2,6 +2,12 @@
 (function(){
 var E = window.TORE_KB.entries;
 [
+["computer science subject",["tell me about computer science","what is computer science","computer science","cs subject","কম্পিউটার সায়েন্স"],
+ "Computer science studies how computers work and how to solve problems with them: algorithms (step-by-step solutions), programming, data, networks and security. A good first step is learning Python or JavaScript and building small projects.",
+ "কম্পিউটার সায়েন্স হলো কম্পিউটার কীভাবে কাজ করে এবং তা দিয়ে সমস্যা সমাধানের বিজ্ঞান: অ্যালগরিদম, প্রোগ্রামিং, ডেটা, নেটওয়ার্ক ও নিরাপত্তা।"],
+["artificial intelligence subject",["tell me about artificial intelligence","what is artificial intelligence","what is ai","artificial intelligence","কৃত্রিম বুদ্ধিমত্তা"],
+ "Artificial intelligence is software that learns patterns from data to make predictions or decisions. Machine learning is the main method. AI can be wrong or biased, so important answers should always be checked. TORE-AI itself is only a small keyword-based assistant, not a large AI model.",
+ "কৃত্রিম বুদ্ধিমত্তা (AI) এমন সফটওয়্যার যা ডেটা থেকে প্যাটার্ন শিখে ভবিষ্যদ্বাণী বা সিদ্ধান্ত নেয়। AI ভুল করতে পারে, তাই গুরুত্বপূর্ণ উত্তর যাচাই করো।"],
 ["physics subject",["tell me about physics","what is physics","physics","পদার্থবিজ্ঞান","পদার্থবিদ্যা"],
  "Physics studies matter, energy, motion and forces. Key ideas: Newton's laws (F = ma), energy is conserved, light is a wave and a particle, and at atomic scale quantum mechanics describes particles with probabilities. Read 'Why is the sky blue?' on the Learn page.",
  "পদার্থবিজ্ঞান পদার্থ, শক্তি, গতি ও বলের বিজ্ঞান। নিউটনের সূত্র (F = ma), শক্তির সংরক্ষণ এবং পরমাণুর স্তরে কোয়ান্টাম বলবিদ্যা এর মূল বিষয়।"],

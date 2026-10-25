@@ -59,6 +59,14 @@
       ['Why prime numbers matter', 'Multiplying two huge primes is easy but factoring the result is very hard. Much of modern encryption relies on that gap.', 'learn-encryption.html'],
       ['The Pythagorean theorem', 'In a right triangle, a squared plus b squared equals c squared, where c is the longest side.'],
       ['What is a derivative?', 'A derivative measures how fast something is changing at one exact moment - like the slope of a curve at a point, or speed from a distance-time graph.']] },
+    'Computer Science': { ic: 'fa-laptop-code', blurb: 'How computers, programs and the internet work - the base for building real projects.', arts: [
+      ['What is an algorithm?', 'An algorithm is a clear list of steps that solves a problem, like a recipe. Good algorithms solve problems with fewer steps.'],
+      ['How does a mesh network work?', 'In a mesh network every device can pass data to its neighbours, so there is no single central router.', 'learn-mesh-network.html'],
+      ['Binary and bits', 'Computers store everything as bits (0 or 1). Eight bits make a byte, and a byte can hold one letter.']] },
+    'Artificial Intelligence': { ic: 'fa-robot', blurb: 'How machines learn from data, and how to use that power responsibly.', arts: [
+      ['What is machine learning?', 'Instead of following hand-written rules, a model learns patterns from many examples and then makes predictions on new data.', 'learn-machine-learning.html'],
+      ['AI can be wrong', 'Models can be biased or confidently wrong. Always check important answers, including those from TORE-AI.'],
+      ['Training vs using', 'Training teaches the model from data (slow and costly). Using it, called inference, is fast and cheap.']] },
     'Earth Science': { ic: 'fa-earth-asia', blurb: 'Geology, climate, oceans and the planet we live on.', arts: [
       ['Why do we have seasons?', 'Earth\'s axis is tilted about 23.5 degrees. When your hemisphere tilts toward the Sun you get summer; away from it, winter. Distance from the Sun is not the cause.'],
       ['Plate tectonics', 'Earth\'s crust is split into moving plates. Where they collide, slide or separate we get mountains, earthquakes and volcanoes.'],
@@ -165,5 +173,17 @@
     if (e.key !== 'Escape') return;
     try { if (!$('#authModal').classList.contains('hidden')) closeAuthModal(); if (!$('#projectModal').classList.contains('hidden')) closeProjectModal(); } catch (x) {}
   });
+  /* ---------- chat example prompts ---------- */
+  document.querySelectorAll('.chat-ex').forEach(function (b) { b.addEventListener('click', function () { var i = $('#chatInput'); if (!i) return; i.value = b.textContent; (i.form.requestSubmit ? i.form.requestSubmit() : i.form.dispatchEvent(new Event('submit', { cancelable: true }))); }); });
+  /* ---------- current-section indicator in the header ---------- */
+  (function () {
+    if (!window.IntersectionObserver) return;
+    var links = document.querySelectorAll('#mainHeader nav a[href^="#"]'), map = {};
+    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+    var io = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting && map[e.target.id]) { links.forEach(function (l) { l.classList.remove('active-sec'); l.removeAttribute('aria-current'); }); map[e.target.id].classList.add('active-sec'); map[e.target.id].setAttribute('aria-current', 'true'); } }); }, { rootMargin: '-45% 0px -50% 0px' });
+    Object.keys(map).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+  })();
+  /* ---------- never leave "Loading members..." forever ---------- */
+  setTimeout(function () { var g = document.getElementById('member-list'); if (g && /Loading members/i.test(g.textContent)) g.innerHTML = '<p class="text-center text-slate-400 text-sm col-span-full">Could not load the member list. Please refresh the page. If it keeps failing, tell us through the contact form.</p>'; }, 9000);
   var tb = $('#termBtn'); if (tb) tb.addEventListener('click', window.toreTerminal);
 })();

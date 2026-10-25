@@ -488,6 +488,7 @@
             <nav class="hidden 2xl:flex items-center space-x-6 text-sm font-medium font-display tracking-wider">
                 <a href="#about" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">ABOUT</a>
                 <a href="about.html" class="text-brand-cyan hover:text-white transition duration-200" onmouseenter="playBeep(650)">MANIFESTO</a>
+                <a href="docs.html" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">DOCS</a>
                 <a href="learn.html" class="text-brand-cyan hover:text-white transition duration-200" onmouseenter="playBeep(650)">LEARN</a>
                 <a href="#mission" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">MISSION</a>
                 <a href="#projects" class="text-slate-300 hover:text-brand-cyan transition duration-200" onmouseenter="playBeep(650)">PROJECTS</a>
@@ -602,6 +603,9 @@
                     <i class="fa-solid fa-cube text-brand-cyan text-sm"></i>
                     <span>EXPLORE PROJECTS</span>
                 </a>
+            </div>
+            <div class="mt-5 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs font-mono tracking-wider text-slate-400">
+                <a class="hover:text-brand-cyan" href="learn.html">LEARN WITH TORECATSU</a><a class="hover:text-brand-cyan" href="docs.html">VIEW DOCUMENTATION</a><a class="hover:text-brand-cyan" href="#contact">CONTACT THE TEAM</a>
             </div>
 
             <!--  Floating Counter Bar -->
@@ -1125,7 +1129,17 @@
                     <h3 class="text-lg font-display font-bold text-white">Earth Science</h3>
                     <p class="text-xs text-slate-400 leading-relaxed font-sans mt-1">Geology, climate, oceans, and the planet we live on.</p>
                 </div>
-            </div>
+
+                <div class="glass-panel glass-panel-hover p-6 rounded-2xl" onmouseenter="playBeep(620)">
+                    <div class="w-12 h-12 rounded-xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center text-brand-blue text-xl mb-4"><i class="fa-solid fa-laptop-code"></i></div>
+                    <h3 class="text-lg font-display font-bold text-white">Computer Science</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed font-sans mt-1">Algorithms, programming, networks, and how computers work.</p>
+                </div>
+                <div class="glass-panel glass-panel-hover p-6 rounded-2xl" onmouseenter="playBeep(620)">
+                    <div class="w-12 h-12 rounded-xl bg-brand-violet/10 border border-brand-violet/30 flex items-center justify-center text-brand-violet text-xl mb-4"><i class="fa-solid fa-robot"></i></div>
+                    <h3 class="text-lg font-display font-bold text-white">Artificial Intelligence</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed font-sans mt-1">Machine learning, data, and using AI responsibly.</p>
+                </div>            </div>
         </div>
     </section>
 
@@ -1259,7 +1273,7 @@
             <div class="text-center max-w-3xl mx-auto mb-10">
                 <div class="inline-flex items-center space-x-2 text-brand-cyan font-mono text-xs tracking-widest uppercase mb-3">
                     <i class="fa-solid fa-users"></i>
-                    <span>// OPERATOR REGISTRY</span>
+                    <span>// MEMBER LIST</span>
                 </div>
                 <h2 class="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight">Members</h2>
                 <p class="text-slate-400 text-sm sm:text-base mt-4 font-light">Everyone in the community, with their member ID.</p>
@@ -1415,7 +1429,7 @@
     <footer class="relative z-10 border-t border-brand-border/60 bg-brand-black/90 pt-16 pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <nav aria-label="Site pages" class="mb-10 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs font-mono text-slate-400">
-                <a class="hover:text-brand-cyan" href="about.html">Manifesto</a><a class="hover:text-brand-cyan" href="projects.html">Projects</a><a class="hover:text-brand-cyan" href="learn.html">Learn</a>
+                <a class="hover:text-brand-cyan" href="about.html">Manifesto</a><a class="hover:text-brand-cyan" href="projects.html">Projects</a><a class="hover:text-brand-cyan" href="learn.html">Learn</a><a class="hover:text-brand-cyan" href="docs.html">Docs</a>
                 <a class="hover:text-brand-cyan" href="project-chronos.html">Chronos</a><a class="hover:text-brand-cyan" href="project-aegis.html">Aegis</a><a class="hover:text-brand-cyan" href="project-nexus.html">Nexus</a>
                 <a class="hover:text-brand-cyan" href="project-vortex.html">Vortex</a><a class="hover:text-brand-cyan" href="project-passport.html">Passport</a><a class="hover:text-brand-cyan" href="project-null-os.html">Null-OS</a>
             </nav>
@@ -1540,6 +1554,13 @@
             </div>
         </div>
 
+        <div class="px-3 pt-2 pb-1 bg-brand-charcoal border-t border-brand-border flex flex-wrap gap-1.5" aria-label="Example questions">
+            <span class="w-full text-[10px] font-mono text-slate-500">DEMO ASSISTANT - answers from a built-in knowledge base, not a live AI model. Try:</span>
+            <button type="button" class="chat-ex px-2 py-1 rounded border border-brand-border text-[10px] font-mono text-slate-300 hover:border-brand-cyan">What is TORECATSU?</button>
+            <button type="button" class="chat-ex px-2 py-1 rounded border border-brand-border text-[10px] font-mono text-slate-300 hover:border-brand-cyan">How do I join?</button>
+            <button type="button" class="chat-ex px-2 py-1 rounded border border-brand-border text-[10px] font-mono text-slate-300 hover:border-brand-cyan">Why is the sky blue?</button>
+            <button type="button" class="chat-ex px-2 py-1 rounded border border-brand-border text-[10px] font-mono text-slate-300 hover:border-brand-cyan">What is machine learning?</button>
+        </div>
         <!-- Terminal Input Box -->
         <form onsubmit="handleChatSubmit(event)" class="p-3 bg-brand-charcoal border-t border-brand-border flex items-center space-x-2">
             <input type="text" id="chatInput" placeholder="Enter query..." class="flex-1 bg-brand-black border border-brand-border rounded-lg px-3 py-2 text-xs text-white font-mono focus:outline-none focus:border-brand-cyan">

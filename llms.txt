@@ -7,6 +7,7 @@
 - [Manifesto](https://torecatsu.netlify.app/about.html): what "we do not follow the system" means, our six principles, how we work, membership levels, roadmap and FAQ.
 - [Learn](https://torecatsu.netlify.app/learn.html): short English and Bangla explainers (zero-knowledge proofs, mesh networks, encryption, machine learning, why the sky is blue, how black holes form).
 - Project pages: [Chronos](https://torecatsu.netlify.app/project-chronos.html), [Aegis Shield Protocol](https://torecatsu.netlify.app/project-aegis.html), [Nexus Hyper-Mesh](https://torecatsu.netlify.app/project-nexus.html), [Vortex Agent DAO](https://torecatsu.netlify.app/project-vortex.html), [Sovereign Passport](https://torecatsu.netlify.app/project-passport.html), [Null-OS Sovereign](https://torecatsu.netlify.app/project-null-os.html)
+- [Documentation hub](https://torecatsu.netlify.app/docs.html): getting started, FAQ, contribution guide, changelog, roadmap
 - [Projects directory](https://torecatsu.netlify.app/projects.html): searchable list of project ideas with status labels
 - [Learn](https://torecatsu.netlify.app/learn.html): beginner-friendly science and technology explainers
 - [Privacy](https://torecatsu.netlify.app/privacy.html), [Terms](https://torecatsu.netlify.app/terms.html), [Community guidelines](https://torecatsu.netlify.app/guidelines.html)
