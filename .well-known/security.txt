@@ -1,0 +1,5 @@
+Contact: https://torecatsu.netlify.app/#contact
+Expires: 2027-10-25T00:00:00.000Z
+Preferred-Languages: en, bn
+Canonical: https://torecatsu.netlify.app/.well-known/security.txt
+Policy: https://torecatsu.netlify.app/guidelines.html

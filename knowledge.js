@@ -14,35 +14,35 @@ entries: [
  "'Know the system' মানে কোনো কিছু আসলে কীভাবে কাজ করে তা গভীরভাবে বোঝা। 'Break the system' মানে যা বন্ধ বা ত্রুটিপূর্ণ তাকে প্রশ্ন করা এবং খোলা, শক্তিশালী বিকল্প দিয়ে বদলানো। এটা শেখা ও বানানোর কথা, ক্ষতি করার কথা নয়।"],
 
 ["directives", ["directive", "directives", "mission", "four directives", "mandates", "goal of torecatsu", "torecatsu er lokkho", "লক্ষ্য"],
- "TORECATSU follows four directives:\n1. Hyper-Autonomous AI - decentralized machine intelligence not controlled by one company.\n2. Zero-Knowledge Defense - privacy tech that proves things without exposing identities.\n3. Mesh Sovereign Networks - networks that keep working during outages and censorship.\n4. Disruptive Economics - fair value exchange without unnecessary gatekeepers.",
- "TORECATSU এর চারটি নির্দেশনা:\n১. হাইপার-অটোনোমাস AI - এক কোম্পানির নিয়ন্ত্রণের বাইরে বিকেন্দ্রীভূত বুদ্ধিমত্তা।\n২. জিরো-নলেজ ডিফেন্স - পরিচয় না দেখিয়ে সত্যতা প্রমাণের প্রযুক্তি।\n৩. মেশ সভারেন নেটওয়ার্ক - বিপর্যয় বা সেন্সরশিপেও চালু থাকা নেটওয়ার্ক।\n৪. ডিসরাপটিভ ইকোনমিক্স - মধ্যস্থতাকারী ছাড়া ন্যায্য মূল্য বিনিময়।"],
+ "TORECATSU follows four guiding directives:\n1. Open AI Research - learn how AI works and build small, transparent tools.\n2. Privacy by Design - study cryptography, such as zero-knowledge proofs, so people can share less data.\n3. Resilient Networks - research community mesh networks that keep working when central services fail.\n4. Fair Access - explore open ways to share knowledge and resources.",
+ "TORECATSU এর চারটি নির্দেশনা:\n১. ওপেন AI গবেষণা - AI কীভাবে কাজ করে শিখে স্বচ্ছ টুল বানানো।\n২. প্রাইভেসি বাই ডিজাইন - কম তথ্য দিয়ে প্রমাণ করার ক্রিপ্টোগ্রাফি শেখা।\n৩. রেজিলিয়েন্ট নেটওয়ার্ক - মেশ নেটওয়ার্ক নিয়ে গবেষণা।\n৪. ন্যায্য সুযোগ - জ্ঞান ও সম্পদ উন্মুক্তভাবে ভাগ করা।"],
 
 ["projects", ["projects", "project", "systems laboratory", "experiments", "what does torecatsu build", "torecatsu er project", "প্রজেক্ট"],
- "According to the website, the Systems Laboratory lists six projects:\n- Project Chronos (AI prediction grid)\n- Aegis Shield Protocol (zero-knowledge, post-quantum privacy layer)\n- Nexus Hyper-Mesh (decentralized physical network)\n- Vortex Agent DAO (autonomous software agents)\n- Sovereign Passport (self-sovereign digital identity)\n- Null-OS Sovereign (minimal zero-telemetry operating system)\nUse the INSPECT button on each card for details."],
+ "TORECATSU has six project ideas, all still at the IDEA stage (no released version yet):\n- Project Chronos (AI forecasting)\n- Aegis Shield Protocol (zero-knowledge privacy)\n- Nexus Hyper-Mesh (community mesh networks)\n- Vortex Agent DAO (rule-following software agents)\n- Sovereign Passport (self-controlled digital identity)\n- Null-OS Sovereign (zero-telemetry operating system)\nSee the Projects page for details."],
 
 ["chronos", ["chronos", "project chronos"],
- "Project Chronos is listed as a decentralized predictive inference grid - an AI engine that simulates complex systems quickly. Category: AI / Neural. Status on the site: production."],
+ "Project Chronos is an AI research idea about forecasting: learning how prediction models work on open data and measuring honestly when they are wrong. Status: IDEA, no release yet."],
 ["aegis", ["aegis", "aegis shield", "aegis shield protocol"],
- "Aegis Shield Protocol is described as a quantum-resistant zero-knowledge layer focused on privacy and state secrecy. Category: Cryptography. Status on the site: mainnet."],
+ "Aegis Shield Protocol is a learning project about zero-knowledge proofs: proving a fact without revealing the data behind it. Status: IDEA, no release yet. It has not been audited."],
 ["nexus", ["nexus", "hyper-mesh", "hyper mesh", "nexus hyper-mesh"],
- "Nexus Hyper-Mesh is a decentralized physical infrastructure (DePIN) project: long-range laser and microwave relays forming a mesh network. Category: Infrastructure. Status on the site: testnet."],
+ "Nexus Hyper-Mesh is a research idea about community mesh networks, where nearby devices relay data for each other. Status: IDEA, no real network exists yet."],
 ["vortex", ["vortex", "vortex agent", "vortex agent dao"],
- "Vortex Agent DAO explores autonomous software agents that can hold keys, negotiate and run agreements without human help. Category: AI / Autonomy. Status on the site: research."],
+ "Vortex Agent DAO is a research idea about software agents that follow rules a community agrees on. Status: IDEA, we are studying the concept."],
 ["passport", ["sovereign passport", "digital identity", "self sovereign identity"],
- "Sovereign Passport is a self-sovereign identity project: you prove who you are (or that a fact about you is true) without handing over all your personal data. Category: Cryptography."],
+ "Sovereign Passport is a research idea about digital identity you control: you share only the facts you choose. Status: IDEA, no credentials are issued."],
 ["nullos", ["null-os", "null os", "nullos"],
- "Null-OS Sovereign is described as a minimal, immutable microkernel operating system with no telemetry, sandboxed memory and built-in privacy routing. Category: Infrastructure."],
+ "Null-OS Sovereign is a learning project about a small operating system that sends no usage data. Status: IDEA, there is no operating system release yet."],
 
 ["tiers", ["level", "levels", "tier", "tiers", "initiate", "architect", "sovereign", "membership", "community level", "clearance", "লেভেল"],
- "There are three community levels:\n- INITIATE (open access): community chat, public research papers, hackathons.\n- ARCHITECT (vetted builder): testnet node access, voting on proposals, developer APIs, bounties.\n- SOVEREIGN (council only): treasury governance, core write access, private assemblies.\nUse the community section on the site to start."],
+ "There are three community levels. Everyone starts as INITIATE (free account, member ID, Learn articles, TORE-AI). ARCHITECT (contributors) and SOVEREIGN (core team) are planned roles for the future, not active programs yet."],
 
 ["join", ["how to join", "join torecatsu", "join", "apply", "become a member", "membership form", "member hobo", "kivabe join", "kibhabe join", "জয়েন"],
- "To join: scroll to 'JOIN TORECATSU' on the home page, fill in your handle, email, field and statement of intent, tick the box and submit. You can also create an account from ACCESS PORTAL > REGISTER CIPHER.",
- "জয়েন করতে হোম পেজে 'JOIN TORECATSU' ফর্মে নাম, ইমেইল, আগ্রহের বিষয় ও উদ্দেশ্য লিখে সাবমিট করো। অথবা ACCESS PORTAL > REGISTER CIPHER থেকে অ্যাকাউন্ট খুলতে পারো।"],
+ "To join: scroll to 'JOIN TORECATSU' on the home page, fill in your handle, email, field and statement of intent, tick the box and submit. You can also create an account from ACCESS PORTAL > CREATE ACCOUNT.",
+ "জয়েন করতে হোম পেজে 'JOIN TORECATSU' ফর্মে নাম, ইমেইল, আগ্রহের বিষয় ও উদ্দেশ্য লিখে সাবমিট করো। অথবা ACCESS PORTAL > CREATE ACCOUNT থেকে অ্যাকাউন্ট খুলতে পারো।"],
 
 ["login", ["login", "log in", "sign in", "signup", "sign up", "register", "create account", "account", "access portal", "password", "অ্যাকাউন্ট", "লগইন"],
- "Click ACCESS PORTAL at the top, choose REGISTER CIPHER, enter alias, email and a password (minimum 8 characters). Depending on settings you may need to confirm your email. Then use OPERATOR LOGIN to enter the Member Area. If it says 'failed', check your internet/VPN and try again.",
- "উপরে ACCESS PORTAL চাপো, REGISTER CIPHER বেছে নিয়ে নাম, ইমেইল ও কমপক্ষে ৮ অক্ষরের পাসওয়ার্ড দাও। দরকার হলে ইমেইল কনফার্ম করো, তারপর OPERATOR LOGIN দিয়ে ঢোকো।"],
+ "Click ACCESS PORTAL at the top, choose CREATE ACCOUNT, enter alias, email and a password (minimum 8 characters). Depending on settings you may need to confirm your email. Then use LOG IN to enter the Member Area. If it says 'failed', check your internet/VPN and try again.",
+ "উপরে ACCESS PORTAL চাপো, CREATE ACCOUNT বেছে নিয়ে নাম, ইমেইল ও কমপক্ষে ৮ অক্ষরের পাসওয়ার্ড দাও। দরকার হলে ইমেইল কনফার্ম করো, তারপর LOG IN দিয়ে ঢোকো।"],
 
 ["privacy", ["is my data safe", "data safe", "privacy", "password safe", "security of site", "is it safe", "nirapod"],
  "Passwords are handled by the login service and stored in hashed (scrambled) form, so the site owner cannot read them. Never share your password with anyone, and use a different password on every website."],
@@ -67,10 +67,10 @@ entries: [
  "The site does not list a public founder. For official information please use the contact form."],
 
 ["free", ["is it free", "free to join", "cost", "price", "fee", "koto taka"],
- "The INITIATE level is marked as OPEN ACCESS on the site. For other levels or anything about fees, please ask through the contact form."],
+ "Yes. Joining and creating an account are free. Contact us through the contact form if you have questions."],
 
 ["network", ["tokyo", "zurich", "san francisco", "singapore hub", "global network", "globe", "nodes", "hubs"],
- "The Global Network section shows an interactive globe with four hubs: Tokyo (Cyber Hub), Zurich (Cryptographic Vault), San Francisco (AI Forge) and Singapore (Mesh Hub). Drag the globe to rotate it."],
+ "The Community section shows a rotating globe. Its four glowing points (Tokyo, Zurich, San Francisco, Singapore) are example hub locations, not real servers, and the latency shown is simulated."],
 
 /* ===================== PHYSICS ===================== */
 ["speed of light", ["speed of light", "velocity of light", "alo er gati", "আলোর গতি"],

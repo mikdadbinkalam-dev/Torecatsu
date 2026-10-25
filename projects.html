@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects | TORECATSU</title>
+<meta name="description" content="Searchable directory of TORECATSU project ideas with honest status labels: IDEA, IN DEVELOPMENT, PROTOTYPE or RELEASED.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://torecatsu.netlify.app/projects.html">
+<meta property="og:title" content="Projects | TORECATSU">
+<meta property="og:description" content="Searchable directory of TORECATSU project ideas with honest status labels: IDEA, IN DEVELOPMENT, PROTOTYPE or RELEASED.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://torecatsu.netlify.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#030307">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="manifest" href="site.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"TORECATSU Projects","url":"https://torecatsu.netlify.app/projects.html","isPartOf":{"@id":"https://torecatsu.netlify.app/#website"}}</script>
+<script src="site.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{colors:{brand:{black:'#030307',charcoal:'#090913',card:'#0D0E1C',border:'#1E2038',cyan:'#00F0FF',blue:'#0066FF',purple:'#8A2BE2',violet:'#B026FF',neonPink:'#FF007A'}},fontFamily:{sans:['Outfit','sans-serif'],display:['Space Grotesk','sans-serif'],mono:['JetBrains Mono','monospace']}}}}
+</script>
+<style>
+html{scroll-behavior:smooth}
+body{background:#030307;color:#E2E8F0;font-family:'Outfit',sans-serif;overflow-x:hidden}
+.grid-bg{background-image:linear-gradient(to right,rgba(0,240,255,.03) 1px,transparent 1px),linear-gradient(to bottom,rgba(138,43,226,.03) 1px,transparent 1px);background-size:50px 50px}
+.panel{background:rgba(13,14,28,.75);border:1px solid rgba(0,240,255,.14);border-radius:1rem}
+.grad{background:linear-gradient(135deg,#00F0FF,#7000FF 50%,#FF007A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.rv{opacity:0;transform:translate3d(0,22px,0);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+h2{scroll-margin-top:90px}
+</style>
+
+</head>
+<body class="grid-bg antialiased">
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded">Skip to content</a>
+<div class="w-full bg-brand-charcoal border-b border-white/5 px-4 py-1.5 flex items-center justify-between text-slate-300">
+  <span class="text-[10px] font-mono text-brand-cyan tracking-widest hidden sm:inline">// TORECATSU</span>
+  <div id="musicMount" class="ml-auto"></div>
+</div>
+<header class="sticky top-0 z-40 bg-brand-black/90 border-b border-white/5">
+  <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3"><img src="logo-128.png" alt="TORECATSU logo" width="32" height="32" class="w-8 h-8 rounded"><span class="font-display font-bold tracking-[0.2em] text-white">TORECATSU</span></a>
+    <nav aria-label="Main" class="flex items-center gap-3 sm:gap-4 text-[11px] sm:text-xs font-mono tracking-wide sm:tracking-wider">
+      <a href="index.html" class="text-slate-300 hover:text-brand-cyan">HOME</a>
+      <a href="projects.html" class="text-slate-300 hover:text-brand-cyan">PROJECTS</a>
+      <a href="learn.html" class="text-slate-300 hover:text-brand-cyan">LEARN</a>
+      <a href="index.html#join" class="px-3 py-1.5 rounded-md bg-gradient-to-r from-brand-cyan to-brand-blue text-black font-bold">JOIN</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="max-w-3xl mx-auto px-4 py-14">
+<p class="font-mono text-xs text-brand-cyan tracking-widest mb-3">// PROJECT DIRECTORY</p><h1 class="font-display text-3xl sm:text-4xl font-bold text-white mb-3">Projects</h1>
+<p class="text-slate-300 leading-relaxed mb-6">Every project below is at an early stage. We label each one honestly: <strong class="text-white">IDEA</strong> (we are learning and planning), <strong class="text-white">IN DEVELOPMENT</strong>, <strong class="text-white">PROTOTYPE</strong> or <strong class="text-white">RELEASED</strong>. Right now all six are IDEA, with no released code.</p>
+<div class="flex flex-col sm:flex-row gap-3 mb-6">
+<label class="sr-only" for="q">Search projects</label><input id="q" type="search" placeholder="Search projects..." class="flex-1 bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-cyan">
+<label class="sr-only" for="cat">Category</label><select id="cat" class="bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-sm text-white"><option value="">All categories</option></select>
+<label class="sr-only" for="st">Status</label><select id="st" class="bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-sm text-white"><option value="">All statuses</option><option>IDEA</option><option>IN DEVELOPMENT</option><option>PROTOTYPE</option><option>RELEASED</option></select></div>
+<p id="count" class="text-xs font-mono text-slate-500 mb-4" aria-live="polite"></p><div id="list" class="grid gap-4 sm:grid-cols-2"></div>
+<p id="empty" class="hidden text-slate-400 text-center py-10">No project matches your search. Try a different word or clear the filters.</p>
+</main>
+<footer class="border-t border-white/5 py-8 text-center text-xs font-mono text-slate-500">
+  <nav aria-label="Footer" class="flex flex-wrap justify-center gap-x-5 gap-y-2 mb-3"><a class="hover:text-brand-cyan" href="about.html">Manifesto</a><a class="hover:text-brand-cyan" href="projects.html">Projects</a><a class="hover:text-brand-cyan" href="learn.html">Learn</a><a class="hover:text-brand-cyan" href="privacy.html">Privacy</a><a class="hover:text-brand-cyan" href="terms.html">Terms</a><a class="hover:text-brand-cyan" href="guidelines.html">Guidelines</a></nav>
+  &copy; TORECATSU &middot; KNOW THE SYSTEM. BREAK THE SYSTEM.
+</footer>
+<script src="player.js"></script>
+<script>
+(function(){var D=[{"name": "Project Chronos", "url": "project-chronos.html", "cat": "AI", "status": "IDEA", "text": "AI forecasting: learn how prediction models work on open data and measure honestly when they are wrong."}, {"name": "Aegis Shield Protocol", "url": "project-aegis.html", "cat": "Cryptography", "status": "IDEA", "text": "Zero-knowledge privacy: prove a fact is true without revealing the data behind it."}, {"name": "Nexus Hyper-Mesh", "url": "project-nexus.html", "cat": "Networks", "status": "IDEA", "text": "Community mesh networks: nearby devices relay data for each other without one central router."}, {"name": "Vortex Agent DAO", "url": "project-vortex.html", "cat": "AI", "status": "IDEA", "text": "Software agents that follow rules a community agrees on. A concept we are studying."}, {"name": "Sovereign Passport", "url": "project-passport.html", "cat": "Identity", "status": "IDEA", "text": "Digital identity you control: choose which facts to share and with whom."}, {"name": "Null-OS Sovereign", "url": "project-null-os.html", "cat": "Systems", "status": "IDEA", "text": "A small operating system that sends no usage data. A learning project about how operating systems are built."}],list=document.getElementById('list'),q=document.getElementById('q'),cat=document.getElementById('cat'),st=document.getElementById('st');
+var cats=[];D.forEach(function(p){if(cats.indexOf(p.cat)<0)cats.push(p.cat)});cats.sort().forEach(function(c){var o=document.createElement('option');o.textContent=c;cat.appendChild(o)});
+function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function draw(){var t=q.value.trim().toLowerCase(),n=0,h='';D.forEach(function(p){if(cat.value&&p.cat!==cat.value)return;if(st.value&&p.status!==st.value)return;if(t&&(p.name+' '+p.text+' '+p.cat).toLowerCase().indexOf(t)<0)return;n++;
+h+='<a href="'+p.url+'" class="panel p-5 block hover:border-brand-cyan transition"><div class="flex justify-between items-center mb-2"><span class="text-[10px] font-mono text-brand-cyan tracking-wider uppercase">'+esc(p.cat)+'</span><span class="text-[10px] font-mono text-amber-400 border border-amber-400/40 rounded px-1.5 py-0.5">'+esc(p.status)+'</span></div><h2 class="font-display text-lg font-bold text-white">'+esc(p.name)+'</h2><p class="text-sm text-slate-400 mt-1">'+esc(p.text)+'</p><span class="inline-block mt-3 text-xs font-mono text-brand-cyan">READ DETAILS &rarr;</span></a>'});
+list.innerHTML=h;document.getElementById('count').textContent=n+' of '+D.length+' projects';document.getElementById('empty').classList.toggle('hidden',n>0)}
+[q,cat,st].forEach(function(e){e.addEventListener('input',draw)});draw()})();
+</script>
+</body>
+</html>

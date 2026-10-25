@@ -152,5 +152,18 @@
     if (e.key === 'Escape') { closeTerm(); closeSubj(); closeTx(); }
     if (e.key === '`' && tag !== 'input' && tag !== 'textarea') { e.preventDefault(); window.toreTerminal(); }
   });
+  /* ---------- Accessibility: move focus into modals when they open, return it on close ---------- */
+  ['authModal', 'projectModal'].forEach(function (id) {
+    var m = document.getElementById(id); if (!m || !window.MutationObserver) return; var prev = null;
+    new MutationObserver(function () {
+      var open = !m.classList.contains('hidden');
+      if (open && !m.dataset.on) { m.dataset.on = '1'; prev = document.activeElement; setTimeout(function () { var f = m.querySelector('input,button,a[href]'); if (f) f.focus(); }, 80); }
+      else if (!open && m.dataset.on) { delete m.dataset.on; if (prev && prev.focus) prev.focus(); }
+    }).observe(m, { attributes: true, attributeFilter: ['class'] });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    try { if (!$('#authModal').classList.contains('hidden')) closeAuthModal(); if (!$('#projectModal').classList.contains('hidden')) closeProjectModal(); } catch (x) {}
+  });
   var tb = $('#termBtn'); if (tb) tb.addEventListener('click', window.toreTerminal);
 })();

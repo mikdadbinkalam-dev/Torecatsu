@@ -7,14 +7,17 @@
 - [Manifesto](https://torecatsu.netlify.app/about.html): what "we do not follow the system" means, our six principles, how we work, membership levels, roadmap and FAQ.
 - [Learn](https://torecatsu.netlify.app/learn.html): short English and Bangla explainers (zero-knowledge proofs, mesh networks, encryption, machine learning, why the sky is blue, how black holes form).
 - Project pages: [Chronos](https://torecatsu.netlify.app/project-chronos.html), [Aegis Shield Protocol](https://torecatsu.netlify.app/project-aegis.html), [Nexus Hyper-Mesh](https://torecatsu.netlify.app/project-nexus.html), [Vortex Agent DAO](https://torecatsu.netlify.app/project-vortex.html), [Sovereign Passport](https://torecatsu.netlify.app/project-passport.html), [Null-OS Sovereign](https://torecatsu.netlify.app/project-null-os.html)
+- [Projects directory](https://torecatsu.netlify.app/projects.html): searchable list of project ideas with status labels
+- [Learn](https://torecatsu.netlify.app/learn.html): beginner-friendly science and technology explainers
+- [Privacy](https://torecatsu.netlify.app/privacy.html), [Terms](https://torecatsu.netlify.app/terms.html), [Community guidelines](https://torecatsu.netlify.app/guidelines.html)
 - [Sitemap](https://torecatsu.netlify.app/sitemap.xml)
 
 ## Facts
 - Organisation name: TORECATSU
 - Type: online community / technology and science learning collective
-- Levels: Initiate (open access), Architect (vetted builders), Sovereign (council)
+- Levels: Initiate (open to all, the only active level today); Architect (contributors) and Sovereign (core team) are planned roles, not active programs
 - Principles: open by default; suitable for all; privacy is a right; no single point of control; learn then build; responsible freedom
-- Projects listed on the site: Chronos (AI prediction grid), Aegis Shield Protocol (zero-knowledge privacy), Nexus Hyper-Mesh (community mesh networks), Vortex Agent DAO (autonomous agents), Sovereign Passport (self-sovereign identity), Null-OS Sovereign (zero-telemetry operating system). These are goals and research projects, not finished commercial products.
+- Projects listed on the site: Chronos (AI prediction grid), Aegis Shield Protocol (zero-knowledge privacy), Nexus Hyper-Mesh (community mesh networks), Vortex Agent DAO (autonomous agents), Sovereign Passport (self-sovereign identity), Null-OS Sovereign (zero-telemetry operating system). All six are at the IDEA stage: learning and research ideas with no released product, code or audit yet.
 - Subjects: physics, chemistry, biology, astrophysics, mathematics, earth science
 - Assistant: TORE-AI, a built-in chat assistant that answers questions about TORECATSU, science, maths, general knowledge and technology (English and Bangla)
 - How to join: use the "JOIN TORECATSU" form on the home page or create an account via ACCESS PORTAL

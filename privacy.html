@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy | TORECATSU</title>
+<meta name="description" content="What the TORECATSU website collects, why, and how you can ask us to delete your data.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://torecatsu.netlify.app/privacy.html">
+<meta property="og:title" content="Privacy Policy | TORECATSU">
+<meta property="og:description" content="What the TORECATSU website collects, why, and how you can ask us to delete your data.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://torecatsu.netlify.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#030307">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="manifest" href="site.webmanifest">
+<script src="site.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{colors:{brand:{black:'#030307',charcoal:'#090913',card:'#0D0E1C',border:'#1E2038',cyan:'#00F0FF',blue:'#0066FF',purple:'#8A2BE2',violet:'#B026FF',neonPink:'#FF007A'}},fontFamily:{sans:['Outfit','sans-serif'],display:['Space Grotesk','sans-serif'],mono:['JetBrains Mono','monospace']}}}}
+</script>
+<style>
+html{scroll-behavior:smooth}
+body{background:#030307;color:#E2E8F0;font-family:'Outfit',sans-serif;overflow-x:hidden}
+.grid-bg{background-image:linear-gradient(to right,rgba(0,240,255,.03) 1px,transparent 1px),linear-gradient(to bottom,rgba(138,43,226,.03) 1px,transparent 1px);background-size:50px 50px}
+.panel{background:rgba(13,14,28,.75);border:1px solid rgba(0,240,255,.14);border-radius:1rem}
+.grad{background:linear-gradient(135deg,#00F0FF,#7000FF 50%,#FF007A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.rv{opacity:0;transform:translate3d(0,22px,0);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+h2{scroll-margin-top:90px}
+</style>
+
+</head>
+<body class="grid-bg antialiased">
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded">Skip to content</a>
+<div class="w-full bg-brand-charcoal border-b border-white/5 px-4 py-1.5 flex items-center justify-between text-slate-300">
+  <span class="text-[10px] font-mono text-brand-cyan tracking-widest hidden sm:inline">// TORECATSU</span>
+  <div id="musicMount" class="ml-auto"></div>
+</div>
+<header class="sticky top-0 z-40 bg-brand-black/90 border-b border-white/5">
+  <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3"><img src="logo-128.png" alt="TORECATSU logo" width="32" height="32" class="w-8 h-8 rounded"><span class="font-display font-bold tracking-[0.2em] text-white">TORECATSU</span></a>
+    <nav aria-label="Main" class="flex items-center gap-3 sm:gap-4 text-[11px] sm:text-xs font-mono tracking-wide sm:tracking-wider">
+      <a href="index.html" class="text-slate-300 hover:text-brand-cyan">HOME</a>
+      <a href="projects.html" class="text-slate-300 hover:text-brand-cyan">PROJECTS</a>
+      <a href="learn.html" class="text-slate-300 hover:text-brand-cyan">LEARN</a>
+      <a href="index.html#join" class="px-3 py-1.5 rounded-md bg-gradient-to-r from-brand-cyan to-brand-blue text-black font-bold">JOIN</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="max-w-3xl mx-auto px-4 py-14">
+<p class="font-mono text-xs text-brand-cyan tracking-widest mb-3">// LEGAL</p><h1 class="font-display text-3xl sm:text-4xl font-bold text-white mb-3">Privacy Policy</h1><p class="text-xs font-mono text-slate-500 mb-6">Last updated: 25 October 2026</p><p class="text-slate-300 leading-relaxed mb-8">This page explains, in plain language, what the TORECATSU website collects and why. It describes what the site actually does today. It is not legal advice, and we do not claim compliance with any specific law or certification.</p><section class="panel p-6 mb-5"><h2 class="font-display text-xl font-bold text-white mb-3">Who we are</h2><div class="text-slate-300 text-sm leading-relaxed space-y-3">TORECATSU is a student-led online community. You can reach us through the <a class="text-brand-cyan underline" href="index.html#contact">contact form</a>.</div></section><section class="panel p-6 mb-5"><h2 class="font-display text-xl font-bold text-white mb-3">What we collect</h2><div class="text-slate-300 text-sm leading-relaxed space-y-3"><ul class="list-disc pl-5 space-y-1.5"><li><strong>Account (optional).</strong> If you create an account we store your email address, your password (only as a salted hash handled by our login provider, Supabase, so we cannot read it) and the display name you choose.</li><li><strong>Member list.</strong> Your display name, member ID (like TRC-101), level and join date are shown in the public member list. Your email is never shown there.</li><li><strong>Join and contact forms.</strong> Name or handle, email, field of interest, message and optional link. These are delivered through Netlify Forms (or Formspree, if we enable it).</li><li><strong>On your device.</strong> We use your browser's localStorage and sessionStorage for settings such as sound, music, language, light/dark theme and whether you have seen the intro. Supabase also keeps your login session there. We do not set advertising or tracking cookies.</li><li><strong>Server logs.</strong> Our host, Netlify, may log technical data such as IP address and browser type for operating and securing the service.</li></ul></div></section><section class="panel p-6 mb-5"><h2 class="font-display text-xl font-bold text-white mb-3">What we do not do</h2><div class="text-slate-300 text-sm leading-relaxed space-y-3"><ul class="list-disc pl-5 space-y-1.5"><li>We do not run advertising or analytics scripts on this site.</li><li>We do not sell your data.</li><li>TORE-AI answers from a knowledge base that runs inside your browser. Your questions to TORE-AI are not sent to us or to an AI company.</li></ul></div></section><section class="panel p-6 mb-5"><h2 class="font-display text-xl font-bold text-white mb-3">Third-party services</h2><div class="text-slate-300 text-sm leading-relaxed space-y-3">The site loads code, fonts and icons from Google Fonts, Tailwind CDN, jsDelivr, cdnjs (Cloudflare) and Font Awesome. These providers can see your IP address when your browser requests those files. Hosting is by Netlify, and accounts and the member list are stored by Supabase. Each provider has its own privacy policy.</div></section><section class="panel p-6 mb-5"><h2 class="font-display text-xl font-bold text-white mb-3">Why we use your data</h2><div class="text-slate-300 text-sm leading-relaxed space-y-3"><ul class="list-disc pl-5 space-y-1.5"><li>To create and secure your account and show you in the member list.</li><li>To read and reply to your messages and applications.</li><li>To keep the site working and protected from abuse.</li></ul></div></section><section class="panel p-6 mb-5"><h2 class="font-display text-xl font-bold text-white mb-3">How long we keep it</h2><div class="text-slate-300 text-sm leading-relaxed space-y-3">Account and member data is kept until you ask us to delete it. Form messages are kept only as long as we need them to reply or manage the community.</div></section><section class="panel p-6 mb-5"><h2 class="font-display text-xl font-bold text-white mb-3">Your choices</h2><div class="text-slate-300 text-sm leading-relaxed space-y-3">You can ask us to see, correct or delete your data (including your account and member-list entry) through the <a class="text-brand-cyan underline" href="index.html#contact">contact form</a>, using the topic "Privacy request". You can also clear your browser storage at any time.</div></section><section class="panel p-6 mb-5"><h2 class="font-display text-xl font-bold text-white mb-3">Children</h2><div class="text-slate-300 text-sm leading-relaxed space-y-3">TORECATSU is meant for students and learners. We do not knowingly collect personal data from children under 13. If you think a child has given us data, contact us and we will delete it.</div></section><section class="panel p-6 mb-5"><h2 class="font-display text-xl font-bold text-white mb-3">Security</h2><div class="text-slate-300 text-sm leading-relaxed space-y-3">Connections use HTTPS and passwords are hashed by our login provider. No website is perfectly secure, and we have not had an independent security audit. If you find a problem, please tell us through the contact form.</div></section><section class="panel p-6 mb-5"><h2 class="font-display text-xl font-bold text-white mb-3">Changes</h2><div class="text-slate-300 text-sm leading-relaxed space-y-3">If this policy changes, we will update the date above.</div></section>
+</main>
+<footer class="border-t border-white/5 py-8 text-center text-xs font-mono text-slate-500">
+  <nav aria-label="Footer" class="flex flex-wrap justify-center gap-x-5 gap-y-2 mb-3"><a class="hover:text-brand-cyan" href="about.html">Manifesto</a><a class="hover:text-brand-cyan" href="projects.html">Projects</a><a class="hover:text-brand-cyan" href="learn.html">Learn</a><a class="hover:text-brand-cyan" href="privacy.html">Privacy</a><a class="hover:text-brand-cyan" href="terms.html">Terms</a><a class="hover:text-brand-cyan" href="guidelines.html">Guidelines</a></nav>
+  &copy; TORECATSU &middot; KNOW THE SYSTEM. BREAK THE SYSTEM.
+</footer>
+<script src="player.js"></script>
+
+</body>
+</html>
