@@ -69,7 +69,7 @@
   function firstGesture() {
     if (started) return; started = true;
     ['pointerdown', 'keydown', 'touchstart'].forEach(function (e) { window.removeEventListener(e, firstGesture, true); });
-    if (wantOn) { if (window.TORE_INTRO_GATE && document.getElementById('splash')) setTimeout(play, 3600); else play(); }
+    if (wantOn) { if (window.TORE_CINE_PENDING) window.addEventListener('tore:intro-end', function () { setTimeout(play, 200); }, { once: true }); else play(); }
   }
   ['pointerdown', 'keydown', 'touchstart'].forEach(function (e) { window.addEventListener(e, firstGesture, true); });
 
